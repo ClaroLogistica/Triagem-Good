@@ -83,3 +83,36 @@ h3 { margin-top: 25px; }
 .sem-box .percentual {
   opacity: 0.85;
 }
+.resumo-semanal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+  margin-bottom: 30px;
+}
+
+.sem-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  background: linear-gradient(90deg, #0ea5e9, #2563eb);
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.sem-box .sem {
+  font-size: 13px;
+}
+
+.sem-box .total {
+  font-size: 14px;
+  text-align: right;
+}
+
+.sem-box .percentual {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-left: 10px;
+}
