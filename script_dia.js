@@ -189,3 +189,37 @@ function atualizarGrafico() {
     }]
   });
 }
+function atualizarResumoSemanal() {
+  const container = document.getElementById("resumo-semanal");
+  container.innerHTML = "";
+
+  // Total do mês considerando filtros (menos semana)
+  const dadosFiltrados = dados
+    .filter(d => !localAtivo || d["Local"] === localAtivo)
+    .filter(d => !terminalAtivo || d["Terminais"] === terminalAtivo);
+
+  const totalMes = dadosFiltrados
+    .reduce((s, d) => s + Number(d.Quantidade || 0), 0);
+
+  // Agrupar por Semana (coluna do Excel)
+  const porSemana = {};
+  dadosFiltrados.forEach(d => {
+    const sem = d["Semana"];
+    if (!sem) return;
+    porSemana[sem] = (porSemana[sem] || 0) + Number(d.Quantidade || 0);
+  });
+
+  Object.keys(porSemana).forEach(sem => {
+    const total = porSemana[sem];
+    const perc = totalMes > 0 ? Math.round((total / totalMes) * 100) : 0;
+
+    const div = document.createElement("div");
+    div.className = "sem-box";
+    div.innerHTML = `
+      <span>${sem}</span>
+      <span>${total.toLocaleString("pt-BR")}</span>
+      <span class="percentual">${perc}%</span>
+    `;
+    container.appendChild(div);
+  });
+}
