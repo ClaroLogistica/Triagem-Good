@@ -1,6 +1,8 @@
 let dados = [];
-let chart;
+let chartDiario;
+let semanaAtiva = null;
 
+// CARREGAR EXCEL
 fetch('Dados.xlsx')
   .then(r => r.arrayBuffer())
   .then(b => {
@@ -8,55 +10,72 @@ fetch('Dados.xlsx')
     const sh = wb.Sheets[wb.SheetNames[0]];
     dados = XLSX.utils.sheet_to_json(sh);
 
-    criarFiltros();
-    atualizar();
+    criarBotoesSemana();
+    semanaAtiva = obterSemanas()[0];
+    atualizarGrafico();
   });
 
-function criarFiltros() {
-  document.querySelectorAll('select').forEach(sel => {
-    const col = sel.dataset.col;
-    const valores = [...new Set(dados.map(d => d[col]).filter(v => v))];
-    sel.innerHTML = `<option value="">Todos</option>`;
-    valores.forEach(v => sel.innerHTML += `<option>${v}</option>`);
-    sel.onchange = atualizar;
-  });
+// IDENTIFICAR SEMANAS
+function obterSemanas() {
+  return [...new Set(dados.map(d => d['semana ']).filter(v => v))];
 }
 
-function atualizar() {
-  let f = [...dados];
+// CRIAR BOTÕES
+function criarBotoesSemana() {
+  const div = document.getElementById('botoes-semana');
+  const semanas = obterSemanas();
 
-  document.querySelectorAll('select').forEach(sel => {
-    if (sel.value) {
-      f = f.filter(d => String(d[sel.dataset.col]) === sel.value);
-    }
+  semanas.forEach(sem => {
+    const btn = document.createElement('button');
+    btn.textContent = sem;
+    btn.onclick = () => {
+      semanaAtiva = sem;
+      document.querySelectorAll('.painel-botoes button').forEach(b => b.classList.remove('ativo'));
+      btn.classList.add('ativo');
+      atualizarGrafico();
+    };
+    div.appendChild(btn);
   });
 
-  // ✅ AGRUPAR PRODUÇÃO (somar Quantidade)
-  const agrupado = {};
-  f.forEach(d => {
-    const chave = d['Tipo'] || 'Sem Tipo';
-    agrupado[chave] = (agrupado[chave] || 0) + Number(d['Quantidade'] || 0);
+  // Ativar primeiro botão
+  setTimeout(() => {
+    div.querySelector('button')?.classList.add('ativo');
+  }, 0);
+}
+
+// ATUALIZAR GRÁFICO DIÁRIO
+function atualizarGrafico() {
+  const filtrado = dados.filter(d => d['semana '] === semanaAtiva);
+
+  // SOMAR POR DIA
+  const porDia = {};
+  filtrado.forEach(d => {
+    const dia = new Date(d.Data).getDate();
+    porDia[dia] = (porDia[dia] || 0) + Number(d.Quantidade || 0);
   });
 
-  const labels = Object.keys(agrupado);
-  const valores = Object.values(agrupado);
+  const labels = Object.keys(porDia).sort((a, b) => a - b);
+  const valores = labels.map(d => porDia[d]);
 
-  if (chart) chart.destroy();
+  if (chartDiario) chartDiario.destroy();
 
-  chart = new Chart(document.getElementById('grafico'), {
+  chartDiario = new Chart(document.getElementById('graficoDiario'), {
     type: 'bar',
     data: {
       labels,
       datasets: [{
-        label: 'Quantidade Produzida',
+        label: 'Produção por Dia',
         data: valores,
-        backgroundColor: '#0078D4'
+        backgroundColor: '#38bdf8'
       }]
     },
     options: {
-      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#e5e7eb' } }
+      },
       scales: {
-        y: { beginAtZero: true }
+        x: { ticks: { color: '#e5e7eb' } },
+        y: { ticks: { color: '#e5e7eb' }, beginAtZero: true }
       }
     }
   });
