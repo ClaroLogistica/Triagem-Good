@@ -1,3 +1,4 @@
+let laboratorioAtivo = null;
 let dados = [];
 let chart;
 let semanaAtiva = null;
