@@ -161,6 +161,7 @@ function atualizarGrafico() {
         backgroundColor: "#38bdf8",
         barThickness: 12
       }]
+      atualizarResumoSemanal();
     },
     options: {
       animation: false,
