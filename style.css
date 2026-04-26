@@ -34,3 +34,6 @@ h1 {
   margin-bottom: 30px;
   border-radius: 10px;
 }
+canvas {
+  max-height: 420px;
+}
