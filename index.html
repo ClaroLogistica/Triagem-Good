@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+  <div>
+    <h2>Dashboard Produção</h2>
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+  </div>
+
+<script>
+function login() {
+  if (document.getElementById('senha').value === '1234') {
+    window.location.href = 'dashboard.html';
+  } else {
+    alert('Senha errada');
+  }
+}
+</script>
+</body>
+</html>
