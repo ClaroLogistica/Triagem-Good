@@ -1,81 +1,93 @@
 let dados = [];
-let chartDiario;
+let chart;
 let semanaAtiva = null;
 
-// CARREGAR EXCEL
-fetch('Dados.xlsx')
-  .then(r => r.arrayBuffer())
-  .then(b => {
-    const wb = XLSX.read(b, { type: 'array' });
-    const sh = wb.Sheets[wb.SheetNames[0]];
-    dados = XLSX.utils.sheet_to_json(sh);
+// ===== CARREGAR EXCEL =====
+fetch("Dados.xlsx")
+  .then(res => res.arrayBuffer())
+  .then(buffer => {
+    const wb = XLSX.read(buffer, { type: "array" });
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    dados = XLSX.utils.sheet_to_json(sheet);
 
     criarBotoesSemana();
     semanaAtiva = obterSemanas()[0];
     atualizarGrafico();
   });
 
-// IDENTIFICAR SEMANAS
+// ===== SEMANAS =====
 function obterSemanas() {
-  return [...new Set(dados.map(d => d['semana ']).filter(v => v))];
+  return [...new Set(dados.map(d => d["semana "]).filter(Boolean))];
 }
 
-// CRIAR BOTÕES
+// ===== BOTÕES =====
 function criarBotoesSemana() {
-  const div = document.getElementById('botoes-semana');
-  const semanas = obterSemanas();
+  const container = document.getElementById("botoes-semana");
+  container.innerHTML = "";
 
-  semanas.forEach(sem => {
-    const btn = document.createElement('button');
+  obterSemanas().forEach((sem, i) => {
+    const btn = document.createElement("button");
     btn.textContent = sem;
     btn.onclick = () => {
       semanaAtiva = sem;
-      document.querySelectorAll('.painel-botoes button').forEach(b => b.classList.remove('ativo'));
-      btn.classList.add('ativo');
+      document.querySelectorAll(".painel-botoes button")
+        .forEach(b => b.classList.remove("ativo"));
+      btn.classList.add("ativo");
       atualizarGrafico();
     };
-    div.appendChild(btn);
+    if (i === 0) btn.classList.add("ativo");
+    container.appendChild(btn);
   });
-
-  // Ativar primeiro botão
-  setTimeout(() => {
-    div.querySelector('button')?.classList.add('ativo');
-  }, 0);
 }
 
-// ATUALIZAR GRÁFICO DIÁRIO
+// ===== GRÁFICO DIA A DIA =====
 function atualizarGrafico() {
-  const filtrado = dados.filter(d => d['semana '] === semanaAtiva);
+  const diasMes = Array.from({ length: 31 }, (_, i) => i + 1);
+  const valores = Array(31).fill(0);
 
-  // SOMAR POR DIA
-  const porDia = {};
-  filtrado.forEach(d => {
-    const dia = new Date(d.Data).getDate();
-    porDia[dia] = (porDia[dia] || 0) + Number(d.Quantidade || 0);
-  });
+  dados
+    .filter(d => d["semana "] === semanaAtiva)
+    .forEach(d => {
+      const dia = new Date(d.Data).getDate();
+      valores[dia - 1] += Number(d.Quantidade || 0);
+    });
 
-  const labels = Object.keys(porDia).sort((a, b) => a - b);
-  const valores = labels.map(d => porDia[d]);
+  if (chart) chart.destroy();
 
-  if (chartDiario) chartDiario.destroy();
-
-  chartDiario = new Chart(document.getElementById('graficoDiario'), {
-    type: 'bar',
+  chart = new Chart(document.getElementById("graficoDiario"), {
+    type: "bar",
     data: {
-      labels,
+      labels: diasMes,
       datasets: [{
-        label: 'Produção por Dia',
+        label: "Produção Diária",
         data: valores,
-        backgroundColor: '#38bdf8'
+        backgroundColor: "#38bdf8"
       }]
     },
     options: {
+      responsive: true,
       plugins: {
-        legend: { labels: { color: '#e5e7eb' } }
+        legend: { labels: { color: "#e5e7eb" } },
+        tooltip: { enabled: true }
       },
       scales: {
-        x: { ticks: { color: '#e5e7eb' } },
-        y: { ticks: { color: '#e5e7eb' }, beginAtZero: true }
+        x: {
+          ticks: { color: "#e5e7eb" },
+          title: {
+            display: true,
+            text: "Dias do Mês",
+            color: "#e5e7eb"
+          }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: { color: "#e5e7eb" },
+          title: {
+            display: true,
+            text: "Quantidade Produzida",
+            color: "#e5e7eb"
+          }
+        }
       }
     }
   });
