@@ -1,3 +1,36 @@
-body { font-family: Arial; background: #f2f2f2; padding: 20px; }
-select { margin: 5px; padding: 5px; }
-canvas { background: white; }
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.painel-botoes {
+  margin-bottom: 20px;
+}
+
+.painel-botoes button {
+  background: #1e293b;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+  padding: 8px 14px;
+  margin-right: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.painel-botoes button.ativo {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.grafico-container {
+  background: #020617;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
