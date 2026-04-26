@@ -2,26 +2,30 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>Dashboard Produção</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <h1>Dashboard Produção</h1>
 
-<h1>Dashboard Produção</h1>
+  <!-- BOTÕES DE SEMANA -->
+  <div id="botoes-semana" class="painel-botoes"></div>
 
-<div>
-  <select data-col="Laboratório"></select>
-  <select data-col="Tipo"></select>
-  <select data-col="Giro"></select>
-  <select data-col="semana"></select>
-</div>
+  <!-- GRÁFICO DIÁRIO -->
+  <div class="grafico-container">
+    <canvas id="graficoDiario"></canvas>
+  </div>
 
+  <!-- ESPAÇO PARA NOVOS GRÁFICOS -->
+  <div class="grafico-container">
+    <h2>Outros Gráficos (em breve)</h2>
+  </div>
 
-<canvas id="grafico"></canvas>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
