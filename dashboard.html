@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <title>Dashboard Produção</title>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- XLSX -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -40,3 +40,11 @@
 <div id="botoes-terminais" class="painel-botoes"></div>
 
 <div class="grafico-container">
+  <canvas id="graficoDiario"></canvas>
+</div>
+
+<!-- JS SEMPRE NO FINAL -->
+<script src="script_dia.js"></script>
+
+</body>
+</html>
