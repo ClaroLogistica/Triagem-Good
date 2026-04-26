@@ -146,7 +146,7 @@ function atualizarGrafico() {
   const valores = Array(31).fill(0);
 
   dados
-    .filter(d => d[window.COLUNA_SEMANA] === semanaAtiva)
+    .filter(d => d["Semana"] === semanaAtiva)
     .filter(d => !laboratorioAtivo || d["Local"] === laboratorioAtivo)
     .filter(d => !terminalAtivo || d["Terminais"] === terminalAtivo)
     .forEach(d => {
