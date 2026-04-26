@@ -36,7 +36,25 @@ fetch("Dados.xlsx")
 
 /* ===== DADOS ÚNICOS ===== */
 function obterSemanas() {
-  return [...new Set(dados.map(d => d["semana"]).filter(Boolean))];
+  const possiveis = ["Semana", "SEMANA", "semana", "semana "];
+
+  let coluna = null;
+  for (const p of possiveis) {
+    if (dados.some(d => d[p])) {
+      coluna = p;
+      break;
+    }
+  }
+
+  if (!coluna) {
+    console.warn("Coluna de Semana não encontrada no Excel");
+    return [];
+  }
+
+  // guarda o nome correto para uso no filtro
+  window.COLUNA_SEMANA = coluna;
+
+  return [...new Set(dados.map(d => d[coluna]).filter(Boolean))];
 }
 
 function obterLocais() {
