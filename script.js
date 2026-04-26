@@ -2,6 +2,22 @@ let dados = [];
 let chart;
 let semanaAtiva = null;
 
+// ===== UTIL: converter data do Excel corretamente =====
+function extrairDia(dataExcel) {
+  // Caso 1: number serial do Excel
+  if (typeof dataExcel === "number") {
+    const epoch = new Date(1899, 11, 30);
+    const d = new Date(epoch.getTime() + dataExcel * 86400000);
+    return d.getDate();
+  }
+
+  // Caso 2: string ou Date
+  const d = new Date(dataExcel);
+  if (!isNaN(d)) return d.getDate();
+
+  return null;
+}
+
 // ===== CARREGAR EXCEL =====
 fetch("Dados.xlsx")
   .then(res => res.arrayBuffer())
@@ -40,16 +56,18 @@ function criarBotoesSemana() {
   });
 }
 
-// ===== GRÁFICO DIA A DIA =====
+// ===== GRÁFICO DIA A DIA (1 A 31) =====
 function atualizarGrafico() {
-  const diasMes = Array.from({ length: 31 }, (_, i) => i + 1);
+  const labels = Array.from({ length: 31 }, (_, i) => String(i + 1));
   const valores = Array(31).fill(0);
 
   dados
     .filter(d => d["semana "] === semanaAtiva)
     .forEach(d => {
-      const dia = new Date(d.Data).getDate();
-      valores[dia - 1] += Number(d.Quantidade || 0);
+      const dia = extrairDia(d.Data);
+      if (dia && dia >= 1 && dia <= 31) {
+        valores[dia - 1] += Number(d.Quantidade || 0);
+      }
     });
 
   if (chart) chart.destroy();
@@ -57,25 +75,23 @@ function atualizarGrafico() {
   chart = new Chart(document.getElementById("graficoDiario"), {
     type: "bar",
     data: {
-      labels: diasMes,
+      labels,
       datasets: [{
-        label: "Produção Diária",
+        label: "Produção por Dia",
         data: valores,
         backgroundColor: "#38bdf8"
       }]
     },
     options: {
+      animation: false,
       responsive: true,
-      plugins: {
-        legend: { labels: { color: "#e5e7eb" } },
-        tooltip: { enabled: true }
-      },
       scales: {
         x: {
+          type: "category",
           ticks: { color: "#e5e7eb" },
           title: {
             display: true,
-            text: "Dias do Mês",
+            text: "Dia do Mês",
             color: "#e5e7eb"
           }
         },
@@ -88,7 +104,11 @@ function atualizarGrafico() {
             color: "#e5e7eb"
           }
         }
+      },
+      plugins: {
+        legend: { labels: { color: "#e5e7eb" } }
       }
     }
   });
 }
+``
