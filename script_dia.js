@@ -145,29 +145,52 @@ function atualizarGrafico() {
 
 /* ===== RESUMO SEMANAL ===== */
 function atualizarResumoSemanal() {
-  const c = document.getElementById("resumo-semanal");
-  c.innerHTML = "";
+  const container = document.getElementById("resumo-semanal");
+  container.innerHTML = "";
 
+  // aplica filtros de Local e Terminais
   const base = dados
     .filter(d => !localAtivo || d["Local"] === localAtivo)
     .filter(d => !terminalAtivo || d["Terminais"] === terminalAtivo);
 
-  const totalMes = base.reduce((s, d) => s + Number(d.Quantidade || 0), 0);
+  const totalMes = base.reduce(
+    (s, d) => s + Number(d.Quantidade || 0),
+    0
+  );
 
   const porSemana = {};
+
   base.forEach(d => {
-    const s = d["Semana"];
-    if (!s) return;
-    porSemana[s] = (porSemana[s] || 0) + Number(d.Quantidade || 0);
+    // 🔴 AQUI ESTÁ A CORREÇÃO CRÍTICA
+    let semanaValor = null;
+
+    Object.keys(d).forEach(k => {
+      if (k.toLowerCase().includes("semana")) {
+        semanaValor = d[k];
+      }
+    });
+
+    if (!semanaValor) return;
+
+    porSemana[semanaValor] =
+      (porSemana[semanaValor] || 0) + Number(d.Quantidade || 0);
   });
 
-  Object.keys(porSemana).sort().forEach(s => {
-    const total = porSemana[s];
-    const p = totalMes ? Math.round((total / totalMes) * 100) : 0;
+  Object.keys(porSemana)
+    .sort()
+    .forEach(sem => {
+      const total = porSemana[sem];
+      const perc =
+        totalMes > 0 ? Math.round((total / totalMes) * 100) : 0;
 
-    const div = document.createElement("div");
-    div.className = "sem-box";
-    div.innerHTML = `<span>${s}</span><span>${total.toLocaleString("pt-BR")}</span><span class="percentual">${p}%</span>`;
-    c.appendChild(div);
-  });
+      const div = document.createElement("div");
+      div.className = "sem-box";
+      div.innerHTML = `
+        <span>${sem}</span>
+        <span>${total.toLocaleString("pt-BR")}</span>
+        <span class="percentual">${perc}%</span>
+      `;
+
+      container.appendChild(div);
+    });
 }
