@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <title>Dashboard Produção</title>
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- XLSX -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 </head>
 
@@ -29,18 +33,19 @@
 <h3>Resumo Semanal</h3>
 <div id="resumo-semanal" class="resumo-semanal"></div>
 
-<!-- ✅ BOTÕES ANTES DO GRÁFICO -->
+<!-- BARRA DE FILTROS (ACIMA DO GRÁFICO) -->
 <div class="barra-filtros">
   <button id="btn-local" class="btn-filtros">Local ▾</button>
   <button id="btn-filtros" class="btn-filtros">Filtros ▾</button>
 </div>
 
+<!-- GRÁFICO -->
 <div class="grafico-container">
   <canvas id="graficoDiario"></canvas>
   <div id="faixa-semanas"></div>
 </div>
 
-<!-- ================= MODAL LOCAL ================= -->
+<!-- MODAL LOCAL -->
 <div id="modal-local" class="modal">
   <div class="modal-conteudo">
     <h2>Local</h2>
@@ -53,15 +58,15 @@
   </div>
 </div>
 
-<!-- ================= MODAL FILTROS ================= -->
+<!-- MODAL FILTROS -->
 <div id="modal-filtros" class="modal">
   <div class="modal-conteudo">
 
     <h2>Filtros</h2>
 
     <div class="modal-grid">
-      <div class="filtros-laterais">
 
+      <div class="filtros-laterais">
         <div class="bloco-filtro">
           <h4>Tipo</h4>
           <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
@@ -79,13 +84,13 @@
           <label><input type="checkbox" class="chk-dep" value="UDEI"> UDEI</label>
           <label><input type="checkbox" class="chk-dep" value="USAD"> USAD</label>
         </div>
-
       </div>
 
       <div class="filtros-tecnologia">
         <h4>Tecnologia</h4>
         <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
       </div>
+
     </div>
 
     <div class="acoes-modal">
@@ -96,6 +101,7 @@
   </div>
 </div>
 
+<!-- JS -->
 <script src="script_dia.js"></script>
 
 </body>
