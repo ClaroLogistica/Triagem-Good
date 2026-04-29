@@ -158,7 +158,7 @@ function atualizarGrafico() {
               bar.y
             );
 
-            gradient.addColorStop(0, "rgba(56, 189, 248, 0.15)");
+            gradient.addColorStop(0, "rgba(56, 189, 248, 0.08)");
             gradient.addColorStop(1, "rgba(56, 189, 248, 1)");
 
             ctx.save();
