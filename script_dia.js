@@ -110,7 +110,6 @@ function atualizarGrafico() {
   if (chart) chart.destroy();
 
   const canvas = document.getElementById("graficoDiario");
-  const ctx = canvas.getContext("2d");
 
   chart = new Chart(canvas, {
     type: "bar",
@@ -120,34 +119,35 @@ function atualizarGrafico() {
         label: "Produção por Dia",
         data: valores,
 
-        // ✅ DEGRADÊ POR BARRA (FUNÇÃO)
-        backgroundColor: context => {
-          const { chart } = context;
-          const { ctx, chartArea } = chart;
-          if (!chartArea) return null;
+        /* ✅ DEGRADÊ REAL POR COLUNA */
+        backgroundColor: ctx => {
+          const element = ctx.element;
+          if (!element) return "#38bdf8";
 
-          const gradient = ctx.createLinearGradient(
+          const gradient = ctx.chart.ctx.createLinearGradient(
             0,
-            chartArea.bottom,
+            element.base,
             0,
-            chartArea.top
+            element.y
           );
 
           gradient.addColorStop(0, "rgba(56, 189, 248, 0.15)");
           gradient.addColorStop(1, "rgba(56, 189, 248, 1)");
 
           return gradient;
-        }
+        },
+
+        borderRadius: 6
       }]
     },
     options: {
       responsive: true,
       animation: false,
 
-      // ✅ RESERVA ESPAÇO NO TOPO PARA OS RÓTULOS
+      /* ✅ espaço extra no topo para não cortar valor */
       layout: {
         padding: {
-          top: 25
+          top: 28
         }
       },
 
@@ -165,9 +165,9 @@ function atualizarGrafico() {
       }
     },
 
-    // ✅ VALORES EM CIMA DAS BARRAS (SEM CORTAR)
+    /* ✅ VALORES EM CIMA (SEM CORTAR) */
     plugins: [{
-      id: "labelsTopo",
+      id: "valoresTopo",
       afterDatasetsDraw(chart) {
         const { ctx } = chart;
         ctx.save();
@@ -182,7 +182,7 @@ function atualizarGrafico() {
             ctx.fillText(
               valor.toLocaleString("pt-BR"),
               bar.x,
-              bar.y - 6
+              bar.y - 8
             );
           }
         });
