@@ -123,21 +123,29 @@ function montarTecnologias() {
 
   if (!filtroTipo) return;
 
-  const valores = [...new Set(
-    dados
-      .map(d => d[filtroTipo])
-      .filter(v => v && v.toString().trim() !== "")
-  )];
+  // Base já filtrada por Tipo, Giro e Dep.
+  const base = dados
+    .filter(d => d[filtroTipo])
+    .filter(d => filtroGiro.length === 0 || filtroGiro.includes(d.Giro))
+    .filter(d => filtroDep.length === 0 || filtroDep.includes(d["Dep."]));
 
-  valores.forEach(t => {
+  const tecnologias = [
+    ...new Set(
+      base
+        .map(d => d[filtroTipo])
+        .filter(v => v && v.toString().trim() !== "")
+    )
+  ];
+
+  tecnologias.forEach(t => {
     const label = document.createElement("label");
     const chk = document.createElement("input");
     chk.type = "checkbox";
     chk.value = t;
 
     chk.onchange = () => {
-      filtroTecnologias = [...div.querySelectorAll("input:checked")]
-        .map(c => c.value);
+      filtroTecnologias =
+        [...div.querySelectorAll("input:checked")].map(c => c.value);
     };
 
     label.appendChild(chk);
@@ -145,6 +153,7 @@ function montarTecnologias() {
     div.appendChild(label);
   });
 }
+
 
 /*************************************************
  * FILTRO CENTRAL (USADO EM TUDO)
