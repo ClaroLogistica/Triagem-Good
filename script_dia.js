@@ -106,12 +106,11 @@ function criarMultiselectTerminais() {
 function obterAcessoriosValidos() {
   return [...new Set(
     dados
-      .filter(d => !d["Terminais"])
+      .filter(d => !d["Terminais"] || d["Terminais"].toString().trim() === "")
       .map(d => d["Acessórios"])
-      .filter(Boolean)
+      .filter(v => v && v.toString().trim() !== "")
   )];
 }
-
 function criarMultiselectAcessorios() {
   const lista = document.getElementById("lista-acessorios");
   const btn = document.getElementById("btn-acessorios");
