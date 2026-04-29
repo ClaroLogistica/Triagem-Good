@@ -221,6 +221,7 @@ function atualizarGrafico() {
     options: {
       animation: false,
       scales: { y: { display: false }, x: { grid: { display: false } } },
+      layout: { padding: { top: 45 } },
       plugins: { legend: { display: false } }
     },
     plugins: [{
