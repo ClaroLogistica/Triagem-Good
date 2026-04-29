@@ -34,10 +34,20 @@
 <div id="resumo-semanal" class="resumo-semanal"></div>
 
 <h3>Local</h3>
-<div id="botoes-lab" class="painel-botoes"></div>
+<select id="select-local" class="filtro-select"></select>
 
 <h3>Terminais</h3>
-<div id="botoes-terminais" class="painel-botoes"></div>
+<div class="multiselect">
+  <button id="btn-terminais">Selecionar Terminais ▾</button>
+  <div id="lista-terminais" class="multiselect-opcoes"></div>
+</div>
+
+<h3>Acessórios</h3>
+<div class="multiselect">
+  <button id="btn-acessorios">Selecionar Acessórios ▾</button>
+  <div id="lista-acessorios" class="multiselect-opcoes"></div>
+</div>
+
 
 <div class="grafico-container">
   <canvas id="graficoDiario"></canvas>
