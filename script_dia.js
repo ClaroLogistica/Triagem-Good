@@ -333,3 +333,23 @@ function atualizarResumoSemanal() {
     container.appendChild(div);
   });
 }
+{
+  id: "valoresTopo",
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    ctx.fillStyle = "#e5e7eb";
+    ctx.font = "11px Arial";
+    ctx.textAlign = "center";
+
+    chart.getDatasetMeta(0).data.forEach((bar, i) => {
+      const valor = chart.data.datasets[0].data[i];
+      if (valor > 0) {
+        ctx.fillText(
+          valor.toLocaleString("pt-BR"),
+          bar.x,
+          bar.y - 6
+        );
+      }
+    });
+  }
+}
