@@ -248,3 +248,35 @@ function atualizarResumoSemanal() {
       container.appendChild(div);
     });
 }
+function atualizarFaixaSemanas(dadosFiltrados) {
+  const div = document.getElementById("faixa-semanas");
+  if (!div) return;
+
+  div.innerHTML = "";
+
+  const semanas = {};
+
+  dadosFiltrados.forEach(d => {
+    const dia = extrairDia(d.Data);
+    if (!dia) return;
+
+    let semana = null;
+    Object.keys(d).forEach(k => {
+      if (k.toLowerCase().includes("semana")) {
+        semana = d[k];
+      }
+    });
+
+    if (!semana) return;
+
+    if (!semanas[semana]) semanas[semana] = [];
+    semanas[semana].push(dia);
+  });
+
+  Object.entries(semanas).forEach(([semana, dias]) => {
+    const span = document.createElement("div");
+    span.style.gridColumn = `${Math.min(...dias)} / ${Math.max(...dias) + 1}`;
+    span.textContent = semana;
+    div.appendChild(span);
+  });
+}
