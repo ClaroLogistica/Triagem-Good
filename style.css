@@ -131,3 +131,11 @@ h3 { margin-top: 25px; }
   overflow-y: auto;
   padding-right: 6px;
 }
+/* Modal Local – um item por linha */
+#lista-local label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
