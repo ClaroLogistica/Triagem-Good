@@ -101,7 +101,7 @@ h3 { margin-top: 25px; }
   cursor: pointer;
 }
 
-/* ===== MODAIS ===== */
+ /*/* ===== MODAIS ===== */
 .modal {
   display: none;
   position: fixed;
@@ -145,7 +145,7 @@ h3 { margin-top: 25px; }
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-
+*/
 /* Coluna da tecnologia */
 .filtros-tecnologia {
   border-left: 1px solid rgba(255,255,255,0.15);
