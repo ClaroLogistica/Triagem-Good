@@ -61,14 +61,16 @@ function criarSelectLocal() {
 /*************************************************
  * FILTROS — TERMINAIS (SEM ACESSÓRIOS)
  *************************************************/
+
 function obterTerminaisValidos() {
   return [...new Set(
     dados
-      .filter(d => !d["Acessórios"])
+      .filter(d => !d["Acessórios"] || d["Acessórios"].toString().trim() === "")
       .map(d => d["Terminais"])
-      .filter(Boolean)
+      .filter(v => v && v.toString().trim() !== "")
   )];
 }
+
 
 function criarMultiselectTerminais() {
   const lista = document.getElementById("lista-terminais");
