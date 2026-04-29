@@ -15,6 +15,13 @@
 </head>
 <body>
 
+<div class="barra-filtros">
+  <select id="select-local" class="filtro-select" multiple>
+  </select>
+
+  <button id="btn-filtros" class="btn-filtros">Filtros</button>
+</div>
+  
 <h1>Dashboard Produção</h1>
 
 <!-- KPIs -->
@@ -58,4 +65,37 @@
 <script src="script_dia.js"></script>
 
 </body>
+  <div id="modal-filtros" class="modal">
+  <div class="modal-conteudo">
+    <h2>Filtros</h2>
+
+    <div class="bloco-filtro">
+      <h4>Tipo</h4>
+      <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
+      <label><input type="radio" name="tipo" value="Acessórios"> Acessórios</label>
+    </div>
+
+    <div class="bloco-filtro">
+      <h4>Giro</h4>
+      <label><input type="checkbox" value="Alto Giro" class="chk-giro"> Alto Giro</label>
+      <label><input type="checkbox" value="Baixo Giro" class="chk-giro"> Baixo Giro</label>
+    </div>
+
+    <div class="bloco-filtro">
+      <h4>Dep.</h4>
+      <label><input type="checkbox" value="UDEI" class="chk-dep"> UDEI</label>
+      <label><input type="checkbox" value="USAD" class="chk-dep"> USAD</label>
+    </div>
+
+    <div class="bloco-filtro">
+      <h4>Tecnologia</h4>
+      <div id="lista-tecnologia"></div>
+    </div>
+
+    <div class="acoes-modal">
+      <button id="btn-limpar">Limpar</button>
+      <button id="btn-aplicar">Aplicar</button>
+    </div>
+  </div>
+</div>
 </html>
