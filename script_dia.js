@@ -120,9 +120,20 @@ function atualizarGrafico() {
       }]
     },
     options: {
-      animation: false,
-      plugins: {
-        legend: { display: false }
+  animation: false,
+  plugins: {
+    legend: { display: false }
+  },
+  scales: {
+    x: {
+      grid: { display: false },   // remove linhas verticais
+      ticks: { color: "#e5e7eb" }
+    },
+    y: {
+      display: false              // 🔥 remove eixo Y inteiro
+    }
+  }
+}
       }
     },
     plugins: [{
