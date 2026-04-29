@@ -139,3 +139,15 @@ h3 { margin-top: 25px; }
   margin-bottom: 8px;
   white-space: nowrap;
 }
+/* Grid do modal de filtros */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Coluna da tecnologia */
+.filtros-tecnologia {
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 16px;
+}
