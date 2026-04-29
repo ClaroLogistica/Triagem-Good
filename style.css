@@ -157,3 +157,50 @@ h3 { margin-top: 25px; }
   margin-bottom: 6px;
   cursor: pointer;
 }
+.barra-filtros {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 10px 0 20px 0;
+}
+
+.btn-filtros {
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+
+.modal-conteudo {
+  background: #020617;
+  width: 420px;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 5% auto;
+  color: #e5e7eb;
+}
+
+.bloco-filtro {
+  margin-bottom: 16px;
+}
+
+.bloco-filtro label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.acoes-modal {
+  display: flex;
+  justify-content: space-between;
+}
