@@ -57,10 +57,8 @@
 </div>
 
 <!-- ===== MODAL FILTROS ===== -->
-<div id="modal-filtros" class="modal">
-  <div class="modal-conteudo">
-    <h2>Filtros</h2>
-
+<div class="modal-grid">
+  <div class="filtros-laterais">
     <div class="bloco-filtro">
       <h4>Tipo</h4>
       <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
@@ -78,19 +76,10 @@
       <label><input type="checkbox" class="chk-dep" value="UDEI"> UDEI</label>
       <label><input type="checkbox" class="chk-dep" value="USAD"> USAD</label>
     </div>
+  </div>
 
-    <div class="bloco-filtro">
-      <h4>Tecnologia</h4>
-      <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
-    </div>
-
-    <div class="acoes-modal">
-      <button id="btn-limpar">Limpar</button>
-      <button id="btn-aplicar">Aplicar</button>
-    </div>
+  <div class="filtros-tecnologia">
+    <h4>Tecnologia</h4>
+    <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
   </div>
 </div>
-
-<script src="script_dia.js"></script>
-</body>
-</html>
