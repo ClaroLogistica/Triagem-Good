@@ -147,21 +147,7 @@ function montarTecnologias() {
     base.map(d => d[filtroTipo]).filter(v => v && v.trim() !== "")
   )];
 
-  tecnologias.forEach(t => {
-    const label = document.createElement("label");
-    const chk = document.createElement("input");
-    chk.type = "checkbox";
-    chk.value = t;
-
-    chk.onchange = () => {
-      filtroTecnologias =
-        [...div.querySelectorAll("input:checked")].map(c => c.value);
-    };
-
-    label.appendChild(chk);
-    label.append(" " + t);
-    div.appendChild(label);
-  });
+  tecnologias.forEach(t => { ... });
 }
 
 /*************************************************
