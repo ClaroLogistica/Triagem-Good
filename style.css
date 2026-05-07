@@ -197,3 +197,15 @@ h3 { margin-top: 25px; }
   padding: 24px;
   border-radius: 14px;
 }
+/* FORÇA DEFINITIVA DAS SEMANAS */
+.grafico-container #faixa-semanas {
+  display: grid !important;
+  grid-template-columns: repeat(31, minmax(0, 1fr)) !important;
+  gap: 2px !important;
+}
+
+.grafico-container #faixa-semanas > div {
+  grid-row: 1 !important;
+  text-align: center;
+}
+``
