@@ -209,3 +209,16 @@ h3 { margin-top: 25px; }
   text-align: center;
 }
 ``
+/* FORÇA DEFINITIVA DOS MODAIS */
+.modal {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+}
+
+.modal.active {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
