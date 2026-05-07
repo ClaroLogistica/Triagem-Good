@@ -1,3 +1,11 @@
+
+/* ===== FILTROS (DESATIVADO TEMPORARIAMENTE) =====
+configurarModalFiltros();
+configurarModalLocal();
+montarTecnologias();
+aplicarFiltros();
+*/
+
 /*************************************************
  * VARIÁVEIS GLOBAIS
  *************************************************/
@@ -265,28 +273,26 @@ function atualizarGrafico() {
       }
     },
     {
-      id: "valoresTopo",
-      afterDatasetsDraw(chart) {
-        const { ctx } = chart;
-        ctx.fillStyle = "#e5e7eb";
-        ctx.font = "11px Arial";
-        ctx.textAlign = "center";
+    {
+  id: "valoresTopo",
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    ctx.fillStyle = "#e5e7eb";
+    ctx.font = "11px Arial";
+    ctx.textAlign = "center";
 
-        chart.getDatasetMeta(0).data.forEach((bar, i) => {
-          if (valores[i] > 0) {
-            ctx.fillText(
-              valores[i].toLocaleString("pt-BR"),
-              bar.x,
-              bar.y - 6
-              atualizarFaixaSemanas(base);
-            );
-          }
-        });
+    chart.getDatasetMeta(0).data.forEach((bar, i) => {
+      if (valores[i] > 0) {
+        ctx.fillText(
+          valores[i].toLocaleString("pt-BR"),
+          bar.x,
+          bar.y - 6
+        );
       }
-    }
-  ]
-});
-
+    });
+  }
+atualizarFaixaSemanas(aplicarFiltros());
+}
 /*************************************************
  * RESUMO SEMANAL
  *************************************************/
@@ -320,5 +326,35 @@ function atualizarResumoSemanal() {
       </span>
     `;
     container.appendChild(div);
+  });
+}
+function atualizarFaixaSemanas(dadosFiltrados) {
+  const div = document.getElementById("faixa-semanas");
+  if (!div) return;
+
+  div.innerHTML = "";
+
+  const semanas = {};
+
+  dadosFiltrados.forEach(d => {
+    const dia = extrairDia(d.Data);
+    if (!dia) return;
+
+    let semana = null;
+    Object.keys(d).forEach(k => {
+      if (k.toLowerCase().includes("semana")) semana = d[k];
+    });
+
+    if (!semana) return;
+
+    if (!semanas[semana]) semanas[semana] = [];
+    semanas[semana].push(dia);
+  });
+
+  Object.entries(semanas).forEach(([sem, dias]) => {
+    const el = document.createElement("div");
+    el.style.gridColumn = `${Math.min(...dias)} / ${Math.max(...dias) + 1}`;
+    el.textContent = sem;
+    div.appendChild(el);
   });
 }
