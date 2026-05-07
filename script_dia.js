@@ -221,10 +221,14 @@ function atualizarGrafico() {
         chart.getDatasetMeta(0).data.forEach((bar, i) => {
           const v = valores[i];
           if (v > 0) ctx.fillText(v.toLocaleString("pt-BR"), bar.x, bar.y - 6);
+          
         });
       }
     }]
   });
+  
+ atualizarFaixaSemanas(base); // ✅ OBRIGATÓRIO
+
 }
 
 /*************************************************
