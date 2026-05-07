@@ -235,3 +235,10 @@ h3 { margin-top: 25px; }
   align-items: center;
   justify-content: center;
 }
+/* Texto das semanas SEM FUNDO */
+.grafico-container #faixa-semanas > div {
+  background: transparent !important;
+  padding: 4px 0;
+  text-align: center;
+  color: #e5e7eb;
+}
