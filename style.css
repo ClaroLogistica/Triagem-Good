@@ -101,6 +101,13 @@ h3 { margin-top: 25px; }
   border-top: 1px solid rgba(255,255,255,0.15);
 }
 
+#faixa-semanas div {
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 4px 0;
+}
+``
+
 /* ===== MODAIS ===== */
 .modal {
   display: none;
