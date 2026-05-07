@@ -222,37 +222,69 @@ function atualizarGrafico() {
   if (chart) chart.destroy();
 
   chart = new Chart(document.getElementById("graficoDiario"), {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [{ data: valores }]
+  type: "bar",
+  data: {
+    labels,
+    datasets: [{
+      data: valores,
+      backgroundColor: "rgba(0,0,0,0)",
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    animation: false,
+    layout: {
+      padding: {
+        top: 28   // suficiente para os valores
+      }
     },
-    options: {
-      animation: false,
-      scales: { y: { display: false }, x: { grid: { display: false } } },
-      layout: { padding: { top: 45 } },
-      plugins: { legend: { display: false } }
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: "#e5e7eb" } },
+      y: { display: false }
+    }
+  },
+  plugins: [
+    {
+      id: "gradienteAzulPreto",
+      beforeDatasetsDraw(chart) {
+        const { ctx } = chart;
+        chart.getDatasetMeta(0).data.forEach(bar => {
+          const g = ctx.createLinearGradient(0, bar.base, 0, bar.y);
+          g.addColorStop(0, "#020617");
+          g.addColorStop(1, "#38bdf8");
+          ctx.fillStyle = g;
+          ctx.fillRect(
+            bar.x - bar.width / 2,
+            bar.y,
+            bar.width,
+            bar.base - bar.y
+          );
+        });
+      }
     },
-    plugins: [{
+    {
       id: "valoresTopo",
       afterDatasetsDraw(chart) {
-        const ctx = chart.ctx;
+        const { ctx } = chart;
         ctx.fillStyle = "#e5e7eb";
         ctx.font = "11px Arial";
         ctx.textAlign = "center";
 
         chart.getDatasetMeta(0).data.forEach((bar, i) => {
-          const v = valores[i];
-          if (v > 0) ctx.fillText(v.toLocaleString("pt-BR"), bar.x, bar.y - 6);
-          
+          if (valores[i] > 0) {
+            ctx.fillText(
+              valores[i].toLocaleString("pt-BR"),
+              bar.x,
+              bar.y - 6
+            );
+          }
         });
       }
-    }]
-  });
-  
- atualizarFaixaSemanas(base); // ✅ OBRIGATÓRIO
-
-}
+    }
+  ]
+});
 
 /*************************************************
  * RESUMO SEMANAL
