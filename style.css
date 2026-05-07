@@ -92,21 +92,29 @@ h3 { margin-top: 25px; }
 /* Faixa de semanas */
 #faixa-semanas {
   display: grid;
-  grid-template-columns: repeat(31, 1fr);
-  margin-top: 8px;
+  grid-template-columns: repeat(31, minmax(0, 1fr));
+  gap: 2px;
+
+  margin-top: 10px;
   padding-top: 6px;
-  color: #cbd5e1;
+
   font-size: 12px;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  color: #cbd5e1;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-#faixa-semanas div {
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
+#faixa-semanas > div {
+  grid-row: 1;
+  background: rgba(255, 255, 255, 0.08);
+
   padding: 4px 0;
+  border-radius: 6px;
+
+  text-align: center;
+  white-space: nowrap;
 }
-``
+
 
 /* ===== MODAIS ===== */
 .modal {
