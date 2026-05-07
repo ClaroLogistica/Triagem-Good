@@ -213,6 +213,29 @@ function atualizarResumoSemanal() {
     container.appendChild(div);
   });
 }
+
+/*************************************************
+ * ABERTURA E FECHAMENTO DOS MODAIS
+ *************************************************/
+
+// Botão LOCAL abre o modal LOCAL
+document.getElementById("btn-local").onclick = function () {
+  document.getElementById("modal-local").classList.add("active");
+};
+
+// Botão FILTROS abre o modal FILTROS
+document.getElementById("btn-filtros").onclick = function () {
+  document.getElementById("modal-filtros").classList.add("active");
+};
+
+// Clicar fora do conteúdo fecha qualquer modal
+document.querySelectorAll(".modal").forEach(function (modal) {
+  modal.onclick = function (e) {
+    if (e.target === modal) {
+      modal.classList.remove("active");
+    }
+  };
+});
 /*************************************************
  * ABERTURA / FECHAMENTO DE MODAIS (SIMPLES)
  *************************************************/
