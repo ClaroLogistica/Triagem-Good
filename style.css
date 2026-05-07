@@ -84,8 +84,10 @@ h3 { margin-top: 25px; }
 
 #graficoDiario {
   width: 100%;
-  height: 260px;
+  height: 220px;   /* ⬅️ menor, elegante */
+  max-height: 220px;
 }
+
 
 /* Faixa de semanas */
 #faixa-semanas {
