@@ -139,15 +139,38 @@ function montarTecnologias() {
   if (!filtroTipo) return;
 
   const base = dados
-    .filter(d => d[filtroTipo])
+    .filter(d => {
+      if (filtroTipo === "Terminais")
+        return d["Terminais"] && (!d["Acessórios"] || d["Acessórios"].toString().trim() === "");
+      if (filtroTipo === "Acessórios")
+        return d["Acessórios"] && (!d["Terminais"] || d["Terminais"].toString().trim() === "");
+      return false;
+    })
     .filter(d => filtroGiro.length === 0 || filtroGiro.includes(d.Giro))
     .filter(d => filtroDep.length === 0 || filtroDep.includes(d["Dep."]));
 
   const tecnologias = [...new Set(
-    base.map(d => d[filtroTipo]).filter(v => v && v.trim() !== "")
+    base
+      .map(d => d[filtroTipo])
+      .filter(v => v && v.toString().trim() !== "")
   )];
 
-  tecnologias.forEach(t => { ... });
+  tecnologias.forEach(t => {
+    const label = document.createElement("label");
+    const chk = document.createElement("input");
+    chk.type = "checkbox";
+    chk.value = t;
+
+    chk.onchange = () => {
+      filtroTecnologias =
+        [...div.querySelectorAll("input:checked")]
+          .map(c => c.value);
+    };
+
+    label.appendChild(chk);
+    label.append(" " + t);
+    div.appendChild(label);
+  });
 }
 
 /*************************************************
