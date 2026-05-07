@@ -214,3 +214,32 @@ function atualizarResumoSemanal() {
     container.appendChild(div);
   });
 }
+/*************************************************
+ * ABERTURA / FECHAMENTO DE MODAIS (SIMPLES)
+ *************************************************/
+
+// Botão Local
+const btnLocal = document.getElementById("btn-local");
+const modalLocal = document.getElementById("modal-local");
+
+if (btnLocal && modalLocal) {
+  btnLocal.onclick = () => {
+    modalLocal.style.display = "block";
+  };
+  modalLocal.onclick = e => {
+    if (e.target === modalLocal) modalLocal.style.display = "none";
+  };
+}
+
+// Botão Filtros
+const btnFiltros = document.getElementById("btn-filtros");
+const modalFiltros = document.getElementById("modal-filtros");
+
+if (btnFiltros && modalFiltros) {
+  btnFiltros.onclick = () => {
+    modalFiltros.style.display = "block";
+  };
+  modalFiltros.onclick = e => {
+    if (e.target === modalFiltros) modalFiltros.style.display = "none";
+  };
+}
