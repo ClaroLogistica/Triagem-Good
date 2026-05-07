@@ -278,6 +278,7 @@ function atualizarGrafico() {
               valores[i].toLocaleString("pt-BR"),
               bar.x,
               bar.y - 6
+              atualizarFaixaSemanas(base);
             );
           }
         });
