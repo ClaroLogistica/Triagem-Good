@@ -142,8 +142,7 @@ function atualizarGrafico() {
       }
     ]
   });
-
-  atualizarFaixaSemanas(base);
+atualizarFaixaSemanas(base);
 }
 
 /*************************************************
