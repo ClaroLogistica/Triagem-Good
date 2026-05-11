@@ -242,3 +242,20 @@ h3 { margin-top: 25px; }
   text-align: center;
   color: #e5e7eb;
 }
+/* ===== CONTROLE FINAL DOS MODAIS ===== */
+.modal {
+  display: none !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+}
+
+.modal.active {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
