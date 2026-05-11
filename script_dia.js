@@ -265,3 +265,35 @@ if (btnFiltros && modalFiltros) {
     if (e.target === modalFiltros) modalFiltros.style.display = "none";
   };
 }
+/*************************************************
+ * BOTÕES DE MODAL – APÓS O HTML CARREGAR
+ *************************************************/
+window.addEventListener("DOMContentLoaded", function () {
+
+  const btnLocal = document.getElementById("btn-local");
+  const modalLocal = document.getElementById("modal-local");
+
+  const btnFiltros = document.getElementById("btn-filtros");
+  const modalFiltros = document.getElementById("modal-filtros");
+
+  if (btnLocal && modalLocal) {
+    btnLocal.onclick = function () {
+      modalLocal.classList.add("active");
+    };
+  }
+
+  if (btnFiltros && modalFiltros) {
+    btnFiltros.onclick = function () {
+      modalFiltros.classList.add("active");
+    };
+  }
+
+  document.querySelectorAll(".modal").forEach(function (modal) {
+    modal.onclick = function (e) {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
+    };
+  });
+
+});
