@@ -280,7 +280,14 @@ window.addEventListener("DOMContentLoaded", function () {
     btnLocal.onclick = function () {
       modalLocal.classList.add("active");
     };
+    document.querySelectorAll("input[name='tipo']").forEach(radio => {
+  radio.onchange = function () {
+    filtroTipo = radio.value;
+    montarTecnologias();   // ✅ monta tecnologia ao mudar o tipo
+  };
+});
   }
+  
 
   if (btnFiltros && modalFiltros) {
     btnFiltros.onclick = function () {
