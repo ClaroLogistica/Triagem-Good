@@ -285,6 +285,32 @@ window.addEventListener("DOMContentLoaded", function () {
     filtroTipo = radio.value;
     montarTecnologias();   // ✅ monta tecnologia ao mudar o tipo
   };
+  // Botão APLICAR filtros
+const btnAplicar = document.getElementById("btn-aplicar");
+if (btnAplicar) {
+  btnAplicar.onclick = function () {
+    atualizarTudo(); // recalcula gráfico, KPIs e resumo
+    document.getElementById("modal-filtros").classList.remove("active");
+  };
+}
+// Botão LIMPAR filtros
+const btnLimpar = document.getElementById("btn-limpar");
+if (btnLimpar) {
+  btnLimpar.onclick = function () {
+    filtroTipo = null;
+    filtroGiro = [];
+    filtroDep = [];
+    filtroTecnologias = [];
+
+    document
+      .querySelectorAll("#modal-filtros input")
+      .forEach(i => (i.checked = false));
+
+    document.getElementById("lista-tecnologia").innerHTML = "";
+
+    atualizarTudo();
+  };
+}
 });
   }
   
