@@ -28,15 +28,26 @@ function extrairDia(data) {
  * CARREGAR EXCEL
  *************************************************/
 fetch("Dados.xlsx")
-  .then(r => r.arrayBuffer())
+  .then(r => {
+    if (!r.ok) {
+      throw new Error("Erro ao carregar Dados.xlsx");
+    }
+    return r.arrayBuffer();
+  })
   .then(b => {
     const wb = XLSX.read(b, { type: "array" });
     const sh = wb.Sheets[wb.SheetNames[0]];
     dados = XLSX.utils.sheet_to_json(sh);
 
-    atualizarTudo();
-  });
+    console.log("✅ Excel carregado:", dados.length, "linhas");
 
+    // ⚠️ SOMENTE AQUI atualiza tudo
+    atualizarTudo();
+  })
+  .catch(err => {
+    console.error("❌ Falha ao carregar Excel:", err);
+  });
+``
 /*************************************************
  * FILTRO CENTRAL (temporariamente simples)
  *************************************************/
@@ -48,11 +59,17 @@ function aplicarFiltros() {
  * ATUALIZAÇÃO GERAL
  *************************************************/
 function atualizarTudo() {
+  function atualizarTudo() {
+  if (!dados || dados.length === 0) {
+    console.warn("⚠️ atualizarTudo chamado sem dados");
+    return;
+  }
+
   atualizarKPIs();
   atualizarGrafico();
   atualizarResumoSemanal();
 }
-
+ 
 /*************************************************
  * KPIs
  *************************************************/
