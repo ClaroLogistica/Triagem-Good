@@ -297,3 +297,54 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+function montarLocais() {
+  const lista = document.getElementById("lista-local");
+  if (!lista) return;
+
+  lista.innerHTML = "";
+
+  const locais = [...new Set(
+    dados.map(d => d.Local).filter(v => v && v.trim() !== "")
+  )];
+
+  locais.forEach(local => {
+    const label = document.createElement("label");
+    const chk = document.createElement("input");
+    chk.type = "checkbox";
+    chk.value = local;
+    chk.className = "chk-local";
+
+    label.appendChild(chk);
+    label.append(" " + local);
+    lista.appendChild(label);
+  });
+}          
+btnLocal.onclick = function () {
+  montarLocais();               // ✅ monta os locais antes de abrir
+  modalLocal.classList.add("active");
+};
+function montarTecnologias() {
+  const lista = document.getElementById("lista-tecnologia");
+  if (!lista) return;
+
+  lista.innerHTML = "";
+  if (!filtroTipo) return;
+
+  const tecnologias = [...new Set(
+    dados
+      .filter(d => d[filtroTipo])
+      .map(d => d[filtroTipo])
+      .filter(v => v && v.trim() !== "")
+  )];
+
+  tecnologias.forEach(t => {
+    const label = document.createElement("label");
+    const chk = document.createElement("input");
+    chk.type = "checkbox";
+    chk.value = t;
+
+    label.appendChild(chk);
+    label.append(" " + t);
+    lista.appendChild(label);
+  });
+}
