@@ -276,15 +276,21 @@ window.addEventListener("DOMContentLoaded", function () {
   const btnFiltros = document.getElementById("btn-filtros");
   const modalFiltros = document.getElementById("modal-filtros");
 
-  if (btnLocal && modalLocal) {
-    btnLocal.onclick = function () {
-      modalLocal.classList.add("active");
+ 
+if (btnLocal && modalLocal) {
+  btnLocal.onclick = function () {
+    montarLocais(); // ✅ AGORA popula antes de abrir
+    modalLocal.classList.add("active");
+  };
+}
+
     };
     document.querySelectorAll("input[name='tipo']").forEach(radio => {
   radio.onchange = function () {
     filtroTipo = radio.value;
     montarTecnologias();   // ✅ monta tecnologia ao mudar o tipo
   };
+      
   // Botão APLICAR filtros
 const btnAplicar = document.getElementById("btn-aplicar");
 if (btnAplicar) {
@@ -330,11 +336,14 @@ if (btnLimpar) {
   });
 
 });
+
+
 function montarLocais() {
   const lista = document.getElementById("lista-local");
   if (!lista) return;
 
   lista.innerHTML = "";
+  filtroLocais = [];
 
   const locais = [...new Set(
     dados.map(d => d.Local).filter(v => v && v.trim() !== "")
@@ -345,31 +354,61 @@ function montarLocais() {
     const chk = document.createElement("input");
     chk.type = "checkbox";
     chk.value = local;
-    chk.className = "chk-local";
+
+    chk.onchange = () => {
+      filtroLocais =
+        [...lista.querySelectorAll("input:checked")].map(c => c.value);
+    };
 
     label.appendChild(chk);
     label.append(" " + local);
     lista.appendChild(label);
   });
-}          
-btnLocal.onclick = function () {
-  montarLocais();               // ✅ monta os locais antes de abrir
-  modalLocal.classList.add("active");
-};
+}
+``
+
+
 function montarTecnologias() {
   const lista = document.getElementById("lista-tecnologia");
   if (!lista) return;
 
   lista.innerHTML = "";
+  filtroTecnologias = [];
+
   if (!filtroTipo) return;
 
   const tecnologias = [...new Set(
     dados
-      .filter(d => d[filtroTipo])
+      .filter(d => {
+        if (filtroTipo === "Terminais") {
+          return d["Terminais"] && (!d["Acessórios"] || d["Acessórios"].trim() === "");
+        }
+        if (filtroTipo === "Acessórios") {
+          return d["Acessórios"] && (!d["Terminais"] || d["Terminais"].trim() === "");
+        }
+        return false;
+      })
       .map(d => d[filtroTipo])
       .filter(v => v && v.trim() !== "")
   )];
 
+  tecnologias.forEach(t => {
+    const label = document.createElement("label");
+    const chk = document.createElement("input");
+    chk.type = "checkbox";
+    chk.value = t;
+
+    chk.onchange = () => {
+      filtroTecnologias =
+        [...lista.querySelectorAll("input:checked")].map(c => c.value);
+    };
+
+    label.appendChild(chk);
+    label.append(" " + t);
+    lista.appendChild(label);
+  });
+}
+``
   tecnologias.forEach(t => {
     const label = document.createElement("label");
     const chk = document.createElement("input");
