@@ -259,3 +259,33 @@ h3 { margin-top: 25px; }
   align-items: center;
   justify-content: center;
 }
+/* ===== BOTÕES DE FILTRO (ESTILO FINAL) ===== */
+.barra-filtros {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.btn-filtros {
+  background: linear-gradient(180deg, #020617, #020617);
+  color: #e5e7eb;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.btn-filtros:hover {
+  background: #020617;
+  border-color: #38bdf8;
+}
+
+.btn-filtros:active {
+  transform: scale(0.97);
+}
+``
