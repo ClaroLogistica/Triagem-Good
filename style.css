@@ -32,10 +32,27 @@ body {
 }
 
 /* ===== CONTAINER DO DASHBOARD ===== */
-.dashboard-container {
-  max-width: 1280px;          /* um pouco menor para dar elegância */
-  margin: 0 auto;
-  padding: 56px 72px 80px;    /* MUITO mais respiro lateral */
+.grafico-container {
+  background: linear-gradient(
+    180deg,
+    #0e0e11 0%,
+    #07070a 100%
+  );
+
+  padding: 36px 40px 44px;
+  border-radius: 18px;
+  margin-top: 36px;
+
+  border: 1px dashed rgba(255,255,255,0.18); /* pontilhado elegante */
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.grafico-container:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(164,22,26,0.35),
+    0 20px 45px rgba(0,0,0,0.7);
 }
 
 /* ===== TOPO DO DASHBOARD ===== */
