@@ -101,6 +101,9 @@ function atualizarKPIs() {
 /*************************************************
  * GRÁFICO DIÁRIO – VERSÃO ESTÁVEL FINAL
  *************************************************/
+/*************************************************
+ * GRÁFICO DIÁRIO – VERSÃO FINAL FUNCIONAL
+ *************************************************/
 function atualizarGrafico() {
   const labels = Array.from({ length: 31 }, (_, i) => i + 1);
   const valores = Array(31).fill(0);
@@ -114,7 +117,6 @@ function atualizarGrafico() {
     }
   });
 
-  // Destrói gráfico anterior (evita vazamento)
   if (chart) {
     chart.destroy();
     chart = null;
@@ -128,50 +130,40 @@ function atualizarGrafico() {
   chart = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: labels,
-      datasets: [
-        {
-          data: valores,
-          borderRadius: 6,
-          backgroundColor: (context) => {
-            const chartInstance = context.chart;
-            const { ctx, chartArea } = chartInstance;
+      labels,
+      datasets: [{
+        data: valores,
+        borderRadius: 6,
+        backgroundColor: (context) => {
+          const chartInstance = context.chart;
+          const { ctx, chartArea } = chartInstance;
+          if (!chartArea) return "#4fd1c5";
 
-            if (!chartArea) return "#4fd1c5";
-
-            const gradient = ctx.createLinearGradient(
-              0,
-              chartArea.top,
-              0,
-              chartArea.bottom
-            );
-
-            gradient.addColorStop(0, "#4fd1c5"); // verde água
-            gradient.addColorStop(1, "#020617"); // quase preto
-
-            return gradient;
-          }
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.top,
+            0,
+            chartArea.bottom
+          );
+          gradient.addColorStop(0, "#4fd1c5"); // verde água
+          gradient.addColorStop(1, "#020617"); // quase preto
+          return gradient;
         }
-      ]
+      }]
     },
     options: {
-      responsive: false,            // ✅ PONTO-CHAVE: mata o loop
-      maintainAspectRatio: true,    // ✅ gráfico estável
-      animation: false,             // ✅ sem reflow visual
+      responsive: true,              // ✅ VOLTA
+      maintainAspectRatio: true,     // ✅ ESSENCIAL
+      animation: false,              // ✅ evita reflow
+      resizeDelay: 0,
 
       plugins: {
-        legend: {
-          display: false
-        }
+        legend: { display: false }
       },
       scales: {
         x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: "#e5e7eb"
-          }
+          grid: { display: false },
+          ticks: { color: "#e5e7eb" }
         },
         y: {
           display: false
@@ -180,7 +172,6 @@ function atualizarGrafico() {
     }
   });
 
-  // Atualiza faixa de semanas após o gráfico renderizar
   atualizarFaixaSemanas(base);
 }
 
