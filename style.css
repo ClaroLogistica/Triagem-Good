@@ -33,9 +33,9 @@ body {
 
 /* ===== CONTAINER DO DASHBOARD ===== */
 .dashboard-container {
-  max-width: 1400px;
+  max-width: 1280px;          /* um pouco menor para dar elegância */
   margin: 0 auto;
-  padding: 40px 56px 64px; /* mais respiro lateral e inferior */
+  padding: 56px 72px 80px;    /* MUITO mais respiro lateral */
 }
 
 /* ===== TOPO DO DASHBOARD ===== */
@@ -91,19 +91,20 @@ body {
 
 
 /* ===== KPIs ===== */
+
 .kpi-container {
   display: flex;
-  gap: 24px;
+  gap: 28px;
   margin: 32px 0 48px;
 }
 
 .kpi {
   background: #020617;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 14px;
 
-  min-width: 165px;
-  height: 95px;
+  min-width: 140px;      /* 25% menor */
+  height: 90px;          /* compacto e elegante */
 
   display: flex;
   flex-direction: column;
@@ -112,11 +113,28 @@ body {
   text-align: center;
 
   cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+.kpi:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.15),
+    0 16px 32px rgba(0,0,0,0.65);
+}
+
+/* Número */
+.kpi span {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;        /* BRANCO, como você pediu */
+}
+
+/* Texto */
+.kpi small {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #cbd5e1;        /* cinza claro */
 }
 
 /* ✅ Hover profissional */
@@ -250,4 +268,9 @@ body {
   margin-top: 6px;
   font-size: 13px;
   color: #a4161a;           /* vinho discreto */
+}
+.kpi-container,
+.resumo-semanal,
+.barra-filtros {
+  margin-left: 12px;
 }
