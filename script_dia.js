@@ -97,6 +97,10 @@ function atualizarKPIs() {
 /*************************************************
  * GRÁFICO
  *************************************************/
+
+/*************************************************
+ * GRÁFICO DIÁRIO – VERSÃO ESTÁVEL FINAL
+ *************************************************/
 function atualizarGrafico() {
   const labels = Array.from({ length: 31 }, (_, i) => i + 1);
   const valores = Array(31).fill(0);
@@ -105,10 +109,16 @@ function atualizarGrafico() {
 
   base.forEach(d => {
     const dia = extrairDia(d.Data);
-    if (dia) valores[dia - 1] += Number(d.Quantidade || 0);
+    if (dia) {
+      valores[dia - 1] += Number(d.Quantidade || 0);
+    }
   });
 
-  if (chart) chart.destroy();
+  // Destrói gráfico anterior (evita vazamento)
+  if (chart) {
+    chart.destroy();
+    chart = null;
+  }
 
   const canvas = document.getElementById("graficoDiario");
   if (!canvas) return;
@@ -119,49 +129,60 @@ function atualizarGrafico() {
     type: "bar",
     data: {
       labels: labels,
-      datasets: [{
-        data: valores,
-        borderRadius: 6,
-        backgroundColor: (context) => {
-          const chart = context.chart;
-          const { ctx, chartArea } = chart;
-          if (!chartArea) return null;
+      datasets: [
+        {
+          data: valores,
+          borderRadius: 6,
+          backgroundColor: (context) => {
+            const chartInstance = context.chart;
+            const { ctx, chartArea } = chartInstance;
 
-          const gradient = ctx.createLinearGradient(
-            0,
-            chartArea.top,
-            0,
-            chartArea.bottom
-          );
+            if (!chartArea) return "#4fd1c5";
 
-          gradient.addColorStop(0, "#4fd1c5"); // verde água
-          gradient.addColorStop(1, "#020617"); // quase preto
-          return gradient;
+            const gradient = ctx.createLinearGradient(
+              0,
+              chartArea.top,
+              0,
+              chartArea.bottom
+            );
+
+            gradient.addColorStop(0, "#4fd1c5"); // verde água
+            gradient.addColorStop(1, "#020617"); // quase preto
+
+            return gradient;
+          }
         }
-      }]
+      ]
     },
-  options: {
-  responsive: true,
-  maintainAspectRatio: false,
-  animation: false,        // 🔴 importante para evitar loop visual
-  resizeDelay: 0,
+    options: {
+      responsive: false,            // ✅ PONTO-CHAVE: mata o loop
+      maintainAspectRatio: true,    // ✅ gráfico estável
+      animation: false,             // ✅ sem reflow visual
 
-  plugins: {
-    legend: { display: false }
-  },
-  scales: {
-    x: {
-      grid: { display: false },
-      ticks: { color: "#e5e7eb" }
-    },
-    y: {
-      display: false
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: "#e5e7eb"
+          }
+        },
+        y: {
+          display: false
+        }
+      }
     }
-  }
-}
+  });
+
+  // Atualiza faixa de semanas após o gráfico renderizar
   atualizarFaixaSemanas(base);
 }
-
 
 /*************************************************
  * SEMANAS
