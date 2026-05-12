@@ -1,120 +1,42 @@
-/* ===== RESET E BASE ===== */
+/* ===== RESET ===== */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
-}
-
-/* ===== CONTAINER GLOBAL DEFINITIVO ===== */
-.page-wrapper {
-  max-width: 1320px;
-  margin: 0 auto;
-
-  padding: 64px 88px 112px;  /* AQUI está o afastamento que você quer */
-
-  position: relative;
-}
-
-/* ===== CONTAINER GLOBAL DA PÁGINA ===== */
-.page-container {
-  max-width: 1320px;
-  margin: 0 auto;
-
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-top: 40px;     /* NÃO empurra o header pra fora */
-  padding-bottom: 96px;
-}
-
-
-/* ===== BASE / FUNDO GLOBAL ===== */
-body {
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
+  overflow-x: hidden;
 
- background:
-  radial-gradient(
-    900px 500px at 20% 15%,
-    rgba(140, 20, 20, 0.35),
-    transparent 65%
-  ),
-  radial-gradient(
-    700px 400px at 80% 30%,
-    rgba(100, 10, 15, 0.3),
-    transparent 60%
-  ),
-  radial-gradient(
-    600px 300px at 50% 80%,
-    rgba(60, 5, 10, 0.25),
-    transparent 55%
-  ),
-  linear-gradient(
-    135deg,
-    #1a0000 0%,
-    #120202 40%,
-    #020000 100%
-  );
+  background:
+    radial-gradient(900px 500px at 20% 15%, rgba(140,20,20,0.35), transparent 65%),
+    radial-gradient(700px 400px at 80% 30%, rgba(100,10,15,0.3), transparent 60%),
+    linear-gradient(135deg, #1a0000 0%, #120202 40%, #020000 100%);
 
   font-family: Arial, sans-serif;
   color: #ffffff;
 }
 
-/* ===== CONTAINER DO DASHBOARD ===== */
-.grafico-container {
-  .grafico-container {
-  height: 420px; /* trava o crescimento */
-  background: linear-gradient(
-    180deg,
-    #0e0e11 0%,
-    #07070a 100%
-  );
-
-  padding: 36px 40px 44px;
-  border-radius: 18px;
-  margin-top: 36px;
-
-  
-  border: 1.5px dashed rgba(255,255,255,0.28);
+/* ===== LARGURA E ESPAÇO DAS BORDAS ===== */
+.topo-dashboard,
+.dashboard-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 32px; /* DISTÂNCIA DAS BORDAS DO SITE */
 }
 
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.grafico-container:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 1px rgba(164,22,26,0.35),
-    0 20px 45px rgba(0,0,0,0.7);
-}
-
-/* ===== TOPO DO DASHBOARD ===== */
+/* ===== TOPO ===== */
 .topo-dashboard {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  margin-bottom: 72px;
-
-  position: relative;
-  z-index: 50;
 }
 
-/* ===== TÍTULO CENTRAL ===== */
-.titulo-dashboard {
-  flex: 1;
-  text-align: center;
-}
-
+/* ===== TÍTULO ===== */
 .titulo-principal {
   margin: 0;
   line-height: 1.2;
   font-size: 24px;
-  color: #ffffff;
 }
 
 .titulo-principal strong {
@@ -125,30 +47,26 @@ body {
   display: block;
   font-weight: 400;
   opacity: 0.9;
-  margin-top: 4px;
 }
 
 /* ===== LOGO ===== */
 .logo-dashboard img {
-  height: 66px;        /* +20% */
+  height: 66px;
   max-width: 216px;
   object-fit: contain;
-  opacity: 0.95;
+  display: block;
 }
-
-
 
 /* ===== KPIs ===== */
 .kpi-container {
   display: flex;
   gap: 32px;
-  margin-bottom: 64px;
+  margin-bottom: 32px;
 }
 
 .kpi {
   width: 140px;
   height: 88px;
-
   background: #020617;
   border-radius: 16px;
 
@@ -158,29 +76,33 @@ body {
   align-items: center;
 
   cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* NÚMERO */
+.kpi:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+}
+
 .kpi span {
-  color: #ffffff;
   font-size: 22px;
   font-weight: 700;
+  color: #ffffff;
 }
 
-/* LEGENDA */
 .kpi small {
-  color: #cbd5e1;   /* CINZA CLARO, NÃO VERMELHO */
   font-size: 12px;
   margin-top: 6px;
+  color: #cbd5e1;
 }
 
-/* ===== RESUMO SEMANAL ===== */
+/* ===== RESUMO ===== */
 .resumo-semanal {
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 320px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .sem-box {
@@ -189,15 +111,10 @@ body {
   background: #020617;
   padding: 10px 14px;
   border-radius: 8px;
-  color: white;
   font-weight: bold;
 }
 
-.sem-box .percentual {
-  opacity: 0.85;
-}
-
-/* ===== FILTROS / BOTÕES ===== */
+/* ===== FILTROS ===== */
 .barra-filtros {
   display: flex;
   gap: 10px;
@@ -211,43 +128,34 @@ body {
   padding: 8px 14px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s ease,
-              box-shadow 0.2s ease,
-              transform 0.15s ease;
+  transition: background .2s, transform .15s;
 }
 
 .btn-filtros:hover {
   background: rgba(122,14,18,0.9);
-  box-shadow: 0 0 12px rgba(164,22,26,0.5);
   transform: translateY(-1px);
 }
 
 /* ===== GRÁFICO ===== */
 .grafico-container {
+  margin-top: 24px;
+  padding: 24px;
+  height: 420px;
+
   background: linear-gradient(
     180deg,
-    #1c1c21 0%,   /* cinza claro elegante no topo */
-    #121214 45%,  /* transição suave */
-    #07070a 100%  /* quase preto na base */
+    #1c1c21 0%,
+    #121214 45%,
+    #07070a 100%
   );
 
-  padding: 48px 56px 56px;
-  margin-top: 72px;
-
   border-radius: 20px;
-  border: 1px dashed rgba(255,255,255,0.35); /* borda fina, clara e elegante */
-}
-
-.grafico-container:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 1px rgba(164,22,26,0.35),
-    0 16px 40px rgba(0,0,0,0.6);
+  border: 1px dashed rgba(255,255,255,0.35);
 }
 
 #graficoDiario {
   width: 100%;
-  height: 210px;
+  height: 100%;
 }
 
 /* ===== FAIXA DE SEMANAS ===== */
@@ -255,27 +163,22 @@ body {
   display: grid;
   grid-template-columns: repeat(31, minmax(0, 1fr));
   gap: 2px;
-  margin-top: 10px;
-  padding-top: 6px;
+  margin-top: 8px;
   font-size: 12px;
-  color: #cbd5e1;
   border-top: 1px solid rgba(255,255,255,0.15);
 }
 
 #faixa-semanas > div {
-  background: transparent;
-  padding: 4px 0;
   text-align: center;
-  white-space: nowrap;
 }
 
-/* ===== MODAIS ===== */
+/* ===== MODAL ===== */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.65);
-  z-index: 9999;
+  z-index: 999;
 }
 
 .modal.active {
@@ -292,92 +195,4 @@ body {
   padding: 24px;
   border-radius: 14px;
 }
-/* Número do KPI */
-.kpi span {
-  font-size: 26px;
-  font-weight: 700;
-  color: #ffffff;           /* branco limpo */
-}
-
-/* Texto do KPI */
-.kpi small {
-  margin-top: 6px;
-  font-size: 13px;
-  color: #a4161a;           /* vinho discreto */
-}
-.kpi-container,
-.resumo-semanal,
-.barra-filtros {
-  margin-left: 12px;
-}
-/* ===== GARANTE VISIBILIDADE DO HEADER ===== */
-.topo-dashboard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: relative;
-  z-index: 10;
-
-  margin-bottom: 56px;
-}
-/* FORÇA VISIBILIDADE DO HEADER */
-.topo-dashboard {
-  display: flex !important;
-  align-items: center;
-  justify-content: space-between;
-
-  position: relative !important;
-  top: 0 !important;
-  left: 0 !important;
-
-  visibility: visible !important;
-  opacity: 1 !important;
-  overflow: visible !important;
-
-  z-index: 9999 !important;
-}
-
-/* GARANTE QUE O TÍTULO APAREÇA */
-.titulo-dashboard,
-.titulo-principal {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #ffffff !important;
-}
-
-/* GARANTE QUE O LOGO APAREÇA */
-.logo-dashboard img {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-/* KPIs – FORÇA TEXTO BRANCO */
-.kpi span {
-  color: #ffffff !important;
-}
-
-.kpi small {
-  color: #ffffff !important; /* LEGENDA BRANCA */
-}
-/* ===== REATIVA INTERATIVIDADE DAS KPIs (SEM REMOVER NADA) ===== */
-.kpi {
-  cursor: pointer;
-  transition: 
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.2s ease;
-}
-
-.kpi:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.2),
-    0 18px 36px rgba(0,0,0,0.65);
-  filter: brightness(1.05);
-}
-
-.kpi:active {
-  transform: translateY(-2px) scale(0.98);
-}
+``
