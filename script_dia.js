@@ -4,7 +4,6 @@
 let dados = [];
 let chart = null;
 
-/* Filtros */
 let filtroTipo = null;
 let filtroGiro = [];
 let filtroDep = [];
@@ -12,7 +11,7 @@ let filtroTecnologias = [];
 let filtroLocais = [];
 
 /*************************************************
- * FUNÇÕES UTILITÁRIAS
+ * UTIL
  *************************************************/
 function extrairDia(data) {
   if (data instanceof Date) return data.getDate();
@@ -25,84 +24,56 @@ function extrairDia(data) {
 }
 
 /*************************************************
- * CARREGAR EXCEL
+ * CARREGA EXCEL
  *************************************************/
 fetch(new URL("Dados.xlsx", window.location.href))
   .then(r => {
-    if (!r.ok) {
-      throw new Error("Erro ao carregar Dados.xlsx");
-    }
+    if (!r.ok) throw new Error("Erro ao carregar Dados.xlsx");
     return r.arrayBuffer();
   })
   .then(b => {
     const wb = XLSX.read(b, { type: "array" });
     const sh = wb.Sheets[wb.SheetNames[0]];
     dados = XLSX.utils.sheet_to_json(sh);
-
-    console.log("✅ Excel carregado:", dados.length, "linhas");
-
-    atualizarTudo(); // ✅ agora com dados de verdade
-  })
-  .catch(err => {
-    console.error("❌ Falha ao carregar Excel:", err);
-  });
-
-    // ⚠️ SOMENTE AQUI atualiza tudo
+    console.log("✅ Excel carregado:", dados.length);
     atualizarTudo();
   })
-  .catch(err => {
-    console.error("❌ Falha ao carregar Excel:", err);
-  });
+  .catch(err => console.error(err));
 
 /*************************************************
- * FILTRO CENTRAL (temporariamente simples)
+ * FILTRO CENTRAL
  *************************************************/
 function aplicarFiltros() {
-  let base = dados.slice(); // começa com TODOS os dados
+  let base = [...dados];
 
-  // ✅ FILTRO LOCAL
-  if (filtroLocais && filtroLocais.length > 0) {
+  if (filtroLocais.length)
     base = base.filter(d => filtroLocais.includes(d.Local));
-  }
 
-  // ✅ FILTRO TIPO + TECNOLOGIA
-  if (filtroTipo) {
+  if (filtroTipo)
     base = base.filter(d => d[filtroTipo]);
-  }
 
-  if (filtroTecnologias && filtroTecnologias.length > 0 && filtroTipo) {
+  if (filtroTecnologias.length && filtroTipo)
     base = base.filter(d => filtroTecnologias.includes(d[filtroTipo]));
-  }
 
-  // ✅ FILTRO GIRO
-  if (filtroGiro && filtroGiro.length > 0) {
+  if (filtroGiro.length)
     base = base.filter(d => filtroGiro.includes(d.Giro));
-  }
 
-  // ✅ FILTRO DEP
-  if (filtroDep && filtroDep.length > 0) {
+  if (filtroDep.length)
     base = base.filter(d => filtroDep.includes(d["Dep."]));
-  }
 
   return base;
 }
-
 
 /*************************************************
  * ATUALIZAÇÃO GERAL
  *************************************************/
 function atualizarTudo() {
-  function atualizarTudo() {
-  if (!dados || dados.length === 0) {
-    console.warn("⚠️ atualizarTudo chamado sem dados");
-    return;
-  }
-
+  if (!dados.length) return;
   atualizarKPIs();
   atualizarGrafico();
   atualizarResumoSemanal();
 }
- 
+
 /*************************************************
  * KPIs
  *************************************************/
@@ -124,7 +95,6 @@ function atualizarGrafico() {
   const valores = Array(31).fill(0);
 
   const base = aplicarFiltros();
-
   base.forEach(d => {
     const dia = extrairDia(d.Data);
     if (dia) valores[dia - 1] += Number(d.Quantidade || 0);
@@ -134,339 +104,119 @@ function atualizarGrafico() {
 
   chart = new Chart(document.getElementById("graficoDiario"), {
     type: "bar",
-    data: {
-      labels,
-      datasets: [{
-        data: valores,
-        backgroundColor: "rgba(0,0,0,0)",
-        borderRadius: 6
-      }]
-    },
-    options: {
-      responsive: true,
-      animation: false,
-      layout: { padding: { top: 28 } },
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: "#e5e7eb" } },
-        y: { display: false }
+    data: { labels, datasets: [{ data: valores, backgroundColor: "rgba(0,0,0,0)", borderRadius: 6 }] },
+    options: { responsive: true, plugins: { legend: { display: false } }, scales:{ y:{display:false} } },
+    plugins: [{
+      afterDatasetsDraw(c){
+        const ctx = c.ctx;
+        ctx.fillStyle="#e5e7eb"; ctx.font="11px Arial"; ctx.textAlign="center";
+        c.getDatasetMeta(0).data.forEach((b,i)=>{
+          if(valores[i]) ctx.fillText(valores[i], b.x, b.y-6);
+        });
       }
-    },
-    plugins: [
-      {
-        id: "gradienteAzulPreto",
-        beforeDatasetsDraw(chart) {
-          const ctx = chart.ctx;
-          chart.getDatasetMeta(0).data.forEach(bar => {
-            const g = ctx.createLinearGradient(0, bar.base, 0, bar.y);
-            g.addColorStop(0, "#020617");
-            g.addColorStop(1, "#38bdf8");
-            ctx.fillStyle = g;
-            ctx.fillRect(
-              bar.x - bar.width / 2,
-              bar.y,
-              bar.width,
-              bar.base - bar.y
-            );
-          });
-        }
-      },
-      {
-        id: "valoresTopo",
-        afterDatasetsDraw(chart) {
-          const ctx = chart.ctx;
-          ctx.fillStyle = "#e5e7eb";
-          ctx.font = "11px Arial";
-          ctx.textAlign = "center";
-
-          chart.getDatasetMeta(0).data.forEach((bar, i) => {
-            if (valores[i] > 0) {
-              ctx.fillText(
-                valores[i].toLocaleString("pt-BR"),
-                bar.x,
-                bar.y - 6
-              );
-            }
-          });
-        }
-      }
-    ]
+    }]
   });
-atualizarFaixaSemanas(base);
+
+  atualizarFaixaSemanas(base);
 }
 
 /*************************************************
- * FAIXA DE SEMANAS
+ * SEMANAS
  *************************************************/
 function atualizarFaixaSemanas(base) {
   const div = document.getElementById("faixa-semanas");
-  if (!div) return;
-
   div.innerHTML = "";
-  const semanas = {};
+  const map = {};
 
   base.forEach(d => {
     const dia = extrairDia(d.Data);
-    if (!dia) return;
-
-    let semana = null;
-    Object.keys(d).forEach(k => {
-      if (k.toLowerCase().includes("semana")) semana = d[k];
-    });
-
-    if (!semana) return;
-
-    if (!semanas[semana]) semanas[semana] = [];
-    semanas[semana].push(dia);
+    let sem = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+    if (dia && sem) {
+      if (!map[d[sem]]) map[d[sem]] = [];
+      map[d[sem]].push(dia);
+    }
   });
 
-  Object.entries(semanas).forEach(([sem, dias]) => {
+  Object.entries(map).forEach(([s, d]) => {
     const el = document.createElement("div");
-    el.style.gridColumn = `${Math.min(...dias)} / ${Math.max(...dias) + 1}`;
-    el.textContent = sem;
+    el.style.gridColumn = `${Math.min(...d)} / ${Math.max(...d) + 1}`;
+    el.textContent = s;
     div.appendChild(el);
   });
 }
 
 /*************************************************
- * RESUMO SEMANAL
+ * RESUMO
  *************************************************/
 function atualizarResumoSemanal() {
-  const container = document.getElementById("resumo-semanal");
-  container.innerHTML = "";
-
+  const c = document.getElementById("resumo-semanal");
+  c.innerHTML = "";
   const base = aplicarFiltros();
-  const totalMes = base.reduce((s, d) => s + Number(d.Quantidade || 0), 0);
+  const total = base.reduce((s,d)=>s+Number(d.Quantidade||0),0);
+  const m={};
 
-  const porSemana = {};
-  base.forEach(d => {
-    let semana = null;
-    Object.keys(d).forEach(k => {
-      if (k.toLowerCase().includes("semana")) semana = d[k];
-    });
-    if (!semana) return;
-
-    porSemana[semana] =
-      (porSemana[semana] || 0) + Number(d.Quantidade || 0);
+  base.forEach(d=>{
+    let s = Object.keys(d).find(k=>k.toLowerCase().includes("semana"));
+    if(s) m[d[s]]=(m[d[s]]||0)+Number(d.Quantidade||0);
   });
 
-  Object.keys(porSemana).forEach(sem => {
-    const total = porSemana[sem];
-    const perc = totalMes ? Math.round((total / totalMes) * 100) : 0;
-    const div = document.createElement("div");
-    div.className = "sem-box";
-    div.innerHTML = `
-      <span>${sem}</span>
-      <span>${total.toLocaleString("pt-BR")}</span>
-      <span class="percentual">${perc}%</span>
-    `;
-    container.appendChild(div);
+  Object.entries(m).forEach(([s,t])=>{
+    c.innerHTML += `<div class="sem-box"><span>${s}</span><span>${t}</span><span>${Math.round((t/total)*100)||0}%</span></div>`;
   });
 }
 
 /*************************************************
- * ABERTURA E FECHAMENTO DOS MODAIS
+ * MODAIS + FILTROS
  *************************************************/
-
-// Botão LOCAL abre o modal LOCAL
-document.getElementById("btn-local").onclick = function () {
+document.getElementById("btn-local").onclick = () => {
+  montarLocais();
   document.getElementById("modal-local").classList.add("active");
 };
 
-// Botão FILTROS abre o modal FILTROS
-document.getElementById("btn-filtros").onclick = function () {
+document.getElementById("btn-filtros").onclick = () =>
   document.getElementById("modal-filtros").classList.add("active");
+
+document.querySelectorAll(".modal").forEach(m =>
+  m.onclick = e => e.target===m && m.classList.remove("active")
+);
+
+document.querySelectorAll("input[name='tipo']").forEach(r =>
+  r.onchange = () => { filtroTipo=r.value; montarTecnologias(); }
+);
+
+document.getElementById("btn-aplicar").onclick = () => {
+  filtroGiro=[...document.querySelectorAll(".chk-giro:checked")].map(c=>c.value);
+  filtroDep=[...document.querySelectorAll(".chk-dep:checked")].map(c=>c.value);
+  atualizarTudo();
+  document.getElementById("modal-filtros").classList.remove("active");
 };
 
-// Clicar fora do conteúdo fecha qualquer modal
-document.querySelectorAll(".modal").forEach(function (modal) {
-  modal.onclick = function (e) {
-    if (e.target === modal) {
-      modal.classList.remove("active");
-    }
-  };
-});
+document.getElementById("btn-limpar").onclick = () => {
+  filtroTipo=null; filtroGiro=[]; filtroDep=[]; filtroTecnologias=[];
+  document.querySelectorAll("#modal-filtros input").forEach(i=>i.checked=false);
+  document.getElementById("lista-tecnologia").innerHTML="";
+  atualizarTudo();
+};
+
 /*************************************************
- * ABERTURA / FECHAMENTO DE MODAIS (SIMPLES)
+ * LISTAS
  *************************************************/
-
-// Botão Local
-const btnLocal = document.getElementById("btn-local");
-const modalLocal = document.getElementById("modal-local");
-
-if (btnLocal && modalLocal) {
-  btnLocal.onclick = () => {
-    modalLocal.style.display = "block";
-  };
-  modalLocal.onclick = e => {
-    if (e.target === modalLocal) modalLocal.style.display = "none";
-  };
-}
-
-// Botão Filtros
-const btnFiltros = document.getElementById("btn-filtros");
-const modalFiltros = document.getElementById("modal-filtros");
-
-if (btnFiltros && modalFiltros) {
-  btnFiltros.onclick = () => {
-    modalFiltros.style.display = "block";
-  };
-  modalFiltros.onclick = e => {
-    if (e.target === modalFiltros) modalFiltros.style.display = "none";
-  };
-}
-/*************************************************
- * BOTÕES DE MODAL – APÓS O HTML CARREGAR
- *************************************************/
-window.addEventListener("DOMContentLoaded", function () {
-
-  const btnLocal = document.getElementById("btn-local");
-  const modalLocal = document.getElementById("modal-local");
-
-  const btnFiltros = document.getElementById("btn-filtros");
-  const modalFiltros = document.getElementById("modal-filtros");
-
- 
-if (btnLocal && modalLocal) {
-  btnLocal.onclick = function () {
-    montarLocais(); // ✅ AGORA popula antes de abrir
-    modalLocal.classList.add("active");
-  };
-}
-
-    };
-    document.querySelectorAll("input[name='tipo']").forEach(radio => {
-  radio.onchange = function () {
-    filtroTipo = radio.value;
-    montarTecnologias();   // ✅ monta tecnologia ao mudar o tipo
-  };
-      
-  // Botão APLICAR filtros
-const btnAplicar = document.getElementById("btn-aplicar");
-if (btnAplicar) {
-  btnAplicar.onclick = function () {
-    atualizarTudo(); // recalcula gráfico, KPIs e resumo
-    document.getElementById("modal-filtros").classList.remove("active");
-  };
-}
-// Botão LIMPAR filtros
-const btnLimpar = document.getElementById("btn-limpar");
-if (btnLimpar) {
-  btnLimpar.onclick = function () {
-    filtroTipo = null;
-    filtroGiro = [];
-    filtroDep = [];
-    filtroTecnologias = [];
-
-    document
-      .querySelectorAll("#modal-filtros input")
-      .forEach(i => (i.checked = false));
-
-    document.getElementById("lista-tecnologia").innerHTML = "";
-
-    atualizarTudo();
-  };
-}
-});
-  }
-  
-
-  if (btnFiltros && modalFiltros) {
-    btnFiltros.onclick = function () {
-      modalFiltros.classList.add("active");
-    };
-  }
-
-  document.querySelectorAll(".modal").forEach(function (modal) {
-    modal.onclick = function (e) {
-      if (e.target === modal) {
-        modal.classList.remove("active");
-      }
-    };
-  });
-
-});
-
-
-function montarLocais() {
-  const lista = document.getElementById("lista-local");
-  if (!lista) return;
-
-  lista.innerHTML = "";
-  filtroLocais = [];
-
-  const locais = [...new Set(
-    dados.map(d => d.Local).filter(v => v && v.trim() !== "")
-  )];
-
-  locais.forEach(local => {
-    const label = document.createElement("label");
-    const chk = document.createElement("input");
-    chk.type = "checkbox";
-    chk.value = local;
-
-    chk.onchange = () => {
-      filtroLocais =
-        [...lista.querySelectorAll("input:checked")].map(c => c.value);
-    };
-
-    label.appendChild(chk);
-    label.append(" " + local);
-    lista.appendChild(label);
+function montarLocais(){
+  const l=document.getElementById("lista-local"); l.innerHTML="";
+  [...new Set(dados.map(d=>d.Local).filter(Boolean))].forEach(v=>{
+    const c=document.createElement("input"); c.type="checkbox"; c.value=v;
+    c.onchange=()=>filtroLocais=[...l.querySelectorAll("input:checked")].map(x=>x.value);
+    l.append(c," ",v, document.createElement("br"));
   });
 }
-``
 
-
-function montarTecnologias() {
-  const lista = document.getElementById("lista-tecnologia");
-  if (!lista) return;
-
-  lista.innerHTML = "";
-  filtroTecnologias = [];
-
-  if (!filtroTipo) return;
-
-  const tecnologias = [...new Set(
-    dados
-      .filter(d => {
-        if (filtroTipo === "Terminais") {
-          return d["Terminais"] && (!d["Acessórios"] || d["Acessórios"].trim() === "");
-        }
-        if (filtroTipo === "Acessórios") {
-          return d["Acessórios"] && (!d["Terminais"] || d["Terminais"].trim() === "");
-        }
-        return false;
-      })
-      .map(d => d[filtroTipo])
-      .filter(v => v && v.trim() !== "")
-  )];
-
-  tecnologias.forEach(t => {
-    const label = document.createElement("label");
-    const chk = document.createElement("input");
-    chk.type = "checkbox";
-    chk.value = t;
-
-    chk.onchange = () => {
-      filtroTecnologias =
-        [...lista.querySelectorAll("input:checked")].map(c => c.value);
-    };
-
-    label.appendChild(chk);
-    label.append(" " + t);
-    lista.appendChild(label);
-  });
-}
-``
-  tecnologias.forEach(t => {
-    const label = document.createElement("label");
-    const chk = document.createElement("input");
-    chk.type = "checkbox";
-    chk.value = t;
-
-    label.appendChild(chk);
-    label.append(" " + t);
-    lista.appendChild(label);
-  });
+function montarTecnologias(){
+  const l=document.getElementById("lista-tecnologia"); l.innerHTML="";
+  if(!filtroTipo) return;
+  [...new Set(dados.filter(d=>d[filtroTipo]).map(d=>d[filtroTipo]))]
+    .forEach(v=>{
+      const c=document.createElement("input"); c.type="checkbox"; c.value=v;
+      c.onchange=()=>filtroTecnologias=[...l.querySelectorAll("input:checked")].map(x=>x.value);
+      l.append(c," ",v, document.createElement("br"));
+    });
 }
