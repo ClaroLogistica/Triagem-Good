@@ -1,9 +1,6 @@
 /* ===== BASE ===== */
 /* CONTAINER GERAL DO DASHBOARD */
-body {
-  max-width: 1400px;
-  margin: 0 auto;
-}
+
   /* Fundo base */
   background:
     radial-gradient(
