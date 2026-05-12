@@ -1,3 +1,4 @@
+/* ===== BASE ===== */
 body {
   background: linear-gradient(180deg, #0f172a, #020617);
   color: #e5e7eb;
@@ -8,7 +9,7 @@ body {
 h1 { margin-bottom: 10px; }
 h3 { margin-top: 25px; }
 
-/* KPIs */
+/* ===== KPIs ===== */
 .kpi-container {
   display: flex;
   gap: 20px;
@@ -34,7 +35,7 @@ h3 { margin-top: 25px; }
   color: #94a3b8;
 }
 
-/* Resumo semanal */
+/* ===== RESUMO SEMANAL ===== */
 .resumo-semanal {
   display: flex;
   flex-direction: column;
@@ -57,24 +58,32 @@ h3 { margin-top: 25px; }
   opacity: 0.85;
 }
 
-/* Barra de filtros */
+/* ===== BOTÕES / FILTROS ===== */
 .barra-filtros {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  margin: 10px 0;
+  gap: 10px;
+  margin: 12px 0;
 }
 
 .btn-filtros {
   background: #020617;
   color: #e5e7eb;
   border: 1px solid #334155;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: border-color .2s, transform .1s;
 }
 
-/* Gráfico */
+.btn-filtros:hover {
+  border-color: #38bdf8;
+}
+
+.btn-filtros:active {
+  transform: scale(0.97);
+}
+
+/* ===== GRÁFICO ===== */
 .grafico-container {
   background: #020617;
   padding: 20px 20px 35px 20px;
@@ -85,66 +94,66 @@ h3 { margin-top: 25px; }
 #graficoDiario {
   width: 100%;
   height: 210px;
-  max-height: 210px;
 }
-``
 
-/* Faixa de semanas */
+/* ===== FAIXA DE SEMANAS ===== */
 #faixa-semanas {
   display: grid;
   grid-template-columns: repeat(31, minmax(0, 1fr));
   gap: 2px;
-
   margin-top: 10px;
   padding-top: 6px;
-
   font-size: 12px;
   color: #cbd5e1;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255,255,255,0.15);
 }
 
 #faixa-semanas > div {
   grid-row: 1;
-  background: rgba(255, 255, 255, 0.08);
-
+  background: transparent;
   padding: 4px 0;
-  border-radius: 6px;
-
   text-align: center;
   white-space: nowrap;
 }
-
 
 /* ===== MODAIS ===== */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 1000;
+  background: rgba(0,0,0,0.65);
+  z-index: 9999;
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-conteudo {
   background: #020617;
   width: 520px;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 5% auto;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px;
+  border-radius: 14px;
 }
 
-.bloco-filtro { margin-bottom: 16px; }
-
-.bloco-filtro label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-/* Modal filtros em duas colunas */
+/* ===== FILTROS ===== */
 .modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+.bloco-filtro {
+  margin-bottom: 16px;
+}
+
+.bloco-filtro label {
+  display: block;
+  margin-bottom: 8px;
 }
 
 .filtros-tecnologia {
@@ -158,12 +167,6 @@ h3 { margin-top: 25px; }
   padding-right: 6px;
 }
 
-/* Modal Local – um por linha */
-#lista-local label {
-  display: block;
-  margin-bottom: 8px;
-}
-/* Tecnologia: um item por linha, sem quebra lateral */
 .lista-tecnologia-scroll label {
   display: flex;
   align-items: center;
@@ -171,120 +174,9 @@ h3 { margin-top: 25px; }
   margin-bottom: 6px;
   white-space: nowrap;
 }
-/* ===== MODAIS – CORREÇÃO FINAL ===== */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
 
-  background: rgba(0, 0, 0, 0.65);
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  z-index: 9999;
-}
-
-.modal-conteudo {
-  background: #020617;
-  width: 520px;
-  max-height: 90vh;
-  overflow-y: auto;
-
-  padding: 24px;
-  border-radius: 14px;
-}
-/* FORÇA DEFINITIVA DAS SEMANAS */
-.grafico-container #faixa-semanas {
-  display: grid !important;
-  grid-template-columns: repeat(31, minmax(0, 1fr)) !important;
-  gap: 2px !important;
-}
-
-.grafico-container #faixa-semanas > div {
-  grid-row: 1 !important;
-  text-align: center;
-}
-``
-/* FORÇA DEFINITIVA DOS MODAIS */
-.modal {
-  display: none !important;
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 9999 !important;
-}
-
-.modal.active {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-/* FORÇA DEFINITIVA DOS MODAIS */
-.modal {
-  display: none !important;
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 9999 !important;
-}
-
-.modal.active {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-/* Texto das semanas SEM FUNDO */
-.grafico-container #faixa-semanas > div {
-  background: transparent !important;
-  padding: 4px 0;
-  text-align: center;
-  color: #e5e7eb;
-}
-/* ===== CONTROLE FINAL DOS MODAIS ===== */
-.modal {
-  display: none !important;
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: 9999;
-}
-
-.modal.active {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-/* ===== BOTÕES DE FILTRO (ESTILO FINAL) ===== */
-.barra-filtros {
-  display: flex;
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.btn-filtros {
-  background: linear-gradient(180deg, #020617, #020617);
-  color: #e5e7eb;
-
-  border: 1px solid #334155;
-  border-radius: 10px;
-
-  padding: 8px 14px;
-  font-size: 14px;
-  cursor: pointer;
-
-  transition: background 0.2s, border-color 0.2s, transform 0.1s;
-}
-
-.btn-filtros:hover {
-  background: #020617;
-  border-color: #38bdf8;
-}
-
-.btn-filtros:active {
-  transform: scale(0.97);
+/* ===== LOCAL ===== */
+#lista-local label {
+  display: block;
+  margin-bottom: 8px;
 }
