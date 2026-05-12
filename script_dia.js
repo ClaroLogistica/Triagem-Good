@@ -140,25 +140,25 @@ function atualizarGrafico() {
         }
       }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: false,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: "#e5e7eb" }
-        },
-        y: {
-          display: false
-        }
-      }
-    }
-  });
+   options: {
+  responsive: true,
+  maintainAspectRatio: false,
+  animation: false,        // 🔴 importante para evitar loop visual
+  resizeDelay: 0,
 
+  plugins: {
+    legend: { display: false }
+  },
+  scales: {
+    x: {
+      grid: { display: false },
+      ticks: { color: "#e5e7eb" }
+    },
+    y: {
+      display: false
+    }
+  }
+}
   atualizarFaixaSemanas(base);
 }
 
