@@ -159,6 +159,8 @@ function atualizarGrafico() {
           ctx.textAlign = "center";
           ctx.shadowColor = "rgba(0,0,0,0.6)";
           ctx.shadowBlur = 4;
+          ctx.shadowColor = "rgba(0,0,0,0.6)";
+          ctx.shadowBlur = 6;
 
           chart.getDatasetMeta(0).data.forEach((bar, i) => {
             if (valores[i] > 0) {
