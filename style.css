@@ -65,6 +65,8 @@ body {
 
 /* ===== CONTAINER DO DASHBOARD ===== */
 .grafico-container {
+  .grafico-container {
+  height: 420px; /* trava o crescimento */
   background: linear-gradient(
     180deg,
     #0e0e11 0%,
