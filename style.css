@@ -319,3 +319,43 @@ body {
 
   margin-bottom: 56px;
 }
+/* FORÇA VISIBILIDADE DO HEADER */
+.topo-dashboard {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+
+  z-index: 9999 !important;
+}
+
+/* GARANTE QUE O TÍTULO APAREÇA */
+.titulo-dashboard,
+.titulo-principal {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+}
+
+/* GARANTE QUE O LOGO APAREÇA */
+.logo-dashboard img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+/* KPIs – FORÇA TEXTO BRANCO */
+.kpi span {
+  color: #ffffff !important;
+}
+
+.kpi small {
+  color: #ffffff !important; /* LEGENDA BRANCA */
+}
