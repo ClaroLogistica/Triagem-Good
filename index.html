@@ -2,24 +2,37 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Reversa &amp; Recuperação | Triagem Massivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style-login.css">
 </head>
-<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
-  <div>
-    <h2>Dashboard Produção</h2>
-    <input type="password" id="senha" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
+
+<body class="login-body">
+
+  <div class="login-container">
+
+    <img src="assets/logo-logistica.png" alt="Logo Logística" class="login-logo">
+
+    <h1>Reversa &amp; Recuperação | Triagem Massivo</h1>
+
+    <form onsubmit="return validarSenha()">
+      <input type="password" id="senha" placeholder="Digite a senha">
+      <button type="submit">Entrar</button>
+    </form>
+
   </div>
 
-<script>
-function login() {
-  if (document.getElementById('senha').value === '1234') {
-    window.location.href = 'dashboard.html';
-  } else {
-    alert('Senha errada');
-  }
-}
-</script>
+  <script>
+    function validarSenha() {
+      const senha = document.getElementById("senha").value;
+      if (senha === "SUA_SENHA_AQUI") {
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Senha incorreta");
+      }
+      return false;
+    }
+  </script>
+
 </body>
 </html>
