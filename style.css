@@ -255,3 +255,8 @@ h3 { margin-top: 25px; }
   object-fit: contain;
   opacity: 0.95;
 }
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
