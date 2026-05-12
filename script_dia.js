@@ -70,6 +70,12 @@ function aplicarFiltros() {
  *************************************************/
 function atualizarTudo() {
   if (!dados.length) return;
+
+  console.log("📦 Total de dados:", dados.length);
+
+  const base = aplicarFiltros();
+  console.log("🎯 Base após filtros:", base.length);
+
   atualizarKPIs();
   atualizarGrafico();
   atualizarResumoSemanal();
@@ -115,9 +121,9 @@ function atualizarGrafico() {
         borderRadius: 6,
         backgroundColor: (context) => {
           const chart = context.chart;
-          const {ctx, chartArea} = chart;
+          const { ctx, chartArea } = chart;
 
-          if (!chartArea) return null; // evita erro no primeiro render
+          if (!chartArea) return null;
 
           const gradient = ctx.createLinearGradient(
             0,
@@ -126,8 +132,8 @@ function atualizarGrafico() {
             chartArea.bottom
           );
 
-          gradient.addColorStop(0, "#c89b3c"); // dourado fosco no topo
-          gradient.addColorStop(1, "#7a0e12"); // vinho profundo na base
+          gradient.addColorStop(0, "#c89b3c"); // topo
+          gradient.addColorStop(1, "#7a0e12"); // base
 
           return gradient;
         }
@@ -155,11 +161,10 @@ function atualizarGrafico() {
         afterDatasetsDraw(chart) {
           const ctx = chart.ctx;
           ctx.save();
-          ctx.fillStyle = "#f8fafc";             // branco elegante
+
+          ctx.fillStyle = "#f8fafc";
           ctx.font = "11px Arial";
           ctx.textAlign = "center";
-          ctx.shadowColor = "rgba(0,0,0,0.6)";
-          ctx.shadowBlur = 4;
           ctx.shadowColor = "rgba(0,0,0,0.6)";
           ctx.shadowBlur = 6;
 
@@ -172,13 +177,17 @@ function atualizarGrafico() {
               );
             }
           });
-  
+
           ctx.restore();
         }
-        atualizarFaixaSemanas(base);
       }
     ]
   });
+
+  // ✅ CHAMADA CORRETA (FORA DO CHART)
+  atualizarFaixaSemanas(base);
+}
+
 
 /*************************************************
  * SEMANAS
