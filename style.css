@@ -220,3 +220,29 @@ h3 { margin-top: 25px; }
   object-fit: contain;
   opacity: 0.95;
 }
+
+
+/* ===== TOPO DO DASHBOARD ===== */
+.topo-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 20px 16px 20px;
+  margin-bottom: 20px;
+}
+
+.titulo-dashboard h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Logo no canto superior direito */
+.logo-dashboard img {
+  height: 55px;
+  max-width: 180px;
+  object-fit: contain;
+  opacity: 0.95;
+}
