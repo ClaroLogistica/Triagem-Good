@@ -77,10 +77,16 @@
   box-shadow: 0 0 0 2px rgba(164, 22, 26, 0.25);
 }
 
+/* GARANTE QUE INPUT E BOTÃO TENHAM O MESMO COMPRIMENTO */
+.login-container input,
+.login-container button {
+  width: 100%;
+  box-sizing: border-box;
+}
 /* ===== BOTÃO ===== */
 .login-container button {
   width: 100%;
-  padding: 12px;
+  padding: 12px; 14px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
