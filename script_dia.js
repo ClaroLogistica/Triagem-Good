@@ -172,9 +172,10 @@ function atualizarGrafico() {
               );
             }
           });
-
+  
           ctx.restore();
         }
+        atualizarFaixaSemanas(base);
       }
     ]
   });
