@@ -16,70 +16,65 @@
 </head>
 
 <body>
-  <div class="page-container">
 
-    <!-- header -->
-    <header class="topo-dashboard">
-      ...
-    </header>
-
-    <!-- resto: KPIs, filtros, resumo, gráfico -->
-    <div class="dashboard-container">
-      ...
+  <!-- TOPO -->
+  <header class="topo-dashboard">
+    <div class="titulo-dashboard">
+      <h1 class="titulo-principal">
+        <strong>Reversa &amp; Recuperação</strong><br>
+        <span>Triagem Massivo</span>
+      </h1>
     </div>
 
-  </div>
-</body>
-
-  <!-- KPIs -->
-  <div class="kpi-container">
-    <div class="kpi">
-      <span id="kpi-selecionado">0</span>
-      <small>Total Selecionado</small>
+    <div class="logo-dashboard">
+      <img src="logo-logistica.jpg" alt="Logo Logística">
     </div>
-    <div class="kpi">
-      <span id="kpi-mes">0</span>
-      <small>Total do Mês</small>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="dashboard-container">
+
+    <!-- KPIs -->
+    <div class="kpi-container">
+      <div class="kpi">
+        <span id="kpi-selecionado">0</span>
+        <small>Total Selecionado</small>
+      </div>
+      <div class="kpi">
+        <span id="kpi-mes">0</span>
+        <small>Total do Mês</small>
+      </div>
     </div>
-  </div>
 
-  <h3>Resumo Semanal</h3>
-  <div id="resumo-semanal" class="resumo-semanal"></div>
+    <!-- RESUMO -->
+    <h3>Resumo Semanal</h3>
+    <div id="resumo-semanal" class="resumo-semanal"></div>
 
-  <!-- BARRA DE FILTROS -->
-  <div class="barra-filtros">
-    <button id="btn-local" class="btn-filtros">
-      Local ▾
-    </button>
+    <!-- FILTROS -->
+    <div class="barra-filtros">
+      <button id="btn-local" class="btn-filtros">Local ▾</button>
+      <button id="btn-filtros" class="btn-filtros">Filtros ▾</button>
+    </div>
 
-    <button id="btn-filtros" class="btn-filtros">
-      Filtros ▾
-    </button>
-  </div>
+    <!-- GRÁFICO -->
+    <div class="grafico-container">
+      <canvas id="graficoDiario"></canvas>
+      <div id="faixa-semanas"></div>
+    </div>
 
-  <!-- GRÁFICO -->
-  <div class="grafico-container">
-    <canvas id="graficoDiario"></canvas>
-    <div id="faixa-semanas"></div>
   </div>
 
   <!-- MODAL LOCAL -->
   <div id="modal-local" class="modal">
     <div class="modal-conteudo">
       <h2>Local</h2>
-
       <div id="lista-local" class="lista-tecnologia-scroll"></div>
-
-      <div class="acoes-modal">
-        <button id="btn-aplicar-local">Aplicar</button>
-      </div>
     </div>
   </div>
 
   <!-- MODAL FILTROS -->
   <div id="modal-filtros" class="modal">
     <div class="modal-conteudo">
-
       <h2>Filtros</h2>
 
       <div class="modal-grid">
@@ -88,32 +83,20 @@
 
           <div class="bloco-filtro">
             <h4>Tipo</h4>
-            <label>
-              <input type="radio" name="tipo" value="Terminais"> Terminais
-            </label>
-            <label>
-              <input type="radio" name="tipo" value="Acessórios"> Acessórios
-            </label>
+            <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
+            <label><input type="radio" name="tipo" value="Acessórios"> Acessórios</label>
           </div>
 
           <div class="bloco-filtro">
             <h4>Giro</h4>
-            <label>
-              <input type="checkbox" class="chk-giro" value="Alto Giro"> Alto Giro
-            </label>
-            <label>
-              <input type="checkbox" class="chk-giro" value="Baixo Giro"> Baixo Giro
-            </label>
+            <label><input type="checkbox" class="chk-giro" value="Alto Giro"> Alto Giro</label>
+            <label><input type="checkbox" class="chk-giro" value="Baixo Giro"> Baixo Giro</label>
           </div>
 
           <div class="bloco-filtro">
             <h4>Dep.</h4>
-            <label>
-              <input type="checkbox" class="chk-dep" value="UDEI"> UDEI
-            </label>
-            <label>
-              <input type="checkbox" class="chk-dep" value="USAD"> USAD
-            </label>
+            <label><input type="checkbox" class="chk-dep" value="UDEI"> UDEI</label>
+            <label><input type="checkbox" class="chk-dep" value="USAD"> USAD</label>
           </div>
 
         </div>
@@ -129,7 +112,6 @@
         <button id="btn-limpar">Limpar</button>
         <button id="btn-aplicar">Aplicar</button>
       </div>
-
     </div>
   </div>
 
@@ -138,6 +120,3 @@
 
 </body>
 </html>
-<div class="dashboard-container">
-  <!-- todo o conteúdo do site aqui -->
-</div>
