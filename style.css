@@ -68,6 +68,17 @@ h3 { margin-top: 25px; }
   color: #94a3b8;
 }
 
+.kpi {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kpi:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(164, 22, 26, 0.4),
+              0 12px 30px rgba(0,0,0,0.6);
+}
+
+
 /* ===== RESUMO SEMANAL ===== */
 .resumo-semanal {
   display: flex;
@@ -259,4 +270,24 @@ h3 { margin-top: 25px; }
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px 40px;
+}
+.grafico-container {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.grafico-container:hover {
+  box-shadow: 0 0 0 1px rgba(164, 22, 26, 0.35),
+              0 16px 40px rgba(0,0,0,0.6);
+  transform: translateY(-2px);
+}
+.btn-filtros {
+  transition: background 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.15s ease;
+}
+
+.btn-filtros:hover {
+  background: rgba(122, 14, 18, 0.9); /* vinho */
+  box-shadow: 0 0 12px rgba(164, 22, 26, 0.5);
+  transform: translateY(-1px);
 }
