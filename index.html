@@ -32,17 +32,28 @@
       <button type="submit">Entrar</button>
     </form>
 
+    <!-- Mensagem de erro elegante -->
+    <p
+      id="login-erro"
+      style="display:none; color:#f87171; margin-top:12px; font-size:13px;"
+    >
+      Senha incorreta. Tente novamente.
+    </p>
+
   </div>
 
   <script>
     function validarSenha() {
       const senha = document.getElementById("senha").value;
+      const erro = document.getElementById("login-erro");
 
       if (senha === "000") {
+        erro.style.display = "none";
         window.location.href = "dashboard.html";
       } else {
-        alert("Senha incorreta");
+        erro.style.display = "block";
       }
+
       return false;
     }
   </script>
