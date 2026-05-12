@@ -130,12 +130,11 @@ h3 { margin-top: 25px; }
 /* ===== GRÁFICO ===== */
 .grafico-container {
   background: #020617;
-  padding: 20px;
-  border-radius: 14px;
-  margin-top: 20px;
+  padding: 28px 32px 36px;
+  border-radius: 16px;
+  margin-top: 28px;
 
-  max-height: 280px;   /* 👈 trava o crescimento */
-  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 #graficoDiario {
@@ -269,8 +268,9 @@ h3 { margin-top: 25px; }
 .dashboard-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px 40px;
+  padding: 24px 32px 48px; /* distância elegante das laterais */
 }
+
 .grafico-container {
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
