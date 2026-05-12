@@ -17,20 +17,22 @@
 
 /* ===== CARD CENTRAL ===== */
 .login-container {
-  background: rgba(2, 6, 23, 0.85);
+  background: rgba(18, 2, 6, 0.88); /* menos azul, mais vinho/cinza */
   padding: 40px 42px 46px;
   border-radius: 18px;
   width: 100%;
   max-width: 420px;
   text-align: center;
   box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+
+  animation: cardEntrada 0.7s ease-out forwards;
 }
 
 /* ===== LOGO ===== */
 .login-logo {
-  height: 70px;
+  height: 90px;          /* logo maior */
   margin-bottom: 18px;
-  animation: logoFocus 0.6s ease-out forwards;
+  animation: logoFocus 0.7s ease-out forwards;
 }
 
 /* ===== TÍTULO ===== */
@@ -51,16 +53,28 @@
   margin-top: 4px;
 }
 
-/* ===== INPUT ===== */
+/* ===== INPUT (CAMPO DE SENHA) ===== */
 .login-container input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid #4b1c1c;
-  background: #020617;
-  color: #fff;
+
+  background: #ffffff;          /* branco, como pedido */
+  color: #020617;
+
+  border: 1.5px solid #7a0e12;  /* contorno vermelho/vinho */
   font-size: 14px;
   margin-bottom: 20px;
+}
+
+.login-container input::placeholder {
+  color: #6b7280;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #a4161a;
+  box-shadow: 0 0 0 2px rgba(164, 22, 26, 0.25);
 }
 
 /* ===== BOTÃO ===== */
@@ -70,17 +84,40 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
+
   font-size: 14px;
   font-weight: bold;
-  color: #fff;
-  background: linear-gradient(90deg, #7a0e12, #c89b3c);
+  color: #ffffff;
+
+  background: linear-gradient(90deg, #a4161a, #7a0e12); /* vermelho → vinho */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.login-container button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(164, 22, 26, 0.6);
+}
+
+.login-container button:active {
+  transform: scale(0.98);
 }
 
 /* ===== ANIMAÇÕES ===== */
+@keyframes cardEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes logoFocus {
   from {
     opacity: 0;
-    transform: translateY(6px) scale(0.94);
+    transform: translateY(12px) scale(0.9);
   }
   to {
     opacity: 1;
