@@ -1,9 +1,14 @@
 /* ===== CONTAINER GLOBAL DA PÁGINA ===== */
 .page-container {
-  max-width: 1320px;          /* largura elegante */
-  margin: 0 auto;             /* centraliza */
-  padding: 64px 80px 96px;    /* AQUI está o afastamento REAL */
+  max-width: 1320px;
+  margin: 0 auto;
+
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 40px;     /* NÃO empurra o header pra fora */
+  padding-bottom: 96px;
 }
+
 
 /* ===== BASE / FUNDO GLOBAL ===== */
 body {
@@ -110,11 +115,12 @@ body {
 
 /* ===== LOGO ===== */
 .logo-dashboard img {
-  height: 66px;          /* +20% */
-  max-width: 216px;      /* +20% do limite */
+  height: 66px;        /* +20% */
+  max-width: 216px;
   object-fit: contain;
   opacity: 0.95;
 }
+
 
 
 /* ===== KPIs ===== */
@@ -278,4 +284,15 @@ body {
 .resumo-semanal,
 .barra-filtros {
   margin-left: 12px;
+}
+/* ===== GARANTE VISIBILIDADE DO HEADER ===== */
+.topo-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  z-index: 10;
+
+  margin-bottom: 56px;
 }
