@@ -110,7 +110,10 @@ function atualizarGrafico() {
 
   if (chart) chart.destroy();
 
-  const ctx = document.getElementById("graficoDiario").getContext("2d");
+  const canvas = document.getElementById("graficoDiario");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
 
   chart = new Chart(ctx, {
     type: "bar",
@@ -122,7 +125,6 @@ function atualizarGrafico() {
         backgroundColor: (context) => {
           const chart = context.chart;
           const { ctx, chartArea } = chart;
-
           if (!chartArea) return null;
 
           const gradient = ctx.createLinearGradient(
@@ -132,62 +134,31 @@ function atualizarGrafico() {
             chartArea.bottom
           );
 
-          gradient.addColorStop(0, "#4fd1c5"); // verde água claro
+          gradient.addColorStop(0, "#4fd1c5"); // verde água
           gradient.addColorStop(1, "#020617"); // quase preto
-
           return gradient;
         }
       }]
     },
     options: {
-  responsive: true,
-  maintainAspectRatio: false, // ok, agora com altura fixa
-  animation: false,           // evita “crescimento infinito”
-  plugins: {
-    legend: { display: false }
-  },
-  scales: {
-    x: {
-      grid: { display: false },
-      ticks: { color: "#e5e7eb" }
-    },
-    y: {
-      display: false
-    }
-  }
-}
-      }
-    },
-    plugins: [
-      {
-        id: "valoresTopo",
-        afterDatasetsDraw(chart) {
-          const ctx = chart.ctx;
-          ctx.save();
-
-          ctx.fillStyle = "#f8fafc";
-          ctx.font = "11px Arial";
-          ctx.textAlign = "center";
-          ctx.shadowColor = "rgba(0,0,0,0.6)";
-          ctx.shadowBlur = 6;
-
-          chart.getDatasetMeta(0).data.forEach((bar, i) => {
-            if (valores[i] > 0) {
-              ctx.fillText(
-                valores[i].toLocaleString("pt-BR"),
-                bar.x,
-                bar.y - 6
-              );
-            }
-          });
-
-          ctx.restore();
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: "#e5e7eb" }
+        },
+        y: {
+          display: false
         }
       }
-    ]
+    }
   });
 
-  // ✅ CHAMADA CORRETA (FORA DO CHART)
   atualizarFaixaSemanas(base);
 }
 
