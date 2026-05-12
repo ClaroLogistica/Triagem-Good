@@ -102,20 +102,31 @@ function atualizarGrafico() {
 
   if (chart) chart.destroy();
 
-  chart = new Chart(document.getElementById("graficoDiario"), {
-    type: "bar",
-    data: { labels, datasets: [{ data: valores, backgroundColor: "rgba(0,0,0,0)", borderRadius: 6 }] },
-    options: { responsive: true, plugins: { legend: { display: false } }, scales:{ y:{display:false} } },
-    plugins: [{
-      afterDatasetsDraw(c){
-        const ctx = c.ctx;
-        ctx.fillStyle="#e5e7eb"; ctx.font="11px Arial"; ctx.textAlign="center";
-        c.getDatasetMeta(0).data.forEach((b,i)=>{
-          if(valores[i]) ctx.fillText(valores[i], b.x, b.y-6);
-        });
-      }
+ chart = new Chart(document.getElementById("graficoDiario"), {
+  type: "bar",
+  data: {
+    labels,
+    datasets: [{
+      data: valores,
+      backgroundColor: ctx => {
+        const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 210);
+        gradient.addColorStop(0, "#38bdf8");
+        gradient.addColorStop(1, "#020617");
+        return gradient;
+      },
+      borderRadius: 6
     }]
-  });
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { display: false }
+    }
+  }
+});
 
   atualizarFaixaSemanas(base);
 }
