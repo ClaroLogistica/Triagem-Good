@@ -1,3 +1,10 @@
+/* ===== CONTAINER GLOBAL DA PÁGINA ===== */
+.page-container {
+  max-width: 1320px;          /* largura elegante */
+  margin: 0 auto;             /* centraliza */
+  padding: 64px 80px 96px;    /* AQUI está o afastamento REAL */
+}
+
 /* ===== BASE / FUNDO GLOBAL ===== */
 body {
   min-height: 100vh;
