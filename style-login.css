@@ -31,7 +31,18 @@
 .login-logo {
   height: 70px;
   margin-bottom: 18px;
-  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.4));
+  animation: logoFocus 0.6s ease-out forwards;
+}
+
+@keyframes logoFocus {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* TÍTULO */
