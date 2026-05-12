@@ -4,10 +4,28 @@ body {
   margin: 0;
   padding: 0;
 
-  background:
-    radial-gradient(700px 350px at 30% 20%, rgba(120,0,0,0.25), transparent 60%),
-    radial-gradient(600px 300px at 70% 50%, rgba(90,0,0,0.2), transparent 65%),
-    linear-gradient(135deg, #1a0000 0%, #0b0000 45%, #020000 100%);
+ background:
+  radial-gradient(
+    900px 500px at 20% 15%,
+    rgba(140, 20, 20, 0.35),
+    transparent 65%
+  ),
+  radial-gradient(
+    700px 400px at 80% 30%,
+    rgba(100, 10, 15, 0.3),
+    transparent 60%
+  ),
+  radial-gradient(
+    600px 300px at 50% 80%,
+    rgba(60, 5, 10, 0.25),
+    transparent 55%
+  ),
+  linear-gradient(
+    135deg,
+    #1a0000 0%,
+    #120202 40%,
+    #020000 100%
+  );
 
   font-family: Arial, sans-serif;
   color: #ffffff;
@@ -17,7 +35,7 @@ body {
 .dashboard-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 24px 32px 48px;
+  padding: 40px 56px 64px; /* mais respiro lateral e inferior */
 }
 
 /* ===== TOPO DO DASHBOARD ===== */
@@ -25,9 +43,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
-
+.topo-dashboard::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 24px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(164, 22, 26, 0.4),
+    transparent
+  );
+}
 /* ===== TÍTULO CENTRAL ===== */
 .titulo-dashboard {
   flex: 1;
@@ -68,12 +97,18 @@ body {
 }
 
 .kpi {
-  background: #020617;
+  
+background: linear-gradient(
+  180deg,
+  #0f0f12 0%,
+  #09090b 100%
+);
   padding: 18px 28px;
   border-radius: 14px;
   min-width: 220px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+border: 1px solid rgba(255,255,255,0.05);
 
 .kpi:hover {
   transform: translateY(-4px);
