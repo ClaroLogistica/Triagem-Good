@@ -1,9 +1,9 @@
 /* ===== BASE ===== */
+/* CONTAINER GERAL DO DASHBOARD */
 body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-
+  max-width: 1400px;
+  margin: 0 auto;
+}
   /* Fundo base */
   background:
     radial-gradient(
@@ -110,7 +110,7 @@ h3 { margin-top: 25px; }
   background: #020617;
   padding: 20px;
   border-radius: 14px;
-  margin-top: 10px;
+  margin-top: 20px;
 
   max-height: 280px;   /* 👈 trava o crescimento */
   overflow: hidden;
