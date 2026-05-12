@@ -359,3 +359,23 @@ body {
 .kpi small {
   color: #ffffff !important; /* LEGENDA BRANCA */
 }
+/* ===== REATIVA INTERATIVIDADE DAS KPIs (SEM REMOVER NADA) ===== */
+.kpi {
+  cursor: pointer;
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.2s ease;
+}
+
+.kpi:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.2),
+    0 18px 36px rgba(0,0,0,0.65);
+  filter: brightness(1.05);
+}
+
+.kpi:active {
+  transform: translateY(-2px) scale(0.98);
+}
