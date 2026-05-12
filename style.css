@@ -224,17 +224,16 @@ body {
 .grafico-container {
   background: linear-gradient(
     180deg,
-    #0f0f12,
-    #07070a
+    #1c1c21 0%,   /* cinza claro elegante no topo */
+    #121214 45%,  /* transição suave */
+    #07070a 100%  /* quase preto na base */
   );
 
   padding: 48px 56px 56px;
   margin-top: 72px;
 
   border-radius: 20px;
-
-  border: 1px dashed rgba(255,255,255,0.35); /* MAIS CLARA, FINA */
-
+  border: 1px dashed rgba(255,255,255,0.35); /* borda fina, clara e elegante */
 }
 
 .grafico-container:hover {
