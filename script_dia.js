@@ -132,27 +132,30 @@ function atualizarGrafico() {
             chartArea.bottom
           );
 
-          gradient.addColorStop(0, "#c89b3c"); // topo
-          gradient.addColorStop(1, "#7a0e12"); // base
+          gradient.addColorStop(0, "#4fd1c5"); // verde água claro
+          gradient.addColorStop(1, "#020617"); // quase preto
 
           return gradient;
         }
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: "#e5e7eb" }
-        },
-        y: {
-          display: false
-        }
+  responsive: true,
+  maintainAspectRatio: false, // ok, agora com altura fixa
+  animation: false,           // evita “crescimento infinito”
+  plugins: {
+    legend: { display: false }
+  },
+  scales: {
+    x: {
+      grid: { display: false },
+      ticks: { color: "#e5e7eb" }
+    },
+    y: {
+      display: false
+    }
+  }
+}
       }
     },
     plugins: [
