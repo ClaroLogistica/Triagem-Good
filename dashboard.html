@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Produção</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
@@ -16,98 +17,113 @@
 
 <body>
 
-<h1>Dashboard Produção</h1>
+  <h1>Dashboard Produção</h1>
 
-<!-- KPIs -->
-<div class="kpi-container">
-  <div class="kpi">
-    <span id="kpi-selecionado">0</span>
-    <small>Total Selecionado</small>
-  </div>
-  <div class="kpi">
-    <span id="kpi-mes">0</span>
-    <small>Total do Mês</small>
-  </div>
-</div>
-
-<h3>Resumo Semanal</h3>
-<div id="resumo-semanal" class="resumo-semanal"></div>
-
-<!-- BARRA DE FILTROS (ACIMA DO GRÁFICO) -->
-<div class="barra-filtros">
-  <button id="btn-local" class="btn-filtros">
-    Local ▾
-  </button>
-
-  <button id="btn-filtros" class="btn-filtros">
-    Filtros ▾
-  </button>
-</div>
-
-<!-- GRÁFICO -->
-<div class="grafico-container">
-  <canvas id="graficoDiario"></canvas>
-  <div id="faixa-semanas"></div>
-</div>
-
-<!-- MODAL LOCAL -->
-<div id="modal-local" class="modal">
-  <div class="modal-conteudo">
-    <h2>Local</h2>
-
-    <div id="lista-local" class="lista-tecnologia-scroll"></div>
-
-    <div class="acoes-modal">
-      <button id="btn-aplicar-local">Aplicar</button>
+  <!-- KPIs -->
+  <div class="kpi-container">
+    <div class="kpi">
+      <span id="kpi-selecionado">0</span>
+      <small>Total Selecionado</small>
+    </div>
+    <div class="kpi">
+      <span id="kpi-mes">0</span>
+      <small>Total do Mês</small>
     </div>
   </div>
-</div>
 
-<!-- MODAL FILTROS -->
-<div id="modal-filtros" class="modal">
-  <div class="modal-conteudo">
+  <h3>Resumo Semanal</h3>
+  <div id="resumo-semanal" class="resumo-semanal"></div>
 
-    <h2>Filtros</h2>
+  <!-- BARRA DE FILTROS -->
+  <div class="barra-filtros">
+    <button id="btn-local" class="btn-filtros">
+      Local ▾
+    </button>
 
-    <div class="modal-grid">
+    <button id="btn-filtros" class="btn-filtros">
+      Filtros ▾
+    </button>
+  </div>
 
-      <div class="filtros-laterais">
-        <div class="bloco-filtro">
-          <h4>Tipo</h4>
-          <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
-          <label><input type="radio" name="tipo" value="Acessórios"> Acessórios</label>
+  <!-- GRÁFICO -->
+  <div class="grafico-container">
+    <canvas id="graficoDiario"></canvas>
+    <div id="faixa-semanas"></div>
+  </div>
+
+  <!-- MODAL LOCAL -->
+  <div id="modal-local" class="modal">
+    <div class="modal-conteudo">
+      <h2>Local</h2>
+
+      <div id="lista-local" class="lista-tecnologia-scroll"></div>
+
+      <div class="acoes-modal">
+        <button id="btn-aplicar-local">Aplicar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FILTROS -->
+  <div id="modal-filtros" class="modal">
+    <div class="modal-conteudo">
+
+      <h2>Filtros</h2>
+
+      <div class="modal-grid">
+
+        <div class="filtros-laterais">
+
+          <div class="bloco-filtro">
+            <h4>Tipo</h4>
+            <label>
+              <input type="radio" name="tipo" value="Terminais"> Terminais
+            </label>
+            <label>
+              <input type="radio" name="tipo" value="Acessórios"> Acessórios
+            </label>
+          </div>
+
+          <div class="bloco-filtro">
+            <h4>Giro</h4>
+            <label>
+              <input type="checkbox" class="chk-giro" value="Alto Giro"> Alto Giro
+            </label>
+            <label>
+              <input type="checkbox" class="chk-giro" value="Baixo Giro"> Baixo Giro
+            </label>
+          </div>
+
+          <div class="bloco-filtro">
+            <h4>Dep.</h4>
+            <label>
+              <input type="checkbox" class="chk-dep" value="UDEI"> UDEI
+            </label>
+            <label>
+              <input type="checkbox" class="chk-dep" value="USAD"> USAD
+            </label>
+          </div>
+
         </div>
 
-        <div class="bloco-filtro">
-          <h4>Giro</h4>
-          <label><input type="checkbox" class="chk-giro" value="Alto Giro"> Alto Giro</label>
-          <label><input type="checkbox" class="chk-giro" value="Baixo Giro"> Baixo Giro</label>
+        <div class="filtros-tecnologia">
+          <h4>Tecnologia</h4>
+          <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
         </div>
 
-        <div class="bloco-filtro">
-          <h4>Dep.</h4>
-          <label><input type="checkbox" class="chk-dep" value="UDEI"> UDEI</label>
-          <label><input type="checkbox" class="chk-dep" value="USAD"> USAD</label>
-        </div>
       </div>
 
-      <div class="filtros-tecnologia">
-        <h4>Tecnologia</h4>
-        <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
+      <div class="acoes-modal">
+        <button id="btn-limpar">Limpar</button>
+        <button id="btn-aplicar">Aplicar</button>
       </div>
 
     </div>
-
-    <div class="acoes-modal">
-      <button id="btn-limpar">Limpar</button>
-      <button id="btn-aplicar">Aplicar</button>
-    </div>
-
   </div>
-</div>
 
-<!-- JS -->
-<script src="script_dia.js"></script>
+  <!-- JS -->
+  <script src="script_dia.js"></script>
 
 </body>
 </html>
+``
