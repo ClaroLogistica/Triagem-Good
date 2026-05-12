@@ -30,7 +30,7 @@
 
 /* ===== LOGO ===== */
 .login-logo {
-  height: 90px;          /* logo maior */
+  height: 120px;          /* logo maior */
   margin-bottom: 18px;
   animation: logoFocus 0.7s ease-out forwards;
 }
