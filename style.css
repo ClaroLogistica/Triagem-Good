@@ -232,11 +232,28 @@ h3 { margin-top: 25px; }
   margin-bottom: 20px;
 }
 
-.titulo-dashboard h1 {
+/* ===== TÍTULO CENTRAL DO DASHBOARD ===== */
+.titulo-dashboard {
+  flex: 1;
+  text-align: center;
+}
+
+.titulo-principal {
   margin: 0;
-  font-size: 30px;
-  font-weight: 700;
+  line-height: 1.2;
+  font-size: 24px;          /* ~20% menor que o padrão anterior */
   color: #ffffff;
+}
+
+.titulo-principal strong {
+  font-weight: 700;         /* negrito apenas aqui */
+}
+
+.titulo-principal span {
+  display: block;
+  font-weight: 400;         /* sem negrito */
+  opacity: 0.9;
+  margin-top: 4px;
 }
 
 /* Logo no canto superior direito */
