@@ -51,10 +51,14 @@ body {
 
 /* ===== LOGO ===== */
 .logo-dashboard img {
-  height: 66px;
-  max-width: 216px;
+  height: 76px;          /* +15% */
+  max-width: 248px;      /* +15% */
   object-fit: contain;
   display: block;
+}
+
+.logo-dashboard {
+  margin-right: 16px;   /* afasta da borda direita */
 }
 
 /* ===== KPIs ===== */
