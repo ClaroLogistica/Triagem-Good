@@ -11,7 +11,11 @@
 
   <div class="login-container">
 
-    <img src="assets/logo-logistica.png" alt="Logo Logística" class="login-logo">
+    <img
+  src="assets/logo-logistica.png"
+  alt="Logo Logística"
+  class="login-logo"
+/>
 
     <h1 class="login-title">
   <strong>Reversa &amp; Recuperação</strong><br>
@@ -39,3 +43,21 @@
 
 </body>
 </html>
+.login-logo {
+  height: 70px;
+  margin-bottom: 18px;
+
+  animation: logoFocus 0.6s ease-out forwards;
+}
+
+/* animação */
+@keyframes logoFocus {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
