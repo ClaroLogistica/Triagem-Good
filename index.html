@@ -4,23 +4,17 @@
   <meta charset="UTF-8">
   <title>Reversa &amp; Recuperação | Triagem Massivo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style-login.css">
-</head>
 
-<body class="login-body">
+  <link rel="stylesheet" href="style-login.cssbody">
 
   <div class="login-container">
 
     <img
-  src="assets/logo-logistica.png"
-  alt="Logo Logística"
-  class="login-logo"
-/>
-
-    <h1 class="login-title">
-  <strong>Reversa &amp; Recuperação</strong><br>
-  <span>Triagem Massivo</span>
-</h1>
+      src="assets/logo-logistica.png"
+     title">
+      <strong>Reversa &amp; Recuperação</strong><br>
+      <span>Triagem Massivo</span>
+    </h1>
 
     <form onsubmit="return validarSenha()">
       <input type="password" id="senha" placeholder="Digite a senha">
@@ -32,32 +26,16 @@
   <script>
     function validarSenha() {
       const senha = document.getElementById("senha").value;
+
       if (senha === "000") {
         window.location.href = "dashboard.html";
       } else {
-        alert("Senha Incorreta");
+        alert("Senha incorreta");
       }
+
       return false;
     }
   </script>
 
 </body>
 </html>
-.login-logo {
-  height: 70px;
-  margin-bottom: 18px;
-
-  animation: logoFocus 0.6s ease-out forwards;
-}
-
-/* animação */
-@keyframes logoFocus {
-  from {
-    opacity: 0;
-    transform: translateY(6px) scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
