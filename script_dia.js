@@ -27,7 +27,7 @@ function extrairDia(data) {
 /*************************************************
  * CARREGAR EXCEL
  *************************************************/
-fetch("Dados.xlsx")
+fetch(new URL("Dados.xlsx", window.location.href))
   .then(r => {
     if (!r.ok) {
       throw new Error("Erro ao carregar Dados.xlsx");
@@ -40,6 +40,12 @@ fetch("Dados.xlsx")
     dados = XLSX.utils.sheet_to_json(sh);
 
     console.log("✅ Excel carregado:", dados.length, "linhas");
+
+    atualizarTudo(); // ✅ agora com dados de verdade
+  })
+  .catch(err => {
+    console.error("❌ Falha ao carregar Excel:", err);
+  });
 
     // ⚠️ SOMENTE AQUI atualiza tudo
     atualizarTudo();
