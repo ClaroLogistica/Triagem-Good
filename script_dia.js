@@ -95,6 +95,7 @@ function atualizarGrafico() {
   const valores = Array(31).fill(0);
 
   const base = aplicarFiltros();
+
   base.forEach(d => {
     const dia = extrairDia(d.Data);
     if (dia) valores[dia - 1] += Number(d.Quantidade || 0);
@@ -102,34 +103,78 @@ function atualizarGrafico() {
 
   if (chart) chart.destroy();
 
- chart = new Chart(document.getElementById("graficoDiario"), {
-  type: "bar",
-  data: {
-    labels,
-    datasets: [{
-      data: valores,
-      backgroundColor: ctx => {
-        const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, 210);
-        gradient.addColorStop(0, "#38bdf8");
-        gradient.addColorStop(1, "#020617");
-        return gradient;
-      },
-      borderRadius: 6
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { grid: { display: false } },
-      y: { display: false }
-    }
-  }
-});
+  const ctx = document.getElementById("graficoDiario").getContext("2d");
 
-  atualizarFaixaSemanas(base);
-}
+  chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: valores,
+        borderRadius: 6,
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const {ctx, chartArea} = chart;
+
+          if (!chartArea) return null; // evita erro no primeiro render
+
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.top,
+            0,
+            chartArea.bottom
+          );
+
+          gradient.addColorStop(0, "#c89b3c"); // dourado fosco no topo
+          gradient.addColorStop(1, "#7a0e12"); // vinho profundo na base
+
+          return gradient;
+        }
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: "#e5e7eb" }
+        },
+        y: {
+          display: false
+        }
+      }
+    },
+    plugins: [
+      {
+        id: "valoresTopo",
+        afterDatasetsDraw(chart) {
+          const ctx = chart.ctx;
+          ctx.save();
+          ctx.fillStyle = "#f8fafc";             // branco elegante
+          ctx.font = "11px Arial";
+          ctx.textAlign = "center";
+          ctx.shadowColor = "rgba(0,0,0,0.6)";
+          ctx.shadowBlur = 4;
+
+          chart.getDatasetMeta(0).data.forEach((bar, i) => {
+            if (valores[i] > 0) {
+              ctx.fillText(
+                valores[i].toLocaleString("pt-BR"),
+                bar.x,
+                bar.y - 6
+              );
+            }
+          });
+
+          ctx.restore();
+        }
+      }
+    ]
+  });
 
 /*************************************************
  * SEMANAS
