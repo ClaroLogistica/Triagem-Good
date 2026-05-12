@@ -26,11 +26,13 @@ body {
 }
 
 /* ===== TOPO ===== */
+
 .topo-dashboard {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
 }
+
 
 /* ===== TÍTULO ===== */
 .titulo-principal {
@@ -47,6 +49,10 @@ body {
   display: block;
   font-weight: 400;
   opacity: 0.9;
+}
+
+.titulo-dashboard {
+  text-align: center;
 }
 
 /* ===== LOGO ===== */
