@@ -205,3 +205,18 @@ h3 { margin-top: 25px; }
   display: block;
   margin-bottom: 8px;
 }
+/* ===== TOPO DO DASHBOARD ===== */
+.topo-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Logo no canto superior direito */
+.logo-dashboard {
+  height: 48px;          /* ajuste fino aqui */
+  max-width: 180px;
+  object-fit: contain;
+  opacity: 0.95;
+}
