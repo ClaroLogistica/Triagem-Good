@@ -212,22 +212,54 @@ document.getElementById("btn-limpar").onclick = () => {
 /*************************************************
  * LISTAS
  *************************************************/
-function montarLocais(){
-  const l=document.getElementById("lista-local"); l.innerHTML="";
-  [...new Set(dados.map(d=>d.Local).filter(Boolean))].forEach(v=>{
-    const c=document.createElement("input"); c.type="checkbox"; c.value=v;
-    c.onchange=()=>filtroLocais=[...l.querySelectorAll("input:checked")].map(x=>x.value);
-    l.append(c," ",v, document.createElement("br"));
-  });
-}
+function montarLocais() {
+  const l = document.getElementById("lista-local");
+  l.innerHTML = "";
 
-function montarTecnologias(){
-  const l=document.getElementById("lista-tecnologia"); l.innerHTML="";
-  if(!filtroTipo) return;
-  [...new Set(dados.filter(d=>d[filtroTipo]).map(d=>d[filtroTipo]))]
-    .forEach(v=>{
-      const c=document.createElement("input"); c.type="checkbox"; c.value=v;
-      c.onchange=()=>filtroTecnologias=[...l.querySelectorAll("input:checked")].map(x=>x.value);
-      l.append(c," ",v, document.createElement("br"));
+  [...new Set(dados.map(d => d.Local).filter(Boolean))]
+    .forEach(v => {
+      const label = document.createElement("label");
+
+      const c = document.createElement("input");
+      c.type = "checkbox";
+      c.value = v;
+
+      c.onchange = () => {
+        filtroLocais = [...l.querySelectorAll("input:checked")]
+          .map(x => x.value);
+      };
+
+      label.appendChild(c);
+      label.append(" " + v);
+
+      l.appendChild(label);
+    });
+}
+/*************************************************
+ * MONTAR TECNOLOGIA
+ *************************************************/
+
+function montarTecnologias() {
+  const l = document.getElementById("lista-tecnologia");
+  l.innerHTML = "";
+  if (!filtroTipo) return;
+
+  [...new Set(dados.filter(d => d[filtroTipo]).map(d => d[filtroTipo]))]
+    .forEach(v => {
+      const label = document.createElement("label");
+
+      const c = document.createElement("input");
+      c.type = "checkbox";
+      c.value = v;
+
+      c.onchange = () => {
+        filtroTecnologias = [...l.querySelectorAll("input:checked")]
+          .map(x => x.value);
+      };
+
+      label.appendChild(c);
+      label.append(" " + v);
+
+      l.appendChild(label);
     });
 }
