@@ -52,8 +52,35 @@ fetch("Dados.xlsx")
  * FILTRO CENTRAL (temporariamente simples)
  *************************************************/
 function aplicarFiltros() {
-  return dados;
+  let base = dados.slice(); // começa com TODOS os dados
+
+  // ✅ FILTRO LOCAL
+  if (filtroLocais && filtroLocais.length > 0) {
+    base = base.filter(d => filtroLocais.includes(d.Local));
+  }
+
+  // ✅ FILTRO TIPO + TECNOLOGIA
+  if (filtroTipo) {
+    base = base.filter(d => d[filtroTipo]);
+  }
+
+  if (filtroTecnologias && filtroTecnologias.length > 0 && filtroTipo) {
+    base = base.filter(d => filtroTecnologias.includes(d[filtroTipo]));
+  }
+
+  // ✅ FILTRO GIRO
+  if (filtroGiro && filtroGiro.length > 0) {
+    base = base.filter(d => filtroGiro.includes(d.Giro));
+  }
+
+  // ✅ FILTRO DEP
+  if (filtroDep && filtroDep.length > 0) {
+    base = base.filter(d => filtroDep.includes(d["Dep."]));
+  }
+
+  return base;
 }
+
 
 /*************************************************
  * ATUALIZAÇÃO GERAL
