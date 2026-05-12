@@ -4,19 +4,31 @@
   <meta charset="UTF-8">
   <title>Reversa &amp; Recuperação | Triagem Massivo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style-login.css">
+</head>
 
-  <link rel="stylesheet" href="style-login.cssbody">
+<body class="login-body">
 
   <div class="login-container">
 
-    <img    
-     <img src="logo-logistica.jpg" alt="Logo Logística" class="login-logo">
+    <img
+      src="logo-logistica.jpg"
+      alt="Logo Logística"
+      class="login-logo"
+    >
+
+    <h1 class="login-title">
       <strong>Reversa &amp; Recuperação</strong><br>
       <span>Triagem Massivo</span>
     </h1>
 
     <form onsubmit="return validarSenha()">
-      <input type="password" id="senha" placeholder="Digite a senha">
+      <input
+        type="password"
+        id="senha"
+        placeholder="Digite a senha"
+        autocomplete="off"
+      >
       <button type="submit">Entrar</button>
     </form>
 
@@ -31,28 +43,9 @@
       } else {
         alert("Senha incorreta");
       }
-
       return false;
     }
   </script>
 
 </body>
 </html>
-<body class="login-body">
-
-  <div class="login-container">
-
-    <img src="logo-logistica.jpg"
-         alt="Logo Logística"
-         classp; Recuperação</strong><br>
-      <span>Triagem Massivo</span>
-    </h1>
-
-    <form onsubmit="return validarSenha()">
-      <input type="password" id="senha" placeholder="Digite a senha">
-      <button type="submit">Entrar</button>
-    </form>
-
-  </div>
-
-</body>
