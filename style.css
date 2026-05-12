@@ -210,25 +210,6 @@ h3 { margin-top: 25px; }
   margin-bottom: 10px;
 }
 
-/* Logo no canto superior direito */
-.logo-dashboard {
-  height: 48px;          /* ajuste fino aqui */
-  max-width: 180px;
-  object-fit: contain;
-  opacity: 0.95;
-}
-
-
-/* ===== TOPO DO DASHBOARD ===== */
-.topo-dashboard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 10px 20px 16px 20px;
-  margin-bottom: 20px;
-}
-
 /* ===== TÍTULO CENTRAL DO DASHBOARD ===== */
 .titulo-dashboard {
   flex: 1;
