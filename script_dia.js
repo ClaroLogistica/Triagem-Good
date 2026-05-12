@@ -140,7 +140,7 @@ function atualizarGrafico() {
         }
       }]
     },
-   options: {
+  options: {
   responsive: true,
   maintainAspectRatio: false,
   animation: false,        // 🔴 importante para evitar loop visual
