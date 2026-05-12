@@ -208,8 +208,8 @@ body {
 }
 
 .logo-left img {
-  height: 54px;          /* proporcional e elegante */
-  max-width: 180px;
+  height: 35px;          /* proporcional e elegante */
+  max-width: 80px;
   object-fit: contain;
   display: block;
 }
