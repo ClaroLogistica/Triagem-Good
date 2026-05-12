@@ -1,3 +1,23 @@
+/* ===== RESET E BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ===== CONTAINER GLOBAL DEFINITIVO ===== */
+.page-wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
+
+  padding: 64px 88px 112px;  /* AQUI está o afastamento que você quer */
+
+  position: relative;
+}
+
 /* ===== CONTAINER GLOBAL DA PÁGINA ===== */
 .page-container {
   max-width: 1320px;
@@ -75,20 +95,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 36px;
+
+  margin-bottom: 72px;
+
+  position: relative;
+  z-index: 50;
 }
-.topo-dashboard::after {
-  content: "";
-  display: block;
-  height: 1px;
-  margin-top: 48px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(164, 22, 26, 0.4),
-    transparent
-  );
-}
+
 /* ===== TÍTULO CENTRAL ===== */
 .titulo-dashboard {
   flex: 1;
@@ -124,34 +137,37 @@ body {
 
 
 /* ===== KPIs ===== */
-
 .kpi-container {
   display: flex;
   gap: 32px;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
 }
 
 .kpi {
-  background: #020617;
-  width: 140px;      /* 25% menor */
+  width: 140px;
   height: 88px;
+
+  background: #020617;
+  border-radius: 16px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  border-radius: 16px;
+  cursor: pointer;
 }
 
+/* NÚMERO */
 .kpi span {
-  color: #ffffff;    /* BRANCO */
+  color: #ffffff;
   font-size: 22px;
   font-weight: 700;
 }
 
+/* LEGENDA */
 .kpi small {
-  color: #cbd5e1;
+  color: #cbd5e1;   /* CINZA CLARO, NÃO VERMELHO */
   font-size: 12px;
   margin-top: 6px;
 }
@@ -206,11 +222,19 @@ body {
 
 /* ===== GRÁFICO ===== */
 .grafico-container {
-  background: #020617;
-  padding: 28px 32px 36px;
-  border-radius: 16px;
-  margin-top: 28px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: linear-gradient(
+    180deg,
+    #0f0f12,
+    #07070a
+  );
+
+  padding: 48px 56px 56px;
+  margin-top: 72px;
+
+  border-radius: 20px;
+
+  border: 1px dashed rgba(255,255,255,0.35); /* MAIS CLARA, FINA */
+
 }
 
 .grafico-container:hover {
