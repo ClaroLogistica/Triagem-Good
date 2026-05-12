@@ -47,7 +47,7 @@ fetch("Dados.xlsx")
   .catch(err => {
     console.error("❌ Falha ao carregar Excel:", err);
   });
-``
+
 /*************************************************
  * FILTRO CENTRAL (temporariamente simples)
  *************************************************/
