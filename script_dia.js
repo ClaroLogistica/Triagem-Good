@@ -46,20 +46,21 @@ fetch(new URL("Dados.xlsx", window.location.href))
 function aplicarFiltros() {
   let base = [...dados];
 
-  if (filtroLocais.length)
+  if (Array.isArray(filtroLocais) && filtroLocais.length > 0) {
     base = base.filter(d => filtroLocais.includes(d.Local));
+  }
 
-  if (filtroTipo)
-    base = base.filter(d => d[filtroTipo]);
-
-  if (filtroTecnologias.length && filtroTipo)
+  if (filtroTipo && Array.isArray(filtroTecnologias) && filtroTecnologias.length > 0) {
     base = base.filter(d => filtroTecnologias.includes(d[filtroTipo]));
+  }
 
-  if (filtroGiro.length)
+  if (Array.isArray(filtroGiro) && filtroGiro.length > 0) {
     base = base.filter(d => filtroGiro.includes(d.Giro));
+  }
 
-  if (filtroDep.length)
+  if (Array.isArray(filtroDep) && filtroDep.length > 0) {
     base = base.filter(d => filtroDep.includes(d["Dep."]));
+  }
 
   return base;
 }
