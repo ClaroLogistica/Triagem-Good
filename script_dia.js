@@ -98,12 +98,6 @@ function atualizarKPIs() {
  * GRÁFICO
  *************************************************/
 
-/*************************************************
- * GRÁFICO DIÁRIO – VERSÃO ESTÁVEL FINAL
- *************************************************/
-/*************************************************
- * GRÁFICO DIÁRIO – VERSÃO FINAL FUNCIONAL
- *************************************************/
 function atualizarGrafico() {
   const labels = Array.from({ length: 31 }, (_, i) => i + 1);
   const valores = Array(31).fill(0);
@@ -134,23 +128,21 @@ function atualizarGrafico() {
       datasets: [{
         data: valores,
         borderRadius: 6,
+        barPercentage: 0.9,
+        categoryPercentage: 0.9,
         backgroundColor: (context) => {
-          const chartInstance = context.chart;
-          const { ctx, chartArea } = chartInstance;
-          if (!chartArea) return "#4fd1c5";
+  const value = context.raw || 0;
+  const max = Math.max(...valores) || 1;
 
-          const gradient = ctx.createLinearGradient(
-            0,
-            chartArea.top,
-            0,
-            chartArea.bottom
-          );
-          gradient.addColorStop(0, "#4fd1c5"); // verde água
-          gradient.addColorStop(1, "#020617"); // quase preto
-          return gradient;
-        }
-      }]
-    },
+  const intensity = value / max;
+
+  const r = Math.round(2 + intensity * (79 - 2));
+  const g = Math.round(6 + intensity * (209 - 6));
+  const b = Math.round(23 + intensity * (197 - 23));
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
     options: {
       responsive: true,              // ✅ VOLTA
       maintainAspectRatio: true,     // ✅ ESSENCIAL
