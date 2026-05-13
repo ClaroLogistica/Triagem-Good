@@ -4,6 +4,13 @@
 let dados = [];
 let chart = null;
 
+const mapaLocais = {
+  "CITR CAMPINAS": "Lab. Campinas - HFC",
+  "CITR RIO DE JANEIRO": "Lab. Rio de Janeiro - HFC",
+  "CITR BRASÍLIA": "Lab. Brasília - HFC",
+  "CITR MANAUS": "Lab. Jaboatão - HFC"
+};
+
 let filtroTipo = null;
 let filtroGiro = [];
 let filtroDep = [];
