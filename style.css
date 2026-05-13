@@ -19,15 +19,15 @@ body {
 
 /* ===== LARGURA E ESPAÇO DAS BORDAS ===== */
 .topo-dashboard {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 
   max-width: 1320px;
   margin: 0 auto;
-
-  padding: 16px 32px;   /* ✅ espaço das bordas sem exagero */
+  padding: 16px 32px;
 }
+
 
 .dashboard-container {
   max-width: 1320px;
