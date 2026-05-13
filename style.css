@@ -41,6 +41,7 @@ body {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+  min-height: 80px;   /* espaço vertical confortável */
 }
 
 
@@ -66,27 +67,50 @@ body {
 }
 
 .titulo-dashboard {
+  flex: 1;
   text-align: center;
 }
+
  
 /* ===== LOGO ===== */
 .logo-dashboard img {
-  height: 76px;          /* +15% */
-  max-width: 248px;      /* +15% */
+  height: 64px;          /* +15% */
+  max-width: 200x;      /* +15% */
   object-fit: contain;
   display: block;
 }
 
 .logo-dashboard {
-  margin-top: 10px;   /* desce levemente */
+  margin-top: 5px;   /* desce levemente */
   margin-right: 8px;  /* afasta da borda direita */
 }
 
-.logo-left {
-  margin-left: 8px;   /* respira da borda */
-  margin-top: 6px;    /* alinha verticalmente com o outro logo */
+.logo-left,
+.logo-dashboard {
+  width: 160px; /* espaço fixo */
+  display: flex;
+  align-items: center;
 }
-``
+
+.logo-left {
+  justify-content: flex-start;
+  padding-left: 8px;
+}
+
+.logo-left img {
+  height: 26px;
+  max-width: 100px;
+  object-fit: contain;
+}
+
+.logo-dashboard {
+  justify-content: flex-end;
+}
+
+.logo-left {
+  justify-content: flex-start;
+}
+
 /* ===== KPIs ===== */
 .kpi-container {
   display: flex;
