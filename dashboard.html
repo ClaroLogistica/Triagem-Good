@@ -83,10 +83,20 @@
 
 </div>
     <!-- FILTROS -->
-    <div class="barra-filtros">
-      <button id="btn-local" class="btn-filtros">Local ▾</button>
-      <button id="btn-filtros" class="btn-filtros">Filtros ▾</button>
-    </div>
+   <div class="barra-filtros-custom">
+
+  <button class="btn-filtro-principal" onclick="abrirFiltros()">
+    FILTROS
+  </button>
+
+  <button onclick="filtrarLocal('CITR CAMPINAS')">CITR CAMPINAS</button>
+  <button onclick="filtrarLocal('CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
+  <button onclick="filtrarLocal('CITR BRASÍLIA')">CITR BRASÍLIA</button>
+  <button onclick="filtrarLocal('CITR MANAUS')">CITR MANAUS</button>
+
+  <button class="btn-limpar" onclick="limparFiltroLocal()">LIMPAR</button>
+
+</div>
 
     <!-- GRÁFICO -->
     <div class="grafico-container">
