@@ -268,10 +268,10 @@ body {
 .topo-dashboard::after {
   content: "";
   position: absolute;
-  bottom: -6px;   /* posição da linha (ajusta fino depois) */
+  bottom: -4px;   /* posição da linha (ajusta fino depois) */
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1px;
 
   background: linear-gradient(
     to right,
