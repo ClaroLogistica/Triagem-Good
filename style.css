@@ -310,3 +310,76 @@ body {
     inset 0 0 30px rgba(255,255,255,0.05);
 }
 
+/* ===== RESUMO WRAPPER ===== */
+.resumo-wrapper {
+  margin-top: 20px;
+  padding: 18px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  border: 1px dashed rgba(255,255,255,0.5);
+  border-radius: 10px;
+}
+
+/* ===== TÍTULO LATERAL ===== */
+.resumo-titulo {
+  width: 120px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* ===== GRID CENTRAL ===== */
+.resumo-grid {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* CADA SEMANA */
+.sem-bloco {
+  text-align: center;
+  min-width: 80px;
+}
+
+.sem-bloco strong {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sem-bloco span {
+  display: block;
+  font-size: 14px;
+}
+
+/* ===== BOTÕES ===== */
+.resumo-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.resumo-acoes button {
+  background: linear-gradient(
+    180deg,
+    #7a0e12,
+    #420406
+  );
+  color: white;
+  border: none;
+
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 12px;
+}
+
+.resumo-acoes button:hover {
+  filter: brightness(1.2);
+}
