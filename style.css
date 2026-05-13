@@ -112,15 +112,18 @@ body {
 /* ===== KPIs ===== */
 .kpi-container {
   display: flex;
-  gap: 32px;
-  margin-bottom: 32px;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .kpi {
   width: 140px;
-  height: 88px;
-  background: #020617;
-  border-radius: 16px;
+  height: 80px;
+
+  background: rgba(0, 5, 20, 0.85);
+
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;
@@ -128,24 +131,26 @@ body {
   align-items: center;
 
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  transition: all 0.25s ease;
 }
 
 .kpi:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(0,0,0,0.6);
 }
 
 .kpi span {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #ffffff;
 }
 
 .kpi small {
-  font-size: 12px;
-  margin-top: 6px;
+  font-size: 11px;
+  margin-top: 4px;
   color: #cbd5e1;
+  text-align: center;
 }
 
 /* ===== RESUMO ===== */
@@ -274,4 +279,23 @@ body {
     rgba(255,255,255,0.6),
     transparent
   );
+}
+/* ===== WRAPPER DOS KPIs (CAIXA DE FUNDO) ===== */
+.kpi-wrapper {
+  margin-top: 16px;
+  padding: 20px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.05)
+  );
+
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
 }
