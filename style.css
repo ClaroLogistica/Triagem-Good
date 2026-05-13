@@ -110,6 +110,7 @@ body {
 }
 
 /* ===== KPIs ===== */
+/* ===== KPIs ===== */
 .kpi-container {
   display: flex;
   gap: 18px;
@@ -119,9 +120,15 @@ body {
 
 .kpi {
   width: 140px;
-  height: 80px;
+  min-height: 80px;
 
-  background: rgba(0, 5, 20, 0.85);
+  padding: 8px 6px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(10,15,35,0.95),
+    rgba(2,6,23,0.85)
+  );
 
   border-radius: 10px;
 
@@ -131,12 +138,11 @@ body {
   align-items: center;
 
   cursor: pointer;
-
   transition: all 0.25s ease;
 }
 
 .kpi:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 0 12px 28px rgba(0,0,0,0.6);
 }
 
@@ -147,10 +153,11 @@ body {
 }
 
 .kpi small {
-  font-size: 11px;
+  font-size: 12px;
   margin-top: 4px;
   color: #cbd5e1;
   text-align: center;
+  line-height: 1.2;
 }
 
 /* ===== RESUMO ===== */
