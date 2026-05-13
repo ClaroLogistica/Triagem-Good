@@ -49,6 +49,9 @@ body {
   display: block;
   font-weight: 400;
   opacity: 0.9;
+  font-size: 20.5px; /* ~15% menor que 24px */
+}
+
 }
 
 .titulo-dashboard {
