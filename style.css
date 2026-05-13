@@ -292,6 +292,7 @@ body {
 .kpi-wrapper {
   margin-top: 16px;
   padding: 18px 20px;
+
   border-radius: 14px;
 
   background: linear-gradient(
@@ -302,5 +303,10 @@ body {
   );
 
   border: 1px solid rgba(255,255,255,0.08);
+
+  /* ✅ É AQUI O GLOW */
+  box-shadow: 
+    0 0 20px rgba(255,255,255,0.05),
+    inset 0 0 30px rgba(255,255,255,0.05);
 }
 
