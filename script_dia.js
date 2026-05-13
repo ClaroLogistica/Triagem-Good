@@ -97,7 +97,6 @@ function atualizarKPIs() {
 /*************************************************
  * GRÁFICO
  *************************************************/
-
 function atualizarGrafico() {
   const labels = Array.from({ length: 31 }, (_, i) => i + 1);
   const valores = Array(31).fill(0);
@@ -106,9 +105,7 @@ function atualizarGrafico() {
 
   base.forEach(d => {
     const dia = extrairDia(d.Data);
-    if (dia) {
-      valores[dia - 1] += Number(d.Quantidade || 0);
-    }
+    if (dia) valores[dia - 1] += Number(d.Quantidade || 0);
   });
 
   if (chart) {
@@ -124,30 +121,30 @@ function atualizarGrafico() {
   chart = new Chart(ctx, {
     type: "bar",
     data: {
-      labels,
+      labels: labels,
       datasets: [{
         data: valores,
         borderRadius: 6,
         barPercentage: 0.9,
         categoryPercentage: 0.9,
         backgroundColor: (context) => {
-  const value = context.raw || 0;
-  const max = Math.max(...valores) || 1;
+          const value = context.raw || 0;
+          const max = Math.max(...valores) || 1;
 
-  const intensity = value / max;
+          const intensidade = value / max;
 
-  const r = Math.round(2 + intensity * (79 - 2));
-  const g = Math.round(6 + intensity * (209 - 6));
-  const b = Math.round(23 + intensity * (197 - 23));
+          const r = Math.round(2 + intensidade * 77);
+          const g = Math.round(6 + intensidade * 203);
+          const b = Math.round(23 + intensidade * 174);
 
-  return `rgb(${r}, ${g}, ${b})`;
-}
-
+          return `rgb(${r}, ${g}, ${b})`;
+        }
+      }]
+    },
     options: {
-      responsive: true,              // ✅ VOLTA
-      maintainAspectRatio: true,     // ✅ ESSENCIAL
-      animation: false,              // ✅ evita reflow
-      resizeDelay: 0,
+      responsive: true,
+      maintainAspectRatio: true,
+      animation: false,
 
       plugins: {
         legend: { display: false }
