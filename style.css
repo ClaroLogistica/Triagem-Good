@@ -18,8 +18,15 @@ body {
 }
 
 /* ===== LARGURA E ESPAÇO DAS BORDAS ===== */
-.topo-dashboard,{
+.topo-dashboard {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+
+  max-width: 1320px;
+  margin: 0 auto;
+
+  padding: 16px 32px;   /* ✅ espaço das bordas sem exagero */
 }
 
 .dashboard-container {
@@ -58,7 +65,10 @@ body {
 
 }
 
-.titulo-dashboard 
+.titulo-dashboard {
+  text-align: center;
+}
+ 
 /* ===== LOGO ===== */
 .logo-dashboard img {
   height: 76px;          /* +15% */
@@ -68,9 +78,15 @@ body {
 }
 
 .logo-dashboard {
-  margin-right: 16px;   /* afasta da borda direita */
+  margin-top: 10px;   /* desce levemente */
+  margin-right: 8px;  /* afasta da borda direita */
 }
 
+.logo-left {
+  margin-left: 8px;   /* respira da borda */
+  margin-top: 6px;    /* alinha verticalmente com o outro logo */
+}
+``
 /* ===== KPIs ===== */
 .kpi-container {
   display: flex;
