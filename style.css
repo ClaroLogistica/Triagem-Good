@@ -383,3 +383,54 @@ body {
 .resumo-acoes button:hover {
   filter: brightness(1.2);
 }
+
+/* ===== BARRA FILTROS NOVA ===== */
+.barra-filtros-custom {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* BOTÕES PADRÃO */
+.barra-filtros-custom button {
+  background: linear-gradient(
+    180deg,
+    #7a0e12,
+    #420406
+  );
+
+  color: #fff;
+  border: none;
+
+  padding: 10px 18px;
+  border-radius: 6px;
+
+  cursor: pointer;
+  font-size: 13px;
+
+  transition: all 0.2s ease;
+}
+
+/* HOVER */
+.barra-filtros-custom button:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
+/* BOTÃO FILTROS (ESQUERDA) */
+.btn-filtro-principal {
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+/* BOTÃO LIMPAR */
+.btn-limpar {
+  background: linear-gradient(
+    180deg,
+    #991b1b,
+    #5b0a0a
+  );
+}
