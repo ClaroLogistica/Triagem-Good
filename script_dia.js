@@ -54,6 +54,12 @@ function aplicarFiltros() {
     base = base.filter(d => filtroTecnologias.includes(d[filtroTipo]));
   }
 
+  if (filtroSemanaSelecionada) {
+  base = base.filter(d => {
+    let s = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+    return d[s] === filtroSemanaSelecionada;
+  }
+    
   if (filtroGiro.length > 0) {
     base = base.filter(d => filtroGiro.includes(d.Giro));
   }
@@ -197,17 +203,28 @@ function atualizarFaixaSemanas(base) {
 function atualizarResumoSemanal() {
   const c = document.getElementById("resumo-semanal");
   c.innerHTML = "";
+
   const base = aplicarFiltros();
   const total = base.reduce((s,d)=>s+Number(d.Quantidade||0),0);
-  const m={};
+
+  const m = {};
 
   base.forEach(d=>{
     let s = Object.keys(d).find(k=>k.toLowerCase().includes("semana"));
-    if(s) m[d[s]]=(m[d[s]]||0)+Number(d.Quantidade||0);
+    if(s) m[d[s]] = (m[d[s]]||0) + Number(d.Quantidade||0);
   });
 
   Object.entries(m).forEach(([s,t])=>{
-    c.innerHTML += `<div class="sem-box"><span>${s}</span><span>${t}</span><span>${Math.round((t/total)*100)||0}%</span></div>`;
+    const div = document.createElement("div");
+    div.className = "sem-bloco";
+
+    div.innerHTML = `
+      <strong>${s}</strong>
+      <span>${t}</span>
+      <span>${Math.round((t/total)*100)||0}%</span>
+    `;
+
+    c.appendChild(div);
   });
 }
 
@@ -297,4 +314,15 @@ function montarTecnologias() {
 
       l.appendChild(label);
     });
+}
+let filtroSemanaSelecionada = null;
+
+function filtrarSemana(semana) {
+  filtroSemanaSelecionada = semana;
+  atualizarTudo();
+}
+
+function limparFiltroSemana() {
+  filtroSemanaSelecionada = null;
+  atualizarTudo();
 }
