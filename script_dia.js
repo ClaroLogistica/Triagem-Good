@@ -326,3 +326,17 @@ function limparFiltroSemana() {
   filtroSemanaSelecionada = null;
   atualizarTudo();
 }
+
+function filtrarLocal(local) {
+  filtroLocais = [local];
+  atualizarTudo();
+}
+
+function limparFiltroLocal() {
+  filtroLocais = [];
+  atualizarTudo();
+}
+
+function abrirFiltros() {
+  document.getElementById("modal-filtros").classList.add("active");
+}
