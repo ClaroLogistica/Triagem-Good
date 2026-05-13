@@ -118,51 +118,48 @@ function atualizarGrafico() {
 
   const ctx = canvas.getContext("2d");
 
-  chart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [{
-        data: valores,
-        borderRadius: 6,
-        barPercentage: 0.9,
-        categoryPercentage: 0.9,
-        backgroundColor: (context) => {
-          const value = context.raw || 0;
-          const max = Math.max(...valores) || 1;
+ chart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [{
+      data: valores,
+      borderRadius: 6,
+      barPercentage: 0.9,
+      categoryPercentage: 0.9,
+      backgroundColor: (context) => {
+        const value = context.raw || 0;
+        const max = Math.max(...valores) || 1;
 
-          const intensidade = value / max;
+        const intensidade = value / max;
 
-          const r = Math.round(2 + intensidade * 77);
-          const g = Math.round(6 + intensidade * 203);
-          const b = Math.round(23 + intensidade * 174);
+        const r = Math.round(2 + intensidade * 77);
+        const g = Math.round(6 + intensidade * 203);
+        const b = Math.round(23 + intensidade * 174);
 
-          return `rgb(${r}, ${g}, ${b})`;
-        }
-      }]
+        return `rgb(${r}, ${g}, ${b})`;
+      }
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    animation: false,
+
+    plugins: {
+      legend: { display: false }
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      animation: false,
-
-      plugins: {
-        legend: { display: false }
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: "#e5e7eb" }
       },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: "#e5e7eb" }
-        },
-        y: {
-          display: false
-        }
+      y: {
+        display: false
       }
     }
-  });
-
-  atualizarFaixaSemanas(base);
-}
+  }
+});
 
 /*************************************************
  * SEMANAS
