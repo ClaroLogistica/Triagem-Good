@@ -387,11 +387,10 @@ body {
 /* ===== BARRA FILTROS NOVA ===== */
 .barra-filtros-custom {
   display: flex;
-  gap: 12px;
+  justify-content: space-between;  /* 🔥 separa esquerda e direita */
   align-items: center;
 
   margin-top: 12px;
-  flex-wrap: wrap;
 }
 
 /* BOTÕES PADRÃO */
@@ -433,4 +432,72 @@ body {
     #991b1b,
     #5b0a0a
   );
+}
+/* ===== BOTÕES DOS LOCAIS ===== */
+
+.grupo-locais {
+  display: flex;
+  gap: 10px;
+}
+
+.grupo-locais button {
+  background: linear-gradient(
+    180deg,
+    #7a0e12,
+    #420406
+  );
+
+  color: #fff;
+  border: none;
+
+  padding: 6px 12px;      
+  font-size: 11px;        
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  min-width: 150px;       
+  text-align: center;
+
+  transition: all 0.2s ease;
+}
+
+.grupo-locais button:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
+.btn-filtro-principal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: linear-gradient(
+    180deg,
+    #7a0e12,
+    #420406
+  );
+
+  color: #fff;
+  border: none;
+
+  padding: 6px 14px;
+  font-size: 11px;
+
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.icone-filtro {
+  width: 0;
+  height: 0;
+
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid white;
+
+  transform: rotate(180deg);
+
+  margin-left: 4px;
 }
