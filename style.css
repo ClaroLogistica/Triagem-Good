@@ -49,6 +49,7 @@ body {
   display: block;
   font-weight: 400;
   opacity: 0.9;
+  
   font-size: 20.5px; /* ~15% menor que 24px */
 }
 
@@ -211,8 +212,8 @@ body {
 }
 
 .logo-left img {
-  height: 33px;          /* proporcional e elegante */
-  max-width: 108px;
+  height: 20px;          /* proporcional e elegante */
+  max-width: 80px;
   object-fit: contain;
   display: block;
 }
