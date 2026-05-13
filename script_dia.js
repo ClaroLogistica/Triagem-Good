@@ -161,6 +161,11 @@ function atualizarGrafico() {
   }
 });
 
+// ✅ NÃO ESQUECE ISSO
+atualizarFaixaSemanas(base);
+
+}
+
 /*************************************************
  * SEMANAS
  *************************************************/
