@@ -64,8 +64,6 @@ body {
   font-size: 20.5px; /* ~15% menor que 24px */
 }
 
-}
-
 .titulo-dashboard {
   flex: 1;
   text-align: center;
