@@ -18,7 +18,10 @@ body {
 }
 
 /* ===== LARGURA E ESPAÇO DAS BORDAS ===== */
-.topo-dashboard,
+.topo-dashboard,{
+  align-items: center;
+}
+
 .dashboard-container {
   max-width: 1320px;
   margin: 0 auto;
