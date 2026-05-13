@@ -334,11 +334,14 @@ function limparFiltroSemana() {
   atualizarTudo();
 }
 
-function filtrarLocal(local) {
-  filtroLocais = [local];
+function filtrarLocal(botao) {
+  const valorReal = mapaLocais[botao];
+
+  if (!valorReal) return;
+
+  filtroLocais = [valorReal];
   atualizarTudo();
 }
-
 function limparFiltroLocal() {
   filtroLocais = [];
   atualizarTudo();
