@@ -87,7 +87,7 @@ body {
 
 .logo-left,
 .logo-dashboard {
-  width: 160px; /* espaço fixo */
+  width: 180px; /* espaço fixo */
   display: flex;
   align-items: center;
 }
