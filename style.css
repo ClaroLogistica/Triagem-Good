@@ -290,7 +290,7 @@ body {
 /* ===== WRAPPER DOS KPIs (CAIXA DE FUNDO) ===== */
 /* ===== FUNDO ATRÁS DOS KPIs ===== */
 .kpi-wrapper {
-  margin-top: 16px;
+  margin-top: 6px;
   padding: 18px 20px;
 
   border-radius: 14px;
