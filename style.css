@@ -58,10 +58,7 @@ body {
 
 }
 
-.titulo-dashboard {
-  text-align: center;
-}
-
+.titulo-dashboard 
 /* ===== LOGO ===== */
 .logo-dashboard img {
   height: 76px;          /* +15% */
