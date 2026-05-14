@@ -234,14 +234,18 @@ body {
 /* ===== FAIXA DE SEMANAS ===== */
 #faixa-semanas {
   display: grid;
-  grid-template-columns: repeat(31, minmax(0, 1fr));
-  gap: 2px;
+  grid-template-columns: repeat(31, 1fr);
+
   margin-top: 8px;
-  font-size: 12px;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 6px;
+
+  border-top: 1px solid rgba(255,255,255,0.2);
+
+  font-size: 11px;
+  color: #ddd;
 }
 
-#faixa-semanas > div {
+#faixa-semanas div {
   text-align: center;
 }
 
