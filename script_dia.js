@@ -136,23 +136,27 @@ function atualizarGrafico() {
   data: {
     labels: labels,
     datasets: [{
-      data: valores,
-      borderRadius: 6,
-      barPercentage: 0.9,
-      categoryPercentage: 0.9,
-      backgroundColor: (context) => {
-        const value = context.raw || 0;
-        const max = Math.max(...valores) || 1;
+     data: valores,
 
-        const intensidade = value / max;
+     borderRadius: 4,
 
-        const r = Math.round(2 + intensidade * 77);
-        const g = Math.round(6 + intensidade * 203);
-        const b = Math.round(23 + intensidade * 174);
+     barPercentage: 1.0,
+     categoryPercentage: 1.0,
 
-        return `rgb(${r}, ${g}, ${b})`;
-      }
-    }]
+     /* COR POR COLUNA */
+     backgroundColor: (context) => {
+      const value = context.raw || 0;
+      const max = Math.max(...valores) || 1;
+
+      const intensidade = value / max;
+
+      const r = Math.round(50 + intensidade * 80);
+      const g = Math.round(140 + intensidade * 80);
+      const b = Math.round(200);
+
+      return `rgb(${r},${g},${b})`;
+     }
+   }]
   },
   options: {
     responsive: true,
