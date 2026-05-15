@@ -363,7 +363,6 @@ function montarTecnologias() {
       l.appendChild(label);
     });
 }
-let filtroSemanaSelecionada = null;
 
 function filtrarSemana(semana) {
   filtroSemanaSelecionada = semana;
