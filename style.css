@@ -540,3 +540,14 @@ body {
 
   pointer-events: none;
 }
+/* ===== AJUSTE DO GRÁFICO (ESSENCIAL) */
+
+.grafico-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#graficoDiario {
+  width: 100% !important;
+  height: 100%;
+}
