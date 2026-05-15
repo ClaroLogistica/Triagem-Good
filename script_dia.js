@@ -142,8 +142,8 @@ chart = new Chart(ctx, {
     datasets: [{
       data: valores,
       borderRadius: 4,
-      barPercentage: 1.0,
-      categoryPercentage: 1.0,
+      barPercentage: 0.7,
+      categoryPercentage: 0.7,
       backgroundColor: (context) => {
         const value = context.raw || 0;
         const max = Math.max(...valores) || 1;
@@ -155,9 +155,37 @@ chart = new Chart(ctx, {
         const b = Math.round(200);
 
         return `rgb(${r}, ${g}, ${b})`;
+        plugins: {
+  legend: { display: false },
+
+  tooltip: {
+    enabled: true
+  }
+},
+
+animation: {
+  onComplete: function () {
+    const chart = this.chart;
+    const ctx = chart.ctx;
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '10px Arial';
+
+    this.data.datasets.forEach(dataset => {
+      chart.getDatasetMeta(0).data.forEach((bar, index) => {
+        const value = dataset.data[index];
+
+        if (value > 0) {
+          ctx.fillText(
+            value.toLocaleString("pt-BR"),
+            bar.x,
+            bar.y - 5
+          );
+        }
+ 
       }
-    }]
-  },
   options: {
     responsive: true,
     maintainAspectRatio: false,
