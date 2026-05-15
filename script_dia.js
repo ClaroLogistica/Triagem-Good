@@ -146,7 +146,7 @@ function atualizarGrafico() {
       barPercentage: 1.0,        // ✅ ADICIONA AQUI
       categoryPercentage: 1.0,   // ✅ ADICIONA AQUI
 
-      backgroundColor:
+      backgroundColor
         
      data: valores,
 
