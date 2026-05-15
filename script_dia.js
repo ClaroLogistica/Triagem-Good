@@ -269,10 +269,6 @@ document.getElementById("btn-limpar").onclick = () => {
   atualizarTudo();
 };
 
-function abrirFiltros() {
-  document.getElementById("modal-filtros").classList.add("active");
-}
-
 
 /*************************************************
  * LISTAS
