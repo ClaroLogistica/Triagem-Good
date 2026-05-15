@@ -231,6 +231,15 @@ body {
   display: block;
 }
 
+.grafico-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#graficoDiario {
+  width: 100% !important;
+  height: 100%;
+}
 
 /* ===== FAIXA DE SEMANAS ===== */
 #faixa-semanas {
