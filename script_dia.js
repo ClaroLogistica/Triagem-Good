@@ -46,7 +46,7 @@ fetch(new URL("Dados.xlsx", window.location.href))
     console.log("✅ Excel carregado:", dados.length);
     atualizarTudo();
   })
-  .ch(err => console.error(err));
+  .catch(err => console.error(err));
 
 /*************************************************
  * FILTRO CENTRAL
@@ -55,21 +55,22 @@ function aplicarFiltros() {
   let base = [...dados];
 
   if (filtroLocais.length > 0) {
-  base = base.filter(d =>
-    filtroLocais.some(f => d.Local && d.Local.includes(f))
-  );
+    base = base.filter(d =>
+      filtroLocais.some(f => d.Local && d.Local.includes(f))
+    );
+  }
 
   if (filtroTipo && filtroTecnologias.length > 0) {
     base = base.filter(d => filtroTecnologias.includes(d[filtroTipo]));
   }
 
   if (filtroSemanaSelecionada) {
-  base = base.filter(d => {
-    let s = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
-    return s && d[s] && d[s].includes(filtroSemanaSelecionada);
-  });
-}
-    
+    base = base.filter(d => {
+      let s = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+      return s && d[s] && d[s].includes(filtroSemanaSelecionada);
+    });
+  }
+
   if (filtroGiro.length > 0) {
     base = base.filter(d => filtroGiro.includes(d.Giro));
   }
