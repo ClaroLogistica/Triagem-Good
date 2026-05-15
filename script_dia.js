@@ -135,68 +135,75 @@ function atualizarGrafico() {
 
   const ctx = canvas.getContext("2d");
 
-chart = new Chart(ctx, {
-  type: "bar",
-  data: {
-    labels: labels,
-    datasets: [{
-      data: valores,
-      borderRadius: 4,
-      barPercentage: 0.7,
-      categoryPercentage: 0.7,
-      
-    backgroundColor: (context) => {
-  const chart = context.chart;
-  const { ctx } = chart;
+  chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: valores,
+        borderRadius: 4,
+        barPercentage: 0.6,
+        categoryPercentage: 0.7,
 
-  const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-
-  gradient.addColorStop(0, "#7fe7e7");   // topo claro
-  gradient.addColorStop(1, "#083c4a");   // base escura
-
-  return gradient;
-}
-
-animation: {
-  onComplete: function () {
-    const chart = this.chart;
-    const ctx = chart.ctx;
-
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'bottom';
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '10px Arial';
-
-    this.data.datasets.forEach(dataset => {
-      chart.getDatasetMeta(0).data.forEach((bar, index) => {
-        const value = dataset.data[index];
-
-        if (value > 0) {
-          ctx.fillText(
-            value.toLocaleString("pt-BR"),
-            bar.x,
-            bar.y - 5
-          );
+        backgroundColor: (context) => {
+          const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+          gradient.addColorStop(0, "#7fe7e7");
+          gradient.addColorStop(1, "#083c4a");
+          return gradient;
         }
- 
-      }
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false }
+      }]
     },
-    scales: {
-      x: {
-        grid: { display: false },
-        ticks: { color: "#e5e7eb" }
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: { display: false }
       },
-      y: {
-        display: false
+
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: "#e5e7eb" }
+        },
+        y: {
+          display: false
+        }
+      },
+
+      /* ✅ AGORA NO LUGAR CERTO */
+      animation: {
+        onComplete: function () {
+          const chart = this.chart;
+          const ctx = chart.ctx;
+
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '10px Arial';
+
+          this.data.datasets.forEach(dataset => {
+            chart.getDatasetMeta(0).data.forEach((bar, index) => {
+              const value = dataset.data[index];
+
+              if (value > 0) {
+                ctx.fillText(
+                  value.toLocaleString("pt-BR"),
+                  bar.x,
+                  bar.y - 5
+                );
+              }
+            });
+          });
+        }
       }
+
     }
-  }
-});
+  });
+
+  atualizarFaixaSemanas(base);
+}
 
 // ✅ NÃO ESQUECE ISSO
 atualizarFaixaSemanas(base);
