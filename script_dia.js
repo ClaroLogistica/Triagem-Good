@@ -134,18 +134,15 @@ function atualizarGrafico() {
 
   const ctx = canvas.getContext("2d");
 
- chart = new Chart(ctx, {
+chart = new Chart(ctx, {
   type: "bar",
   data: {
     labels: labels,
     datasets: [{
       data: valores,
-
       borderRadius: 4,
       barPercentage: 1.0,
       categoryPercentage: 1.0,
-
-      /* COR POR COLUNA */
       backgroundColor: (context) => {
         const value = context.raw || 0;
         const max = Math.max(...valores) || 1;
@@ -156,25 +153,16 @@ function atualizarGrafico() {
         const g = Math.round(140 + intensidade * 80);
         const b = Math.round(200);
 
-        return `rgb(${r},${g},${b})`;
+        return `rgb(${r}, ${g}, ${b})`;
       }
     }]
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
-
-    layout: {
-      padding: {
-        left: 0,
-        right: 0
-      }
-    },
-
     plugins: {
       legend: { display: false }
     },
-
     scales: {
       x: {
         grid: { display: false },
