@@ -155,3 +155,17 @@
 .login-container button:hover::after {
   transform: translateX(100%);
 }
+
+
+#faixa-semanas {
+  margin-top: 6px;
+  padding: 6px 0;
+
+  display: grid;
+  grid-template-columns: repeat(31, 1fr);
+
+  font-size: 11px;
+  color: #ddd;
+
+  text-align: center;
+}
