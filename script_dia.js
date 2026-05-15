@@ -62,11 +62,12 @@ function aplicarFiltros() {
   }
 
   if (filtroSemanaSelecionada) {
-  base = base.filter(d => {
-    let s = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
-    return d[s] === filtroSemanaSelecionada;
-  }
-    
+    base = base.filter(d => {
+      let s = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+      return d[s] === filtroSemanaSelecionada;
+    });   // ✅ FECHOU FILTER
+  }       // ✅ FECHOU IF
+
   if (filtroGiro.length > 0) {
     base = base.filter(d => filtroGiro.includes(d.Giro));
   }
