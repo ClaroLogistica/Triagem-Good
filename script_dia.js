@@ -406,3 +406,25 @@ function limparFiltroLocal() {
 function abrirFiltros() {
   document.getElementById("modal-filtros").classList.add("active");
 }
+function filtrarLocal(botao) {
+  const valorReal = mapaLocais[botao];
+  if (!valorReal) return;
+
+  filtroLocais = [valorReal];
+  atualizarTudo();
+}
+
+function limparFiltroLocal() {
+  filtroLocais = [];
+  atualizarTudo();
+}
+
+function filtrarSemana(semana) {
+  filtroSemanaSelecionada = semana;
+  atualizarTudo();
+}
+
+function limparFiltroSemana() {
+  filtroSemanaSelecionada = null;
+  atualizarTudo();
+}
