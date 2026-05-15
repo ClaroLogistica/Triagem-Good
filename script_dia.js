@@ -181,38 +181,7 @@ atualizarFaixaSemanas(base);
 
 }
 
-  
-plugins: [{
-
-  id: 'labelsTopo',
-
-  afterDatasetsDraw(chart) {
-    const { ctx } = chart;
-
-    chart.data.datasets.forEach((dataset, i) => {
-      const meta = chart.getDatasetMeta(i);
-
-      meta.data.forEach((bar, index) => {
-        const value = dataset.data[index];
-
-        ctx.save();
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "11px Arial";
-        ctx.textAlign = "center";
-
-        ctx.fillText(
-          value.toLocaleString("pt-BR"),
-          bar.x,
-          bar.y - 5
-        );
-
-        ctx.restore();
-      });
-    });
-  }
-
-}]
-  
+ 
 /*************************************************
  * SEMANAS
  *************************************************/
@@ -372,12 +341,12 @@ function limparFiltroSemana() {
 
 function filtrarLocal(botao) {
   const valorReal = mapaLocais[botao];
-
   if (!valorReal) return;
 
   filtroLocais = [valorReal];
   atualizarTudo();
 }
+
 function limparFiltroLocal() {
   filtroLocais = [];
   atualizarTudo();
@@ -385,26 +354,4 @@ function limparFiltroLocal() {
 
 function abrirFiltros() {
   document.getElementById("modal-filtros").classList.add("active");
-}
-function filtrarLocal(botao) {
-  const valorReal = mapaLocais[botao];
-  if (!valorReal) return;
-
-  filtroLocais = [valorReal];
-  atualizarTudo();
-}
-
-function limparFiltroLocal() {
-  filtroLocais = [];
-  atualizarTudo();
-}
-
-function filtrarSemana(semana) {
-  filtroSemanaSelecionada = semana;
-  atualizarTudo();
-}
-
-function limparFiltroSemana() {
-  filtroSemanaSelecionada = null;
-  atualizarTudo();
 }
