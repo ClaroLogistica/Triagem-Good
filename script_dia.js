@@ -161,22 +161,28 @@ function atualizarGrafico() {
      }
    }]
   },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    animation: false,
+ options: {
+  responsive: true,
+  maintainAspectRatio: false,
 
-    plugins: {
-      legend: { display: false }
+  layout: {
+    padding: {
+      left: 0,
+      right: 0
+    }
+  },
+
+  plugins: {
+    legend: { display: false }
+  },
+
+  scales: {
+    x: {
+      grid: { display: false },
+      ticks: { color: "#e5e7eb" }
     },
-    scales: {
-      x: {
-        grid: { display: false },
-        ticks: { color: "#e5e7eb" }
-      },
-      y: {
-        display: false
-      }
+    y: {
+      display: false
     }
   }
 });
