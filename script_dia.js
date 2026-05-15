@@ -144,24 +144,18 @@ chart = new Chart(ctx, {
       borderRadius: 4,
       barPercentage: 0.7,
       categoryPercentage: 0.7,
-      backgroundColor: (context) => {
-        const value = context.raw || 0;
-        const max = Math.max(...valores) || 1;
+      
+    backgroundColor: (context) => {
+  const chart = context.chart;
+  const { ctx } = chart;
 
-        const intensidade = value / max;
+  const gradient = ctx.createLinearGradient(0, 0, 0, 200);
 
-        const r = Math.round(50 + intensidade * 80);
-        const g = Math.round(140 + intensidade * 80);
-        const b = Math.round(200);
+  gradient.addColorStop(0, "#7fe7e7");   // topo claro
+  gradient.addColorStop(1, "#083c4a");   // base escura
 
-        return `rgb(${r}, ${g}, ${b})`;
-        plugins: {
-  legend: { display: false },
-
-  tooltip: {
-    enabled: true
-  }
-},
+  return gradient;
+}
 
 animation: {
   onComplete: function () {
@@ -258,7 +252,7 @@ function atualizarResumoSemanal() {
 
     div.innerHTML = `
       <strong>${s}</strong>
-      <span>${t}</span>
+      <span>${t.toLocaleString("pt-BR")}</span>
       <span>${Math.round((t/total)*100)||0}%</span>
     `;
 
