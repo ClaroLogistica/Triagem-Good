@@ -16,6 +16,7 @@ let filtroGiro = [];
 let filtroDep = [];
 let filtroTecnologias = [];
 let filtroLocais = [];
+let filtroSemanaSelecionada = null;
 
 /*************************************************
  * UTIL
