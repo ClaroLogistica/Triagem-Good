@@ -139,6 +139,15 @@ function atualizarGrafico() {
   data: {
     labels: labels,
     datasets: [{
+      data: valores,
+
+      borderRadius: 4,
+
+      barPercentage: 1.0,        // ✅ ADICIONA AQUI
+      categoryPercentage: 1.0,   // ✅ ADICIONA AQUI
+
+      backgroundColor: ...
+  }]
      data: valores,
 
      borderRadius: 4,
