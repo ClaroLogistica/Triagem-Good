@@ -147,7 +147,7 @@ function atualizarGrafico() {
       categoryPercentage: 1.0,   // ✅ ADICIONA AQUI
 
       backgroundColor:
-  }
+        
      data: valores,
 
      borderRadius: 4,
