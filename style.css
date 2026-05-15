@@ -203,7 +203,7 @@ body {
 /* ===== GRÁFICO ===== */
 .grafico-container {
   margin-top: 24px;
-  padding: 24px;
+  padding: 20px 10px;
 
   height: 235px;
 
@@ -227,7 +227,8 @@ body {
 
 #graficoDiario {
   width: 100%;
-  height: 180px;   /* ← ALTURA FIXA DO GRÁFICO */
+  height: 180px;/* ← ALTURA FIXA DO GRÁFICO */
+  display: block;
 }
 
 
