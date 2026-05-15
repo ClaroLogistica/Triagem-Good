@@ -276,35 +276,38 @@ function atualizarResumoSemanal() {
 /*************************************************
  * MODAIS + FILTROS
  *************************************************/
-document.getElementById("btn-local").onclick = () => {
-  montarLocais();
-  document.getElementById("modal-local").classList.add("active");
-};
-
-document.getElementById("btn-filtros").onclick = () =>
-  document.getElementById("modal-filtros").classList.add("active");
 
 document.querySelectorAll(".modal").forEach(m =>
-  m.onclick = e => e.target===m && m.classList.remove("active")
+  m.onclick = e => e.target === m && m.classList.remove("active")
 );
 
 document.querySelectorAll("input[name='tipo']").forEach(r =>
-  r.onchange = () => { filtroTipo=r.value; montarTecnologias(); }
+  r.onchange = () => { filtroTipo = r.value; montarTecnologias(); }
 );
 
 document.getElementById("btn-aplicar").onclick = () => {
-  filtroGiro=[...document.querySelectorAll(".chk-giro:checked")].map(c=>c.value);
-  filtroDep=[...document.querySelectorAll(".chk-dep:checked")].map(c=>c.value);
+  filtroGiro = [...document.querySelectorAll(".chk-giro:checked")].map(c => c.value);
+  filtroDep = [...document.querySelectorAll(".chk-dep:checked")].map(c => c.value);
   atualizarTudo();
   document.getElementById("modal-filtros").classList.remove("active");
 };
 
 document.getElementById("btn-limpar").onclick = () => {
-  filtroTipo=null; filtroGiro=[]; filtroDep=[]; filtroTecnologias=[];
-  document.querySelectorAll("#modal-filtros input").forEach(i=>i.checked=false);
-  document.getElementById("lista-tecnologia").innerHTML="";
+  filtroTipo = null;
+  filtroGiro = [];
+  filtroDep = [];
+  filtroTecnologias = [];
+
+  document.querySelectorAll("#modal-filtros input").forEach(i => i.checked = false);
+  document.getElementById("lista-tecnologia").innerHTML = "";
+
   atualizarTudo();
 };
+
+function abrirFiltros() {
+  document.getElementById("modal-filtros").classList.add("active");
+}
+
 
 /*************************************************
  * LISTAS
