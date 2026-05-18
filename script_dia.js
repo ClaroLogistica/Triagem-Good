@@ -161,8 +161,6 @@ function atualizarGrafico() {
 
   atualizarFaixaSemanas(base);
 }
-  atualizarFaixaSemanas(base);
-}
  
 /*************************************************
  * SEMANAS
