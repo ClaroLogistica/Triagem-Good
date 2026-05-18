@@ -552,3 +552,40 @@ body {
   width: 100% !important;
   height: 100%;
 }
+/* BOTÃO BASE */
+.btn-local {
+  background: linear-gradient(180deg, #7a0e12, #420406);
+  color: #fff;
+  border: none;
+
+  padding: 8px 16px;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.btn-local:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+/* ATIVO (SELECIONADO) */
+.btn-local.ativo {
+  background: linear-gradient(180deg, #00c6c6, #0a3f4a);
+
+  box-shadow:
+    0 0 12px rgba(0, 255, 255, 0.6),
+    inset 0 0 6px rgba(255,255,255,0.2);
+
+  transform: scale(1.05);
+}
+
+/* INATIVO (quando outro está ativo) */
+.btn-local:not(.ativo) {
+  opacity: 0.5;
+}
