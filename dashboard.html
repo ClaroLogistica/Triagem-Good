@@ -97,16 +97,13 @@
   <div id="resumo-semanal" class="resumo-grid"></div>
 
   <!-- BOTÕES -->
-  <div class="resumo-acoes">
-    <button onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
-    <button onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
-    <button onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
-    <button onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
-    <button onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
-    <button onclick="limparFiltroSemana()">Limpar</button>
-  </div>
+  <button class="btn-local" onclick="toggleLocal(this, 'CITR CAMPINAS')">CITR CAMPINAS</button>
+<button class="btn-local" onclick="toggleLocal(this, 'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
+<button class="btn-local" onclick="toggleLocal(this, 'CITR BRASÍLIA')">CITR BRASÍLIA</button>
+<button class="btn-local" onclick="toggleLocal(this, 'CITR MANAUS')">CITR MANAUS</button>
 
-</div>
+<button class="btn-limpar" onclick="limparFiltroLocal()">LIMPAR</button>
+  
     <!-- FILTROS -->
    <div class="barra-filtros-custom">
 
