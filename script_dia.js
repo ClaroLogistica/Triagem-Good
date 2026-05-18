@@ -343,6 +343,27 @@ function toggleLocal(el, botao) {
   const valorReal = mapaLocais[botao];
   if (!valorReal) return;
 
+  const index = filtroLocais.indexOf(valorReal);
+
+  if (index > -1) {
+    filtroLocais.splice(index, 1);
+    el.classList.remove("ativo");
+  } else {
+    filtroLocais.push(valorReal);
+    el.classList.add("ativo");
+  }
+
+  const grupo = document.querySelector(".grupo-locais");
+
+  if (filtroLocais.length > 0) {
+    grupo.classList.add("has-selection");
+  } else {
+    grupo.classList.remove("has-selection");
+  }
+
+  atualizarTudo();
+}
+
   // ✅ verifica se já está selecionado
   const index = filtroLocais.indexOf(valorReal);
 
