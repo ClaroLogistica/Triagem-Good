@@ -205,11 +205,6 @@ function atualizarGrafico() {
   atualizarFaixaSemanas(base);
 }
 
-// ✅ NÃO ESQUECE ISSO
-atualizarFaixaSemanas(base);
-
-}
-
  
 /*************************************************
  * SEMANAS
