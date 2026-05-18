@@ -688,3 +688,11 @@ function toggleLocal(el, botao) {
   justify-content: space-between;
   align-items: center;
 }
+      
+.col-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-right: 10px;
+}
