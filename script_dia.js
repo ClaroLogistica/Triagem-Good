@@ -168,17 +168,16 @@ function atualizarGrafico() {
  * SEMANAS
  *************************************************/
 function atualizarFaixaSemanas(base) {
-  const div = document.getElementById("faixa-semanas");
-  div.innerHTML = "";
-  const map = {};
+    const div = document.getElementById("faixa-semanas");
+    div.innerHTML = "";
+   const map = {};
 
-  base.forEach(d => {
-    const dia = extrairDia(d.Data);
-    let sem = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
-    if (dia && sem) {
-      if (!map[d[sem]]) map[d[sem]] = [];
-      map[d[sem]].push(dia);
-    }
+    base.forEach(d => {
+      const dia = extrairDia(d.Data);
+      let sem = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+      if (dia && sem) {
+        if (!map[d[sem]]) map[d[sem]] = [];
+        map[d[sem]].push(dia);
   });
 
   Object.entries(map).forEach(([s, d]) => {
