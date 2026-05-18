@@ -569,6 +569,11 @@ body {
 }
 
 /* INATIVO (quando outro está ativo) */
-.btn-local:not(.ativo) {
-  opacity: 0.5;
+.grupo-locais.has-selection .btn-local:not(.ativo) {
+  opacity: 0.4;
+}
+.grupo-locais {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
