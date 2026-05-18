@@ -370,9 +370,34 @@ function filtrarLocal(botao) {
 
 function limparFiltroLocal() {
   filtroLocais = [];
+
+  // remove visual ativo
+  document.querySelectorAll(".btn-local").forEach(btn => {
+    btn.classList.remove("ativo");
+  });
+
   atualizarTudo();
 }
 
 function abrirFiltros() {
   document.getElementById("modal-filtros").classList.add("active");
+}
+function toggleLocal(el, botao) {
+  const valorReal = mapaLocais[botao];
+  if (!valorReal) return;
+
+  // ✅ verifica se já está selecionado
+  const index = filtroLocais.indexOf(valorReal);
+
+  if (index > -1) {
+    // REMOVE
+    filtroLocais.splice(index, 1);
+    el.classList.remove("ativo");
+  } else {
+    // ADICIONA
+    filtroLocais.push(valorReal);
+    el.classList.add("ativo");
+  }
+
+  atualizarTudo();
 }
