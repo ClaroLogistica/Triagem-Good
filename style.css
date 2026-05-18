@@ -595,3 +595,46 @@ body {
   gap: 8px;
   justify-content: center;
 }
+.semana-filtros {
+  margin-top: 10px;
+
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.semana-filtros button {
+  background: linear-gradient(180deg, #7a0e12, #420406);
+  color: #fff;
+  border: none;
+
+  padding: 6px 10px;
+  font-size: 12px;
+
+  border-radius: 6px;
+  cursor: pointer;
+}
+function toggleLocal(el, botao) {
+  const valorReal = mapaLocais[botao];
+  if (!valorReal) return;
+
+  const index = filtroLocais.indexOf(valorReal);
+
+  if (index > -1) {
+    filtroLocais.splice(index, 1);
+    el.classList.remove("ativo");
+  } else {
+    filtroLocais.push(valorReal);
+    el.classList.add("ativo");
+  }
+
+  const grupo = document.querySelector(".grupo-locais");
+
+  if (filtroLocais.length > 0) {
+    grupo.classList.add("has-selection");
+  } else {
+    grupo.classList.remove("has-selection");
+  }
+
+  atualizarTudo();
+}
