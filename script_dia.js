@@ -146,13 +146,16 @@ function atualizarGrafico() {
         categoryPercentage: 0.7,
 
         backgroundColor: (context) => {
-          const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-          gradient.addColorStop(0, "#7fe7e7");
-          gradient.addColorStop(1, "#083c4a");
-          return gradient;
-        }
-      }]
-    },
+         const chart = context.chart;
+         const { ctx } = chart;
+
+         const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);
+
+         gradient.addColorStop(0, "#7fe7e7");
+         gradient.addColorStop(1, "#083c4a");
+
+         return gradient;
+}
 
     options: {
       responsive: true,
