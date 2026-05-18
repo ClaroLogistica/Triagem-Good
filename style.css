@@ -252,7 +252,8 @@ body {
   border-top: 1px solid rgba(255,255,255,0.2);
 
   font-size: 11px;
-  color: #ddd;
+  color: #ccc;
+  text-align: center;
 }
 
 #faixa-semanas div {
