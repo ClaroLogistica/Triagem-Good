@@ -84,29 +84,34 @@
 
   </div>
 </div>
-<!-- ✅ RESUMO NOVO (CORRETO) -->
 <div class="resumo-wrapper">
 
-  <!-- ESQUERDA -->
+  <!-- TÍTULO -->
   <div class="resumo-titulo">
     <strong>RESUMO</strong><br>
-    <strong>SEMANAL</strong><br>
+    <strong>SEMANAL</strong>
   </div>
 
-  <!-- DADOS -->
+  <!-- RESULTADO -->
   <div id="resumo-semanal" class="resumo-grid"></div>
 
-  <!-- BOTÕES -->
-  <button class="btn-local" onclick="toggleLocal(this, 'CITR CAMPINAS')">CITR CAMPINAS</button>
-<button class="btn-local" onclick="toggleLocal(this, 'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
-<button class="btn-local" onclick="toggleLocal(this, 'CITR BRASÍLIA')">CITR BRASÍLIA</button>
-<button class="btn-local" onclick="toggleLocal(this, 'CITR MANAUS')">CITR MANAUS</button>
+  <!-- BOTÕES LOCAL -->
+  <div class="grupo-locais">
+    <button class="btn-local" onclick="toggleLocal(this, 'CITR CAMPINAS')">CITR CAMPINAS</button>
+    <button class="btn-local" onclick="toggleLocal(this, 'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
+    <button class="btn-local" onclick="toggleLocal(this, 'CITR BRASÍLIA')">CITR BRASÍLIA</button>
+    <button class="btn-local" onclick="toggleLocal(this, 'CITR MANAUS')">CITR MANAUS</button>
 
-<button class="btn-limpar" onclick="limparFiltroLocal()">LIMPAR</button>
-  
-    <!-- FILTROS -->
-   <div class="barra-filtros-custom">
+    <button class="btn-limpar" onclick="limparFiltroLocal()">LIMPAR</button>
+  </div>
 
+  <!-- BOTÃO FILTRO -->
+  <button class="btn-filtro-principal" onclick="abrirFiltros()">
+    FILTROS ▲
+  </button>
+
+</div>
+    
   <!-- FILTRO (ESQUERDA) -->
   <button class="btn-filtro-principal" onclick="abrirFiltros()">
     FILTROS
