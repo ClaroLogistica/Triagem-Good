@@ -114,95 +114,73 @@ function atualizarKPIs() {
 /*************************************************
  * GRÁFICO
  *************************************************/
-function atualizarGrafico() {
-  const labels = Array.from({ length: 31 }, (_, i) => i + 1);
-  const valores = Array(31).fill(0);
+chart = new Chart(ctx, {
+  type: "bar",
 
-  const base = aplicarFiltros();
+  data: {
+    labels: labels,
+    datasets: [{
+      data: valores,
+      borderRadius: 4,
+      barPercentage: 0.6,
+      categoryPercentage: 0.7,
 
-  base.forEach(d => {
-    const dia = extrairDia(d.Data);
-    if (dia) valores[dia - 1] += Number(d.Quantidade || 0);
-  });
-
-  if (chart) {
-    chart.destroy();
-    chart = null;
-  }
-
-  const canvas = document.getElementById("graficoDiario");
-  if (!canvas) return;
-
-  const ctx = canvas.getContext("2d");
-
-  chart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [{
-        data: valores,
-        borderRadius: 4,
-        barPercentage: 0.6,
-        categoryPercentage: 0.7,
-
-        backgroundColor: (context) => {
-         const chart = context.chart;
-         const { ctx } = chart;
-
-         const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);
-
-         gradient.addColorStop(0, "#7fe7e7");
-         gradient.addColorStop(1, "#083c4a");
-
-         return gradient;
-}
-
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-
-      plugins: {
-        legend: { display: false }
-      },
-
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: "#e5e7eb" }
-        },
-        y: {
-          display: false
-        }
-      },
-
-      /* ✅ AGORA NO LUGAR CERTO */
-      animation: {
-       duration: 1,
-       onComplete: function () {
-         const chart = this.chart;
-         const ctx = chart.ctx;
-
-         ctx.save();
-         ctx.fillStyle = "#ffffff";
-         ctx.font = "10px Arial";
-         ctx.textAlign = "center";
-
-         chart.data.datasets[0].data.forEach((value, index) => {
-          if (value > 0) {
-             const meta = chart.getDatasetMeta(0).data[index];
-
-             ctx.fillText(
-               value.toLocaleString("pt-BR"),
-               meta.x,
-               meta.y - 5
-        );
+      backgroundColor: (context) => {
+        const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+        gradient.addColorStop(0, "#7fe7e7");
+        gradient.addColorStop(1, "#083c4a");
+        return gradient;
       }
-    });
+    }]
+  },
 
-    ctx.restore();
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: { display: false }
+    },
+
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: "#e5e7eb" }
+      },
+      y: {
+        display: false
+      }
+    },
+
+    animation: {
+      duration: 1,
+      onComplete: function () {
+        const chart = this.chart;
+        const ctx = chart.ctx;
+
+        ctx.save();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "10px Arial";
+        ctx.textAlign = "center";
+
+        chart.getDatasetMeta(0).data.forEach((bar, index) => {
+          const value = chart.data.datasets[0].data[index];
+
+          if (value > 0) {
+            ctx.fillText(
+              value.toLocaleString("pt-BR"),
+              bar.x,
+              bar.y - 5
+            );
+          }
+        });
+
+        ctx.restore();
+      }
+    }
+
   }
-}
-
+});
   atualizarFaixaSemanas(base);
 }
  
