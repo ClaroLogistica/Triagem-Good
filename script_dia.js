@@ -226,6 +226,7 @@ function atualizarFaixaSemanas(base) {
     el.textContent = s;
     div.appendChild(el);
   });
+  console.log("Semanas detectadas:", map);
 }
 
 /*************************************************
