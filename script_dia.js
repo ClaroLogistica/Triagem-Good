@@ -174,33 +174,31 @@ function atualizarGrafico() {
 
       /* ✅ AGORA NO LUGAR CERTO */
       animation: {
-        onComplete: function () {
-          const chart = this.chart;
-          const ctx = chart.ctx;
+       duration: 1,
+       onComplete: function () {
+         const chart = this.chart;
+         const ctx = chart.ctx;
 
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'bottom';
-          ctx.fillStyle = '#ffffff';
-          ctx.font = '10px Arial';
+         ctx.save();
+         ctx.fillStyle = "#ffffff";
+         ctx.font = "10px Arial";
+         ctx.textAlign = "center";
 
-          this.data.datasets.forEach(dataset => {
-            chart.getDatasetMeta(0).data.forEach((bar, index) => {
-              const value = dataset.data[index];
+         chart.data.datasets[0].data.forEach((value, index) => {
+          if (value > 0) {
+             const meta = chart.getDatasetMeta(0).data[index];
 
-              if (value > 0) {
-                ctx.fillText(
-                  value.toLocaleString("pt-BR"),
-                  bar.x,
-                  bar.y - 5
-                );
-              }
-            });
-          });
-        }
+             ctx.fillText(
+               value.toLocaleString("pt-BR"),
+               meta.x,
+               meta.y - 5
+        );
       }
+    });
 
-    }
-  });
+    ctx.restore();
+  }
+}
 
   atualizarFaixaSemanas(base);
 }
