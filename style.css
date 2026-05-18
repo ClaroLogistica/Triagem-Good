@@ -577,3 +577,18 @@ body {
   gap: 12px;
   flex-wrap: wrap;
 }
+.filtros-wrapper {
+  margin-top: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.semana-filtros {
+  margin-top: 14px;
+
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
