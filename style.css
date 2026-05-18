@@ -425,34 +425,27 @@ body {
 
 /* BOTÕES PADRÃO */
 .btn-padrao {
-  background: linear-gradient(180deg, #7a0e12, #420406);
+  background: linear-gradient(180deg, #8b1f1f, #5b0a0a);
   color: #fff;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.15);
 
-  padding: 8px 14px;
-  border-radius: 6px;
-
+  padding: 6px 14px;
   font-size: 12px;
+
+  border-radius: 4px;
   cursor: pointer;
 
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
-/* hover bonito */
 .btn-padrao:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  filter: brightness(1.2);
 }
 
-/* quando ativo */
 .btn-padrao.ativo {
   background: linear-gradient(180deg, #00c6c6, #0a3f4a);
-
-  box-shadow:
-    0 0 12px rgba(0, 255, 255, 0.6);
-
-  transform: scale(1.05);
 }
+
 
 /* quando tem seleção */
 .grupo-locais.has-selection .btn-padrao:not(.ativo) {
@@ -637,4 +630,50 @@ function toggleLocal(el, botao) {
   }
 
   atualizarTudo();
+}
+/* ===== BLOCO RESUMO ===== */
+.resumo-container {
+  margin-top: 16px;
+  padding: 16px;
+
+  display: grid;
+  grid-template-columns: 150px 1fr auto;
+  align-items: center;
+
+  border: 1px dashed rgba(255,255,255,0.4);
+  border-radius: 10px;
+}
+
+/* TITULO */
+.resumo-titulo {
+  font-size: 14px;
+}
+
+/* TABELA */
+.resumo-dados {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.resumo-dados .col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* BOTÕES SEMANA */
+.resumo-botoes {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 6px;
+}
+
+/* LINHA FILTROS */
+.linha-filtros {
+  margin-top: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
