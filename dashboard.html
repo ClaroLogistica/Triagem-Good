@@ -98,31 +98,55 @@
 
 </div>
 
-<!-- ✅ AGORA FORA -->
-<div class="filtros-wrapper">
+<!-- ================= RESUMO COMPLETO BOTÕES ================= -->
+<div class="resumo-container">
 
-  <div class="semana-filtros">
-  <button onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
-  <button onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
-  <button onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
-  <button onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
-  <button onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
+  <!-- LADO ESQUERDO -->
+  <div class="resumo-titulo">
+    <strong>RESUMO</strong><br>
+    <strong>SEMANAL</strong>
+  </div>
 
-  <button onclick="limparFiltroSemana()">Limpar</button>
+  <!-- DADOS -->
+  <div class="resumo-dados">
+    <div class="col">
+      <span>Qtde.</span>
+      <span>%</span>
+    </div>
+
+    <div class="col"><strong>SEMANA 01</strong><span>0</span><span>0%</span></div>
+    <div class="col"><strong>SEMANA 02</strong><span>0</span><span>0%</span></div>
+    <div class="col"><strong>SEMANA 03</strong><span>0</span><span>0%</span></div>
+    <div class="col"><strong>SEMANA 04</strong><span>0</span><span>0%</span></div>
+    <div class="col"><strong>SEMANA 05</strong><span>0</span><span>0%</span></div>
+  </div>
+
+  <!-- BOTÕES SEMANA -->
+  <div class="resumo-botoes">
+    <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
+    <button class="btn-padrao" onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
+    <button class="btn-padrao" onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
+    <button class="btn-padrao" onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
+    <button class="btn-padrao" onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
+    <button class="btn-padrao" onclick="limparFiltroSemana()">Limpar</button>
+  </div>
+
 </div>
 
-  <!-- BOTÕES LOCAL -->
-  <div class="grupo-locais">
-    <button class="btn-local" onclick="toggleLocal(this, 'CITR CAMPINAS')">CITR CAMPINAS</button>
-    <button class="btn-local" onclick="toggleLocal(this, 'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
-    <button class="btn-local" onclick="toggleLocal(this, 'CITR BRASÍLIA')">CITR BRASÍLIA</button>
-    <button class="btn-local" onclick="toggleLocal(this, 'CITR MANAUS')">CITR MANAUS</button>
+<!-- ================= FILTROS ================= -->
+<div class="linha-filtros">
 
+  <button class="btn-padrao" onclick="abrirFiltros()">FILTROS</button>
+
+  <div class="grupo-locais">
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR CAMPINAS')">CITR CAMPINAS</button>
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR BRASÍLIA')">CITR BRASÍLIA</button>
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR MANAUS')">CITR MANAUS</button>
     <button class="btn-padrao" onclick="limparFiltroLocal()">LIMPAR</button>
   </div>
 
-  <!-- BOTÃO FILTRO -->
-   <button class="btn-padrao" onclick="abrirFiltros()">FILTROS ▲</button>
+</div>
     
     <!-- GRÁFICO -->
     <div class="grafico-container">
