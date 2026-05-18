@@ -138,7 +138,19 @@ function atualizarGrafico() {
         borderRadius: 4,
         barPercentage: 0.6,
         categoryPercentage: 0.7,
-        backgroundColor: "#2aa5a5"
+        backgroundColor: (context) => {
+         const chart = context.chart;
+         const { ctx, chartArea } = chart;
+
+         if (!chartArea) return "#2aa5a5";
+
+         const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+
+         gradient.addColorStop(0, "#7be7e7");   // topo claro (igual imagem)
+         gradient.addColorStop(1, "#0a3f4a");   // base escura
+
+         return gradient;
+}
       }]
     },
     options: {
@@ -147,17 +159,37 @@ function atualizarGrafico() {
       plugins: {
         legend: { display: false }
       },
-      scales: {
-        x: {
-          ticks: { color: "#ccc" },
-          grid: { display: false }
-        },
-        y: {
-          display: false
+ options: {
+  responsive: true,
+  maintainAspectRatio: false,
+
+  plugins: {
+    legend: { display: false }
+  },
+
+  scales: {
+    x: {
+      grid: {
+        color: (context) => {
+          const index = context.index;
+
+          if ([4, 11, 18, 25].includes(index)) {
+            return "rgba(255,255,255,0.3)";
+          }
+
+          return "rgba(255,255,255,0.05)";
         }
+      },
+      ticks: {
+        color: "#ddd"
       }
+    },
+
+    y: {
+      display: false
     }
-  });
+  }
+}
 
   atualizarFaixaSemanas(base);
 }
