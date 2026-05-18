@@ -114,73 +114,53 @@ function atualizarKPIs() {
 /*************************************************
  * GRÁFICO
  *************************************************/
-chart = new Chart(ctx, {
-  type: "bar",
+function atualizarGrafico() {
+  const labels = Array.from({ length: 31 }, (_, i) => i + 1);
+  const valores = Array(31).fill(0);
 
-  data: {
-    labels: labels,
-    datasets: [{
-      data: valores,
-      borderRadius: 4,
-      barPercentage: 0.6,
-      categoryPercentage: 0.7,
+  const base = aplicarFiltros();
 
-      backgroundColor: (context) => {
-        const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
-        gradient.addColorStop(0, "#7fe7e7");
-        gradient.addColorStop(1, "#083c4a");
-        return gradient;
-      }
-    }]
-  },
+  base.forEach(d => {
+    const dia = extrairDia(d.Data);
+    if (dia) valores[dia - 1] += Number(d.Quantidade || 0);
+  });
 
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
+  if (chart) chart.destroy();
 
-    plugins: {
-      legend: { display: false }
+  const ctx = document.getElementById("graficoDiario").getContext("2d");
+
+  chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: valores,
+        borderRadius: 4,
+        barPercentage: 0.6,
+        categoryPercentage: 0.7,
+        backgroundColor: "#2aa5a5"
+      }]
     },
-
-    scales: {
-      x: {
-        grid: { display: false },
-        ticks: { color: "#e5e7eb" }
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
       },
-      y: {
-        display: false
-      }
-    },
-
-    animation: {
-      duration: 1,
-      onComplete: function () {
-        const chart = this.chart;
-        const ctx = chart.ctx;
-
-        ctx.save();
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "10px Arial";
-        ctx.textAlign = "center";
-
-        chart.getDatasetMeta(0).data.forEach((bar, index) => {
-          const value = chart.data.datasets[0].data[index];
-
-          if (value > 0) {
-            ctx.fillText(
-              value.toLocaleString("pt-BR"),
-              bar.x,
-              bar.y - 5
-            );
-          }
-        });
-
-        ctx.restore();
+      scales: {
+        x: {
+          ticks: { color: "#ccc" },
+          grid: { display: false }
+        },
+        y: {
+          display: false
+        }
       }
     }
+  });
 
-  }
-});
+  atualizarFaixaSemanas(base);
+}
   atualizarFaixaSemanas(base);
 }
  
