@@ -344,13 +344,13 @@ body {
 /* ===== RESUMO WRAPPER ===== */
 .resumo-wrapper {
   margin-top: 20px;
-  padding: 18px 24px;
+  padding: 14px 18px;
 
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 
-  border: 1px dashed rgba(255,255,255,0.5);
+  border: 1px dashed rgba(255,255,255,0.4); ✅
   border-radius: 10px;
 }
 
@@ -424,23 +424,39 @@ body {
 }
 
 /* BOTÕES PADRÃO */
-.barra-filtros-custom button {
-  background: linear-gradient(
-    180deg,
-    #7a0e12,
-    #420406
-  );
-
+.btn-padrao {
+  background: linear-gradient(180deg, #7a0e12, #420406);
   color: #fff;
   border: none;
 
-  padding: 10px 18px;
+  padding: 8px 14px;
   border-radius: 6px;
 
+  font-size: 12px;
   cursor: pointer;
-  font-size: 13px;
 
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+}
+
+/* hover bonito */
+.btn-padrao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+/* quando ativo */
+.btn-padrao.ativo {
+  background: linear-gradient(180deg, #00c6c6, #0a3f4a);
+
+  box-shadow:
+    0 0 12px rgba(0, 255, 255, 0.6);
+
+  transform: scale(1.05);
+}
+
+/* quando tem seleção */
+.grupo-locais.has-selection .btn-padrao:not(.ativo) {
+  opacity: 0.4;
 }
 
 /* HOVER */
@@ -455,14 +471,6 @@ body {
   padding: 10px 20px;
 }
 
-/* BOTÃO LIMPAR */
-.btn-limpar {
-  background: linear-gradient(
-    180deg,
-    #991b1b,
-    #5b0a0a
-  );
-}
 /* ===== BOTÕES DOS LOCAIS ===== */
 
 .grupo-locais {
@@ -484,11 +492,6 @@ body {
   text-align: center;
 
   transition: all 0.2s ease;
-}
-
-.grupo-locais button:hover {
-  filter: brightness(1.2);
-  transform: translateY(-1px);
 }
 
 .btn-filtro-principal {
