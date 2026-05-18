@@ -161,12 +161,12 @@ body {
 }
 
 /* ===== RESUMO ===== */
-.resumo-semanal {
+.col-label {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
-  max-width: 320px;
-  margin-bottom: 24px;
+  margin-right: 10px;
 }
 
 .sem-box {
