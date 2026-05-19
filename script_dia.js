@@ -223,41 +223,42 @@ function atualizarFaixaSemanas(base) {
  * RESUMO
  *************************************************/
 function atualizarResumoSemanal() {
-  const c = document.getElementById("resumo-semanal");
-  c.innerHTML = "";
-
   const base = aplicarFiltros();
-  const total = base.reduce((s,d)=>s+Number(d.Quantidade||0),0);
 
-  const mapa = {};
+  const total = base.reduce((s, d) => s + Number(d.Quantidade || 0), 0);
+
+  const mapa = {
+    "SEMANA 01": 0,
+    "SEMANA 02": 0,
+    "SEMANA 03": 0,
+    "SEMANA 04": 0,
+    "SEMANA 05": 0
+  };
 
   base.forEach(d => {
-    let chave = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+    const chave = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
     if (!chave) return;
 
     const semana = d[chave];
-
-    if (!mapa[semana]) {
-      mapa[semana] = 0;
-    }
+    if (!mapa[semana]) mapa[semana] = 0;
 
     mapa[semana] += Number(d.Quantidade || 0);
   });
 
-  Object.entries(mapa).forEach(([semana, valor]) => {
-    const div = document.createElement("div");
-    div.className = "col";
+  Object.entries(mapa).forEach(([sem, valor], index) => {
+    const i = index + 1;
 
-    div.innerHTML = `
-      <strong>${semana}</strong>
-      <span>${valor.toLocaleString("pt-BR")}</span>
-      <span>${Math.round((valor / total) * 100) || 0}%</span>
-    `;
+    const qtdEl = document.getElementById(`sem${i}-qtd`);
+    const percEl = document.getElementById(`sem${i}-perc`);
 
-    c.appendChild(div);
+    if (!qtdEl || !percEl) return;
+
+    qtdEl.textContent = valor.toLocaleString("pt-BR");
+    percEl.textContent = total
+      ? Math.round((valor / total) * 100) + "%"
+      : "0%";
   });
 }
-
 /*************************************************
  * MODAIS + FILTROS
  *************************************************/
