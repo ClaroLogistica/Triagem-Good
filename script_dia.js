@@ -345,32 +345,28 @@ function montarTecnologias() {
     });
 }
 
+const semanasSelecionadas = [];
+
 function filtrarSemana(semana) {
-  filtroSemanaSelecionada = semana;
-  atualizarTudo();
-}
+  const btns = document.querySelectorAll(".botoes-semana .btn-padrao");
 
-function limparFiltroSemana() {
-  filtroSemanaSelecionada = null;
-  atualizarTudo();
-}
-
-function filtrarLocal(botao) {
-  const valorReal = mapaLocais[botao];
-  if (!valorReal) return;
-
-  filtroLocais = [valorReal];
-  atualizarTudo();
-}
-
-function limparFiltroLocal() {
-  filtroLocais = [];
-
-  // remove visual ativo
-  document.querySelectorAll(".btn-local").forEach(btn => {
-    btn.classList.remove("ativo");
+  btns.forEach(b => {
+    if (b.textContent.includes(semana.replace("SEMANA ", "Sem "))) {
+      b.classList.toggle("ativo");
+    }
   });
 
+  const ativos = document.querySelectorAll(".botoes-semana .btn-padrao.ativo");
+
+  const container = document.querySelector(".botoes-semana");
+
+  if (ativos.length > 0) {
+    container.classList.add("has-selection");
+  } else {
+    container.classList.remove("has-selection");
+  }
+
+  // aqui você mantém sua lógica de filtro
   atualizarTudo();
 }
 
