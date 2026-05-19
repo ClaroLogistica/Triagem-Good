@@ -94,17 +94,15 @@
 <!-- ================= RESUMO COMPLETO BOTÕES ================= -->
 <div class="resumo-container">
 
-  <!-- TITULO -->
-  <div class="resumo-titulo">
-    <strong>RESUMO</strong><br>
-    <strong>SEMANAL</strong>
-  </div>
+  <div class="resumo-grid">
 
-  <!-- TABELA -->
-  <div class="resumo-tabela">
+    <!-- TÍTULO -->
+    <div class="resumo-titulo">
+      RESUMO<br>SEMANAL
+    </div>
 
     <!-- LABEL -->
-    <div class="col-label">
+    <div class="labels">
       <span>Qtde.</span>
       <span>%</span>
     </div>
@@ -140,17 +138,19 @@
       <span id="sem5-perc">0%</span>
     </div>
 
+    <!-- ✅ BOTÕES (DENTRO DO BLOCO AGORA) -->
+    <div class="botoes-semana">
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
+      <button class="btn-padrao" onclick="limparFiltroSemana()">Limpar</button>
+    </div>
+
   </div>
 
 </div>
-
-    <div class="col"><strong>SEMANA 01</strong><span>0</span><span>0%</span></div>
-    <div class="col"><strong>SEMANA 02</strong><span>0</span><span>0%</span></div>
-    <div class="col"><strong>SEMANA 03</strong><span>0</span><span>0%</span></div>
-    <div class="col"><strong>SEMANA 04</strong><span>0</span><span>0%</span></div>
-    <div class="col"><strong>SEMANA 05</strong><span>0</span><span>0%</span></div>
-  </div>
-
   <!-- BOTÕES SEMANA -->
   <div class="resumo-botoes">
     <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
