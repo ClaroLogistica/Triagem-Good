@@ -388,13 +388,14 @@ body {
 }
 
 .botoes-semana {
-  display: grid;
+  display: grid !important;
 
-  grid-template-columns: repeat(2, 1fr); ✅
+  grid-template-columns: repeat(2, 1fr); /* ✅ 2 colunas */
   gap: 6px;
 
-  justify-self: end; ✅
+  align-self: center;
 }
+
 /* CADA SEMANA */
 .sem-bloco {
   text-align: center;
@@ -744,4 +745,17 @@ function toggleLocal(el, botao) {
   justify-content: center;
   gap: 10px;
   margin-right: 10px;
+}
+/* 🔥 CORREÇÃO FINAL DO RESUMO (IGNORA CSS ANTIGO) */
+.resumo-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    140px   /* RESUMO */
+    80px    /* Qtde/% */
+    repeat(5, 120px)  /* semanas com largura fixa */
+    160px;  /* botões */
+
+  align-items: center;
+  text-align: center;
 }
