@@ -229,21 +229,29 @@ function atualizarResumoSemanal() {
   const base = aplicarFiltros();
   const total = base.reduce((s,d)=>s+Number(d.Quantidade||0),0);
 
-  const m = {};
+  const mapa = {};
 
-  base.forEach(d=>{
-    let s = Object.keys(d).find(k=>k.toLowerCase().includes("semana"));
-    if(s) m[d[s]] = (m[d[s]]||0) + Number(d.Quantidade||0);
+  base.forEach(d => {
+    let chave = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
+    if (!chave) return;
+
+    const semana = d[chave];
+
+    if (!mapa[semana]) {
+      mapa[semana] = 0;
+    }
+
+    mapa[semana] += Number(d.Quantidade || 0);
   });
 
-  Object.entries(m).forEach(([s,t])=>{
+  Object.entries(mapa).forEach(([semana, valor]) => {
     const div = document.createElement("div");
-    div.className = "sem-bloco";
+    div.className = "col";
 
     div.innerHTML = `
-      <strong>${s}</strong>
-      <span>${t.toLocaleString("pt-BR")}</span>
-      <span>${Math.round((t/total)*100)||0}%</span>
+      <strong>${semana}</strong>
+      <span>${valor.toLocaleString("pt-BR")}</span>
+      <span>${Math.round((valor / total) * 100) || 0}%</span>
     `;
 
     c.appendChild(div);
