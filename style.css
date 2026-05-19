@@ -377,12 +377,11 @@ body {
 .resumo-grid {
   display: grid;
 
-  /* ✅ define colunas EXATAS */
   grid-template-columns:
-    120px   /* RESUMO */
-    70px    /* Qtde/% */
+    140px   /* RESUMO */
+    70px    /* Qtde */
     repeat(5, 1fr)  /* semanas */
-    220px;  /* botões */
+    180px;  /* botoes */
 
   align-items: center;
   text-align: center;
@@ -390,12 +389,11 @@ body {
 
 .botoes-semana {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
+  grid-template-columns: repeat(2, 1fr); ✅
   gap: 6px;
 
   justify-self: end; ✅
-
-  width: 200px;
 }
 /* CADA SEMANA */
 .sem-bloco {
