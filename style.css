@@ -378,10 +378,11 @@ body {
   display: grid;
 
   grid-template-columns:
-    140px
-    60px
+    100px   /* icone */
+    140px   /* RESUMO */
+    60px    /* Qtde */
     repeat(5, 1fr)
-    auto;
+    200px;  /* botões */
 
   align-items: center;
   text-align: center;
@@ -720,3 +721,13 @@ body {
 }
 /* 🔥 CORREÇÃO FINAL DO RESUMO (IGNORA CSS ANTIGO) */
 
+.resumo-icone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resumo-icone img {
+  width: 80px;
+  opacity: 0.4; /* 60% transparente */
+}
