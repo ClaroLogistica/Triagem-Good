@@ -211,7 +211,6 @@ function atualizarFaixaSemanas(base) {
   });
 
   Object.entries(map).forEach(([s, d]) => {
-    const el = document.createElement("div");
     el.style.gridColumn = `${Math.min(...d)} / ${Math.max(...d) + 1}`;
     el.textContent = s;
     div.appendChild(el);
@@ -223,8 +222,8 @@ function atualizarFaixaSemanas(base) {
  * RESUMO
  *************************************************/
 function atualizarResumoSemanal() {
-  const base = aplicarFiltros();
 
+  const base = aplicarFiltros();
   const total = base.reduce((s, d) => s + Number(d.Quantidade || 0), 0);
 
   const mapa = {
@@ -245,16 +244,16 @@ function atualizarResumoSemanal() {
     mapa[semana] += Number(d.Quantidade || 0);
   });
 
+  // ✅ preenche SOMENTE os campos existentes (não cria div nova!)
   Object.entries(mapa).forEach(([sem, valor], index) => {
-    const i = index + 1;
 
-    const qtdEl = document.getElementById(`sem${i}-qtd`);
-    const percEl = document.getElementById(`sem${i}-perc`);
+    const qtd = document.getElementById(`sem${index+1}-qtd`);
+    const perc = document.getElementById(`sem${index+1}-perc`);
 
-    if (!qtdEl || !percEl) return;
+    if (!qtd || !perc) return;
 
-    qtdEl.textContent = valor.toLocaleString("pt-BR");
-    percEl.textContent = total
+    qtd.textContent = valor.toLocaleString("pt-BR");
+    perc.textContent = total
       ? Math.round((valor / total) * 100) + "%"
       : "0%";
   });
