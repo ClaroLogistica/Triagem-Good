@@ -662,23 +662,26 @@ function toggleLocal(el, botao) {
 
 /* TABELA */
 .resumo-dados {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: auto repeat(5, 1fr);
+  align-items: center;
   text-align: center;
+  gap: 20px;
 }
-
-.resumo-dados .col {
+      
+.col-label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
+  font-weight: bold;
 }
-
 /* BOTÕES SEMANA */
 .resumo-botoes {
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 6px;
 }
+      
 
 /* LINHA FILTROS */
 .linha-filtros {
