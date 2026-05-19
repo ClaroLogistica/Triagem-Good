@@ -375,12 +375,28 @@ body {
 
 /* ===== GRID CENTRAL ===== */
 .resumo-grid {
-  display: flex;
-  gap: 28px;
-  flex: 1;
-  justify-content: center;
+  display: grid;
+
+  /* ✅ define colunas EXATAS */
+  grid-template-columns:
+    120px   /* RESUMO */
+    70px    /* Qtde/% */
+    repeat(5, 1fr)  /* semanas */
+    220px;  /* botões */
+
+  align-items: center;
+  text-align: center;
 }
 
+.botoes-semana {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+
+  justify-self: end; ✅
+
+  width: 200px;
+}
 /* CADA SEMANA */
 .sem-bloco {
   text-align: center;
@@ -674,18 +690,19 @@ function toggleLocal(el, botao) {
   align-items: center;
   gap: 20px;
 }
-
+      
 .col {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.col-label {
+.labels {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
+
 /* TITULO */
 .resumo-titulo {
   font-size: 14px;
