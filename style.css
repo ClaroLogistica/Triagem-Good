@@ -452,26 +452,35 @@ body {
 
 /* BOTÕES PADRÃO */
 .btn-padrao {
-  background: linear-gradient(180deg, #8b1f1f, #5b0a0a);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.15);
-  
-  min-width: 70px; ✅
-  padding: 6px 10px;
-  font-size: 12px;
+  min-width: 80px;
+  padding: 8px 12px;
 
-  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  background: linear-gradient(180deg, #9e1b1b, #5b0a0a);
+  color: #fff;
+
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
+/* hover elegante */
 .btn-padrao:hover {
+  transform: translateY(-2px);
   filter: brightness(1.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
+/* clicado (ativo) */
 .btn-padrao.ativo {
   background: linear-gradient(180deg, #00c6c6, #0a3f4a);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  transform: scale(1.05);
 }
 
 
@@ -535,6 +544,11 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.botoes-semana.has-selection .btn-padrao:not(.ativo) {
+  opacity: 0.4;
+}
+
 
 .icone-filtro {
   width: 0;
