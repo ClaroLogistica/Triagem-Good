@@ -73,7 +73,7 @@ body {
 /* ===== LOGO ===== */
 .logo-dashboard img {
   height: 64px;          /* +15% */
-  max-width: 200x;      /* +15% */
+  max-width: 200px;      /* +15% */
   object-fit: contain;
   display: block;
 }
@@ -367,9 +367,9 @@ body {
 
 /* ===== TÍTULO LATERAL ===== */
 .resumo-titulo {
-  width: 120px;
-  text-align: center;
-  font-size: 14px;
+  text-align: left;
+  font-weight: 700; ✅
+  font-size: 13px;
   line-height: 1.2;
 }
 
@@ -378,22 +378,22 @@ body {
   display: grid;
 
   grid-template-columns:
-    140px   /* RESUMO */
-    70px    /* Qtde */
-    repeat(5, 1fr)  /* semanas */
-    180px;  /* botoes */
+    140px
+    60px
+    repeat(5, 1fr)
+    auto;
 
   align-items: center;
   text-align: center;
 }
 
 .botoes-semana {
-  display: grid !important;
+  display: grid;
 
-  grid-template-columns: repeat(2, 1fr); /* ✅ 2 colunas */
+  grid-template-columns: repeat(3, auto); ✅
   gap: 6px;
 
-  align-self: center;
+  justify-content: end;
 }
 
 /* CADA SEMANA */
@@ -454,8 +454,9 @@ body {
   background: linear-gradient(180deg, #8b1f1f, #5b0a0a);
   color: #fff;
   border: 1px solid rgba(255,255,255,0.15);
-
-  padding: 6px 14px;
+  
+  min-width: 70px; ✅
+  padding: 6px 10px;
   font-size: 12px;
 
   border-radius: 4px;
@@ -633,30 +634,7 @@ body {
   border-radius: 6px;
   cursor: pointer;
 }
-function toggleLocal(el, botao) {
-  const valorReal = mapaLocais[botao];
-  if (!valorReal) return;
 
-  const index = filtroLocais.indexOf(valorReal);
-
-  if (index > -1) {
-    filtroLocais.splice(index, 1);
-    el.classList.remove("ativo");
-  } else {
-    filtroLocais.push(valorReal);
-    el.classList.add("ativo");
-  }
-
-  const grupo = document.querySelector(".grupo-locais");
-
-  if (filtroLocais.length > 0) {
-    grupo.classList.add("has-selection");
-  } else {
-    grupo.classList.remove("has-selection");
-  }
-
-  atualizarTudo();
-}
 /* ===== BLOCO RESUMO ===== */
 .resumo-container {
   margin-top: 16px;
@@ -670,17 +648,6 @@ function toggleLocal(el, botao) {
   border-radius: 10px;
 }
 
-.resumo-container {
-  margin-top: 16px;
-  padding: 16px;
-
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: center;
-
-  border: 1px dashed rgba(255,255,255,0.4);
-  border-radius: 10px;
-}
 
 .resumo-tabela {
   display: grid;
@@ -699,12 +666,17 @@ function toggleLocal(el, botao) {
 .labels {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px; ✅
+
+  font-size: 12px;
 }
 
 /* TITULO */
 .resumo-titulo {
-  font-size: 14px;
+  text-align: left;
+  font-weight: 700; ✅
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 /* TABELA */
@@ -747,15 +719,4 @@ function toggleLocal(el, botao) {
   margin-right: 10px;
 }
 /* 🔥 CORREÇÃO FINAL DO RESUMO (IGNORA CSS ANTIGO) */
-.resumo-grid {
-  display: grid !important;
 
-  grid-template-columns:
-    140px   /* RESUMO */
-    80px    /* Qtde/% */
-    repeat(5, 120px)  /* semanas com largura fixa */
-    160px;  /* botões */
-
-  align-items: center;
-  text-align: center;
-}
