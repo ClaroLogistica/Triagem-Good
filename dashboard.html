@@ -1,233 +1,227 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Reversa &amp; Recuperação | Triagem Massivo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- XLSX -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-</head>
-
-<body>
-
-  <!-- TOPO -->
-  <header class="topo-dashboard">
-
-  <!-- LOGO ESQUERDA -->
-  <div class="logo-left">
-    <img src="logo-claro.png" alt="Logo Claro">
-  </div>
-
-  <!-- TÍTULO CENTRAL -->
-  <div class="titulo-dashboard">
-    <h1 class="titulo-principal">
-      <strong>Reversa &amp; Recuperação</strong><br>
-      <span>Triagem Massivo</span>
-    </h1>
-  </div>
-
-  <!-- LOGO DIREITA (LOGÍSTICA) -->
-  <div class="logo-dashboard">
-  <img src="logo-logistica.jpg" alt="Logo Logística">
- </div>
-
-</header>
-
-  <!-- CONTEÚDO PRINCIPAL -->
-  <div class="dashboard-container">
-
-<!-- KPIs -->
-<div class="kpi-wrapper">
-  <div class="kpi-container">
-
-    <div class="kpi">
-      <span id="kpi-selecionado">0</span>
-      <small>Total Selecionado</small>
+  <!DOCTYPE html>
+  <html lang=resumo-container"pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <title>Reversa &amp; Recuperação | Triagem Massivo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+  
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+    <!-- XLSX -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  </head>
+  
+  <body>
+  
+    <!-- TOPO -->
+    <header class="topo-dashboard">
+  
+    <!-- LOGO ESQUERDA -->
+    <div class="logo-left">
+      <img src="logo-claro.png" alt="Logo Claro">
     </div>
-
-    <div class="kpi">
-      <span id="kpi-mes">0</span>
-      <small>Total Mês</small>
+  
+    <!-- TÍTULO CENTRAL -->
+    <div class="titulo-dashboard">
+      <h1 class="titulo-principal">
+        <strong>Reversa &amp; Recuperação</strong><br>
+        <span>Triagem Massivo</span>
+      </h1>
     </div>
-
-    <div class="kpi">
-      <span>0</span>
-      <small>Meta S&amp;OP</small>
-    </div>
-
-    <div class="kpi">
-      <span>0</span>
-      <small>Potencial</small>
-    </div>
-
-    <div class="kpi">
-      <span>0</span>
-      <small>Falta Atender</small>
-    </div>
-
-    <div class="kpi">
-      <span>0</span>
-      <small>Proj. Dias Faltantes</small>
-    </div>
-
-    <div class="kpi">
-      <span>0</span>
-      <small>Projeção Mês</small>
-    </div>
-
-  </div>
-</div>
-<div class="resumo-wrapper">
-
-    <!-- RESULTADO -->
-  <div id="resumo-semanal" class="resumo-grid"></div>
-
-</div>
-
-<!-- ================= RESUMO COMPLETO BOTÕES ================= -->
-<div class="resumo-container">
-
-  <div class="resumo-grid">
-
-    <!-- TÍTULO -->
-    <div class="resumo-titulo">
-      RESUMO<br>SEMANAL
-    </div>
-
-    <!-- LABEL -->
-    <div class="labels">
-      <span>Qtde.</span>
-      <span>%</span>
-    </div>
-
-    <!-- SEMANAS -->
-    <div class="col">
-      <strong>SEMANA 01</strong>
-      <span id="sem1-qtd">0</span>
-      <span id="sem1-perc">0%</span>
-    </div>
-
-    <div class="col">
-      <strong>SEMANA 02</strong>
-      <span id="sem2-qtd">0</span>
-      <span id="sem2-perc">0%</span>
-    </div>
-
-    <div class="col">
-      <strong>SEMANA 03</strong>
-      <span id="sem3-qtd">0</span>
-      <span id="sem3-perc">0%</span>
-    </div>
-
-    <div class="col">
-      <strong>SEMANA 04</strong>
-      <span id="sem4-qtd">0</span>
-      <span id="sem4-perc">0%</span>
-    </div>
-
-    <div class="col">
-      <strong>SEMANA 05</strong>
-      <span id="sem5-qtd">0</span>
-      <span id="sem5-perc">0%</span>
-    </div>
-
-    <!-- ✅ BOTÕES (DENTRO DO BLOCO AGORA) -->
-    <div class="botoes-semana">
-      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
-      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
-      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
-      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
-      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
-      <button class="btn-padrao" onclick="limparFiltroSemana()">Limpar</button>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- ================= FILTROS ================= -->
-<div class="linha-filtros">
-
-  <button class="btn-padrao" onclick="abrirFiltros()">FILTROS</button>
-
-  <div class="grupo-locais">
-    <button class="btn-padrao" onclick="toggleLocal(this,'CITR CAMPINAS')">CITR CAMPINAS</button>
-    <button class="btn-padrao" onclick="toggleLocal(this,'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
-    <button class="btn-padrao" onclick="toggleLocal(this,'CITR BRASÍLIA')">CITR BRASÍLIA</button>
-    <button class="btn-padrao" onclick="toggleLocal(this,'CITR MANAUS')">CITR MANAUS</button>
-    <button class="btn-padrao" onclick="limparFiltroLocal()">LIMPAR</button>
-  </div>
-
-</div>
-    
-    <!-- GRÁFICO -->
-    <div class="grafico-container">
-      <canvas id="graficoDiario"></canvas>
-      <div id="faixa-semanas"></div>
-    </div>
-    
-  </div>
-
-  <!-- MODAL LOCAL -->
-  <div id="modal-local" class="modal">
-    <div class="modal-conteudo">
-      <h2>Local</h2>
-      <div id="lista-local" class="lista-tecnologia-scroll"></div>
-    </div>
-  </div>
-
-  <!-- MODAL FILTROS -->
-  <div id="modal-filtros" class="modal">
-    <div class="modal-conteudo">
-      <h2>Filtros</h2>
-
-      <div class="modal-grid">
-
-        <div class="filtros-laterais">
-
-          <div class="bloco-filtro">
-            <h4>Tipo</h4>
-            <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
-            <label><input type="radio" name="tipo" value="Acessórios"> Acessórios</label>
-          </div>
-
-          <div class="bloco-filtro">
-            <h4>Giro</h4>
-            <label><input type="checkbox" class="chk-giro" value="Alto Giro"> Alto Giro</label>
-            <label><input type="checkbox" class="chk-giro" value="Baixo Giro"> Baixo Giro</label>
-          </div>
-
-          <div class="bloco-filtro">
-            <h4>Dep.</h4>
-            <label><input type="checkbox" class="chk-dep" value="UDEI"> UDEI</label>
-            <label><input type="checkbox" class="chk-dep" value="USAD"> USAD</label>
-          </div>
-
-        </div>
-
-        <div class="filtros-tecnologia">
-          <h4>Tecnologia</h4>
-          <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
-        </div>
-
+  
+    <!-- LOGO DIREITA (LOGÍSTICA) -->
+    <div class="logo-dashboard">
+    <img src="logo-logistica.jpg" alt="Logo Logística">
+   </div>
+  
+  </header>
+  
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="dashboard-container">
+  
+  <!-- KPIs -->
+  <div class="kpi-wrapper">
+    <div class="kpi-container">
+  
+      <div class="kpi">
+        <span id="kpi-selecionado">0</span>
+        <small>Total Selecionado</small>
       </div>
-
-      <div class="acoes-modal">
-        <button id="btn-limpar">Limpar</button>
-        <button id="btn-aplicar">Aplicar</button>
+  
+      <div class="kpi">
+        <span id="kpi-mes">0</span>
+        <small>Total Mês</small>
+      </div>
+  
+      <div class="kpi">
+        <span>0</span>
+        <small>Meta S&amp;OP</small>
+      </div>
+  
+      <div class="kpi">
+        <span>0</span>
+        <small>Potencial</small>
+      </div>
+  
+      <div class="kpi">
+        <span>0</span>
+        <small>Falta Atender</small>
+      </div>
+  
+      <div class="kpi">
+        <span>0</span>
+        <small>Proj. Dias Faltantes</small>
+      </div>
+  
+      <div class="kpi">
+        <span>0</span>
+        <small>Projeção Mês</small>
+      </div>
+  
+    </div>
+  </div>
+  
+  <!-- ================= RESUMO COMPLETO BOTÕES ================= -->
+  <div class="resumo-container">
+  
+    <div class="resumo-grid">
+  
+      <!-- TÍTULO -->
+      <div class="resumo-titulo">
+        RESUMO<br>SEMANAL
+      </div>
+  
+      <!-- LABEL -->
+      <div class="labels">
+        <span>Qtde.</span>
+        <span>%</span>
+      </div>
+  
+      <!-- SEMANAS -->
+      <div class="col">
+        <strong>SEMANA 01</strong>
+        <span id="sem1-qtd">0</span>
+        <span id="sem1-perc">0%</span>
+      </div>
+  
+      <div class="col">
+        <strong>SEMANA 02</strong>
+        <span id="sem2-qtd">0</span>
+        <span id="sem2-perc">0%</span>
+      </div>
+  
+      <div class="col">
+        <strong>SEMANA 03</strong>
+        <span id="sem3-qtd">0</span>
+        <span id="sem3-perc">0%</span>
+      </div>
+  
+      <div class="col">
+        <strong>SEMANA 04</strong>
+        <span id="sem4-qtd">0</span>
+        <span id="sem4-perc">0%</span>
+      </div>
+  
+      <div class="col">
+        <strong>SEMANA 05</strong>
+        <span id="sem5-qtd">0</span>
+        <span id="sem5-perc">0%</span>
+      </div>
+  
+      <!-- ✅ BOTÕES (DENTRO DO BLOCO AGORA) -->
+      <div class="botoes-semana">
+        <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
+        <button class="btn-padrao" onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
+        <button class="btn-padrao" onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
+        <button class="btn-padrao" onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
+        <button class="btn-padrao" onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
+        <button class="btn-padrao" onclick="limparFiltroSemana()">Limpar</button>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  <!-- ================= FILTROS ================= -->
+  <div class="linha-filtros">
+  
+    <button class="btn-padrao" onclick="abrirFiltros()">FILTROS</button>
+  
+    <div class="grupo-locais">
+      <button class="btn-padrao" onclick="toggleLocal(this,'CITR CAMPINAS')">CITR CAMPINAS</button>
+      <button class="btn-padrao" onclick="toggleLocal(this,'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
+      <button class="btn-padrao" onclick="toggleLocal(this,'CITR BRASÍLIA')">CITR BRASÍLIA</button>
+      <button class="btn-padrao" onclick="toggleLocal(this,'CITR MANAUS')">CITR MANAUS</button>
+      <button class="btn-padrao" onclick="limparFiltroLocal()">LIMPAR</button>
+    </div>
+  
+  </div>
+      
+      <!-- GRÁFICO -->
+      <div class="grafico-container">
+        <canvas id="graficoDiario"></canvas>
+        <div id="faixa-semanas"></div>
+      </div>
+      
+    </div>
+  
+    <!-- MODAL LOCAL -->
+    <div id="modal-local" class="modal">
+      <div class="modal-conteudo">
+        <h2>Local</h2>
+        <div id="lista-local" class="lista-tecnologia-scroll"></div>
       </div>
     </div>
-  </div>
-
-  <!-- JS -->
-  <script src="script_dia.js"></script>
-
-</body>
-</html>
+  
+    <!-- MODAL FILTROS -->
+    <div id="modal-filtros" class="modal">
+      <div class="modal-conteudo">
+        <h2>Filtros</h2>
+  
+        <div class="modal-grid">
+  
+          <div class="filtros-laterais">
+  
+            <div class="bloco-filtro">
+              <h4>Tipo</h4>
+              <label><input type="radio" name="tipo" value="Terminais"> Terminais</label>
+              <label><input type="radio" name="tipo" value="Acessórios"> Acessórios</label>
+            </div>
+  
+            <div class="bloco-filtro">
+              <h4>Giro</h4>
+              <label><input type="checkbox" class="chk-giro" value="Alto Giro"> Alto Giro</label>
+              <label><input type="checkbox" class="chk-giro" value="Baixo Giro"> Baixo Giro</label>
+            </div>
+  
+            <div class="bloco-filtro">
+              <h4>Dep.</h4>
+              <label><input type="checkbox" class="chk-dep" value="UDEI"> UDEI</label>
+              <label><input type="checkbox" class="chk-dep" value="USAD"> USAD</label>
+            </div>
+  
+          </div>
+  
+          <div class="filtros-tecnologia">
+            <h4>Tecnologia</h4>
+            <div id="lista-tecnologia" class="lista-tecnologia-scroll"></div>
+          </div>
+  
+        </div>
+  
+        <div class="acoes-modal">
+          <button id="btn-limpar">Limpar</button>
+          <button id="btn-aplicar">Aplicar</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- JS -->
+    <script src="script_dia.js"></script>
+  
+  </body>
+  </html>
