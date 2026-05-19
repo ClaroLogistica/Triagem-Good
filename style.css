@@ -391,8 +391,8 @@ body {
 .botoes-semana {
   display: grid;
 
-  grid-template-columns: repeat(3, auto); ✅
-  gap: 6px;
+  grid-template-columns: repeat(3, 1fr);  /* ✅ DISTRIBUI MELHOR */
+  gap: 8px;
 
   justify-content: end;
 }
