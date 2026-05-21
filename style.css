@@ -375,17 +375,18 @@ body {
 
 /* ===== GRID CENTRAL ===== */
 .resumo-grid {
-  display: grid;
+  display: grid;  
 
   grid-template-columns:
-    90px    /* logo */
-    120px   /* resumo */
-    60px    /* Qtde */
+    90px   /* logo */
+    140px  /* resumo */
+    70px   /* Qtde */
     repeat(5, 1fr)
-    220px;  /* botoes */
+    200px; /* botoes */
 
   align-items: center;
-  text-align: center;
+  width: 100%;
+  column-gap: 12px;
 }
 
 .botoes-semana {
@@ -394,8 +395,14 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 
-  justify-content: end;
-  width: 220px;
+  justify-self: end;   /* 🔥 ESSA LINHA RESOLVE */
+}
+
+.col strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
 }
 
 /* CADA SEMANA */
