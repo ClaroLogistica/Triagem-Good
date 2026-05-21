@@ -804,3 +804,15 @@ body {
 
   width: 200px;
 }
+.resumo-grid {
+  display: grid;
+
+  grid-template-columns:
+    90px   /* logo */
+    120px  /* título */
+    60px   /* Qtde */
+    repeat(5, 1fr)
+    220px; /* botões */
+
+  align-items: center;
+}
