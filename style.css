@@ -375,18 +375,19 @@ body {
 
 /* ===== GRID CENTRAL ===== */
 .resumo-grid {
-  display: grid;  
+  display: grid;
 
   grid-template-columns:
-    90px   /* logo */
-    140px  /* resumo */
-    70px   /* Qtde */
-    repeat(5, 1fr)
-    200px; /* botoes */
+    90px      /* LOGO */
+    130px     /* RESUMO */
+    60px      /* QTDE */
+    1fr 1fr 1fr 1fr 1fr  /* SEMANAS */
+    260px;    /* BOTÕES FIXOS */
 
   align-items: center;
   width: 100%;
-  column-gap: 12px;
+
+  column-gap: 16px;
 }
 
 .botoes-semana {
