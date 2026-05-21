@@ -743,3 +743,64 @@ body {
   width: 90px;
   opacity: 0.4; /* 60% transparente */
 }
+/* ===== CORREÇÃO DEFINITIVA DO RESUMO ===== */
+
+.resumo-container {
+  margin-top: 16px;
+  padding: 16px;
+
+  border: 1px dashed rgba(255,255,255,0.4);
+  border-radius: 10px;
+}
+
+/* GRID PRINCIPAL */
+.resumo-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    90px    /* LOGO */
+    120px   /* RESUMO */
+    60px    /* Qtde */
+    repeat(5, 1fr)
+    220px;  /* BOTÕES */
+
+  align-items: center;
+}
+
+/* ICONE */
+.resumo-icone img {
+  width: 80px;
+  opacity: 0.4;
+}
+
+/* RESUMO */
+.resumo-titulo {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* QTD */
+.labels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* SEMANAS */
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* BOTÕES */
+.botoes-semana {
+  display: grid !important;
+
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+
+  width: 200px;
+}
