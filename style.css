@@ -744,8 +744,7 @@ body {
 .resumo-icone {
   display: flex;
   justify-content: center;
-  align-items: center;
-}
+  }
 
 .resumo-icone img {
   width: 90px;
@@ -782,9 +781,9 @@ body {
 }
 
 /* RESUMO */
+
 .resumo-titulo {
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: bold;
   line-height: 1.2;
 }
 
