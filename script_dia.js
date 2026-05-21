@@ -192,8 +192,6 @@ function atualizarGrafico() {
 }
 
   atualizarFaixaSemanas(base);
-}
- 
 /*************************************************
  * SEMANAS
  *************************************************/
