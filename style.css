@@ -237,7 +237,6 @@ body {
 }
 
 #graficoDiario {
-  width: 100% !important;
   height: 100%;
 }
 
@@ -393,7 +392,7 @@ body {
 .botoes-semana {
   display: grid;
 
-  grid-template-columns: repeat(3, auto); ✅
+  grid-template-columns: auto auto auto;
   gap: 8px;
 
   justify-self: end;
@@ -472,23 +471,28 @@ body {
 .btn-padrao {
   display: inline-block;
 
-  padding: 8px 16px;
-  font-size: 13px;
+  padding: 8px 14px;
+
+  font-size: 12px;
   font-weight: 600;
+
+  color: #fff;
 
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.15);
 
-  background: linear-gradient(180deg, #8a1c1c, #4a0808);
+  background: linear-gradient(
+    180deg,
+    #7a1a1a,
+    #3a0606
+  );
 
-  color: #fff;
   cursor: pointer;
 
   transition: all 0.2s ease;
 
-  white-space: nowrap; /* ✅ impede quebra */
+  white-space: nowrap;
 }
-
 /* hover elegante */
 .btn-padrao:hover {
   filter: brightness(1.15);
@@ -507,7 +511,6 @@ body {
 
   top: 0;
   left: -100%;
-  width: 100%;
   height: 100%;
 
   background: linear-gradient(
@@ -680,7 +683,6 @@ body {
 
 /* força todos botões iguais */
 .grupo-locais .btn-padrao {
-  width: 170px;   /* ✅ mesmo tamanho */
   text-align: center;
 }
 
@@ -815,17 +817,16 @@ body {
   width: 140px;
 }
 
-
 /* GRID PRINCIPAL */
 .resumo-grid {
-  display: grid !important;
+  display: grid;
 
   grid-template-columns:
-    100px    /* LOGO */
-    120px   /* RESUMO */
-    70px    /* Qtde */
+    90px
+    130px
+    70px
     repeat(5, 1fr)
-    auto; /* ✅ essencial */
+    auto;
 }
 
 /* ICONE */
