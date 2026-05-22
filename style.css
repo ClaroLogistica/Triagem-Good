@@ -494,10 +494,6 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.btn-padrao {
-  position: relative;
-  overflow: hidden;
-}
 
 /* efeito de brilho */
 .btn-padrao::after {
@@ -849,36 +845,5 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-}
-
-/* BOTÕES */
-.botoes-semana {
-  display: grid;
-
-  grid-template-columns: auto auto auto; ✅
-  gap: 8px;
-
-  justify-self: end; ✅
-  align-content: center;
-}
-
-.resumo-grid {
-  display: grid;
-
-  grid-template-columns:
-    90px   /* logo */
-    120px  /* título */
-    60px   /* Qtde */
-    repeat(5, 1fr)
-    220px; /* botões */
-
-  align-items: center;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;  /* 🔥 centraliza */
   gap: 4px;
 }
