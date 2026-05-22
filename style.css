@@ -668,6 +668,7 @@ body {
 
 /* ===== BLOCO RESUMO ===== */
 .resumo-container {
+  width: 100%;
   margin-top: 16px;
   padding: 16px;
 
@@ -759,15 +760,6 @@ body {
 .resumo-icone img {
   width: 90px;
   opacity: 0.4; /* 60% transparente */
-}
-/* ===== CORREÇÃO DEFINITIVA DO RESUMO ===== */
-
-.resumo-container {
-  margin-top: 16px;
-  padding: 16px;
-
-  border: 1px dashed rgba(255,255,255,0.4);
-  border-radius: 10px;
 }
 
 /* GRID PRINCIPAL */
