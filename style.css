@@ -519,9 +519,17 @@ body {
 
 /* ===== BOTÕES DOS LOCAIS ===== */
 
+
 .grupo-locais {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* força todos botões iguais */
+.grupo-locais .btn-padrao {
+  width: 170px;   /* ✅ mesmo tamanho */
+  text-align: center;
 }
 
   color: #fff;
@@ -626,11 +634,19 @@ body {
 .grupo-locais.has-selection .btn-local:not(.ativo) {
   opacity: 0.4;
 }
+
 .grupo-locais {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
+  justify-content: center;
 }
+
+/* força todos botões iguais */
+.grupo-locais .btn-padrao {
+  width: 170px;   /* ✅ mesmo tamanho */
+  text-align: center;
+}
+
 .filtros-wrapper {
   margin-top: 12px;
 
