@@ -378,7 +378,7 @@ body {
   display: grid;
 
   grid-template-columns:
-    90px     /* LOGO */
+    100px     /* LOGO */
     130px    /* RESUMO */
     60px     /* QTDE */
     repeat(5, minmax(80px, 1fr)) /* SEMANAS */
