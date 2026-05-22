@@ -377,16 +377,11 @@ body {
   display: grid;
 
   grid-template-columns:
-    90px    /* logo */
-    130px   /* resumo */
-    70px    /* qtde */
+    90px
+    130px
+    70px
     repeat(5, 1fr)
-    auto;   /* ✅ BOTÕES NÃO ESTICAM */
-
-  align-items: center;
-  width: 100%;
-
-  column-gap: 18px;
+    auto;
 }
 
 .botoes-semana {
