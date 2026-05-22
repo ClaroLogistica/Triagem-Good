@@ -731,13 +731,10 @@ body {
 
 /* ===== BLOCO RESUMO ===== */
 .resumo-container {
-  width: 100%;
-  margin-top: 16px;
-  padding: 16px;
+  position: relative; /* ✅ NECESSÁRIO PRO ABSOLUTE */
 
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: center;
+  margin-top: 16px;
+  padding: 16px 16px 16px 90px; /* ✅ espaço pro logo */
 
   border: 1px dashed rgba(255,255,255,0.4);
   border-radius: 10px;
@@ -816,14 +813,18 @@ body {
 /* 🔥 CORREÇÃO FINAL DO RESUMO (IGNORA CSS ANTIGO) */
 
 .resumo-icone {
-  display: flex;
-  justify-content: center;
-  }
+  position: absolute;
+
+  left: -20px;   /* ✅ “invade” a borda */
+  top: 10px;     /* ✅ alinhamento vertical */
+
+  opacity: 0.25; /* ✅ transparência elegante */
+}
 
 .resumo-icone img {
-  width: 90px;
-  opacity: 0.4; /* 60% transparente */
+  width: 140px;
 }
+
 
 /* GRID PRINCIPAL */
 .resumo-grid {
