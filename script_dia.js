@@ -115,6 +115,7 @@ function atualizarKPIs() {
  * GRÁFICO
  *************************************************/
 function atualizarGrafico() {
+
   const labels = Array.from({ length: 31 }, (_, i) => i + 1);
   const valores = Array(31).fill(0);
 
@@ -131,6 +132,7 @@ function atualizarGrafico() {
 
   chart = new Chart(ctx, {
     type: "bar",
+
     data: {
       labels: labels,
       datasets: [{
@@ -138,96 +140,103 @@ function atualizarGrafico() {
         borderRadius: 4,
         barPercentage: 0.6,
         categoryPercentage: 0.7,
+
         backgroundColor: (context) => {
-         const chart = context.chart;
-         const { ctx, chartArea } = chart;
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
 
-         if (!chartArea) return "#2aa5a5";
+          if (!chartArea) return "#2aa5a5";
 
-         const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.top,
+            0,
+            chartArea.bottom
+          );
 
-         gradient.addColorStop(0, "#7be7e7");   // topo claro (igual imagem)
-         gradient.addColorStop(1, "#0a3f4a");   // base escura
+          gradient.addColorStop(0, "#7be7e7");
+          gradient.addColorStop(1, "#0a3f4a");
 
-         return gradient;
-}
+          return gradient;
+        }
       }]
     },
+
     options: {
       responsive: true,
       maintainAspectRatio: false,
+
       plugins: {
         legend: { display: false }
       },
- options: {
-  responsive: true,
-  maintainAspectRatio: false,
 
-  plugins: {
-    legend: { display: false }
-  },
+      scales: {
+        x: {
+          grid: {
+            color: (context) => {
+              const index = context.index;
 
-  scales: {
-    x: {
-      grid: {
-        color: (context) => {
-          const index = context.index;
+              if ([4, 11, 18, 25].includes(index)) {
+                return "rgba(255,255,255,0.3)";
+              }
 
-          if ([4, 11, 18, 25].includes(index)) {
-            return "rgba(255,255,255,0.3)";
+              return "rgba(255,255,255,0.05)";
+            }
+          },
+          ticks: {
+            color: "#ddd"
           }
+        },
 
-          return "rgba(255,255,255,0.05)";
+        y: {
+          display: false
         }
-      },
-      ticks: {
-        color: "#ddd"
       }
-    },
-
-    y: {
-      display: false
     }
-  }
+  });
+
+  atualizarFaixaSemanas(base); ✅ chamada correta fora do chart
 }
  /*************************************************
  * SEMANAS
  *************************************************/
  function atualizarFaixaSemanas(base) {
+
   const div = document.getElementById("faixa-semanas");
   div.innerHTML = "";
 
   const map = {};
 
   base.forEach(d => {
+
     const dia = extrairDia(d.Data);
 
-    let sem = Object.keys(d).find(k =>
+    const semKey = Object.keys(d).find(k =>
       k.toLowerCase().includes("semana")
     );
 
-    if (dia && sem) {
-      if (!map[d[sem]]) map[d[sem]] = [];
-      map[d[sem]].push(dia);
+    if (dia && semKey) {
+      if (!map[d[semKey]]) map[d[semKey]] = [];
+      map[d[semKey]].push(dia);
     }
+
   });
 
-  Object.entries(map).forEach(([s, dias]) => {
+  Object.entries(map).forEach(([semana, dias]) => {
 
-    const el = document.createElement("div"); ✅
+    const el = document.createElement("div");
 
     const inicio = Math.min(...dias);
     const fim = Math.max(...dias);
 
     el.style.gridColumn = `${inicio} / ${fim + 1}`;
-    el.textContent = s;
+    el.textContent = semana;
 
     div.appendChild(el);
   });
 
   console.log("Semanas detectadas:", map);
 }
-
 /*************************************************
  * RESUMO
  *************************************************/
