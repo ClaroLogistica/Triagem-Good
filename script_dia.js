@@ -193,24 +193,38 @@ function atualizarGrafico() {
  /*************************************************
  * SEMANAS
  *************************************************/
-function atualizarFaixaSemanas(base) {
-    const div = document.getElementById("faixa-semanas");
-    div.innerHTML = "";
-   const map = {};
+ function atualizarFaixaSemanas(base) {
+  const div = document.getElementById("faixa-semanas");
+  div.innerHTML = "";
 
-    base.forEach(d => {
-      const dia = extrairDia(d.Data);
-      let sem = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
-      if (dia && sem) {
-        if (!map[d[sem]]) map[d[sem]] = [];
-        map[d[sem]].push(dia);
+  const map = {};
+
+  base.forEach(d => {
+    const dia = extrairDia(d.Data);
+
+    let sem = Object.keys(d).find(k =>
+      k.toLowerCase().includes("semana")
+    );
+
+    if (dia && sem) {
+      if (!map[d[sem]]) map[d[sem]] = [];
+      map[d[sem]].push(dia);
+    }
   });
 
-  Object.entries(map).forEach(([s, d]) => {
-    el.style.gridColumn = `${Math.min(...d)} / ${Math.max(...d) + 1}`;
+  Object.entries(map).forEach(([s, dias]) => {
+
+    const el = document.createElement("div"); ✅
+
+    const inicio = Math.min(...dias);
+    const fim = Math.max(...dias);
+
+    el.style.gridColumn = `${inicio} / ${fim + 1}`;
     el.textContent = s;
+
     div.appendChild(el);
   });
+
   console.log("Semanas detectadas:", map);
 }
 
