@@ -226,7 +226,6 @@ body {
 }
 
 #graficoDiario {
-  width: 100%;
   height: 100px;/* ← ALTURA FIXA DO GRÁFICO */
   display: block;
 }
@@ -310,7 +309,7 @@ body {
   position: absolute;
   bottom: -4px;   /* posição da linha (ajusta fino depois) */
   left: 0;
-  width: 100%;
+  
   height: 1px;
 
   background: linear-gradient(
@@ -642,7 +641,6 @@ body {
 }
 
 #graficoDiario {
-  width: 100% !important;
   height: 100%;
 }
 /* BOTÃO BASE */
@@ -772,7 +770,6 @@ body {
 /* BOTÕES SEMANA */
 .resumo-botoes {
   display: grid;
-  grid-template-columns: repeat(3, auto);
   gap: 6px;
 }
       
@@ -846,4 +843,66 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+}
+/* ============================= */
+/* ✅ CORREÇÃO FINAL DEFINITIVA */
+/* ============================= */
+
+/* GRID DO RESUMO */
+.resumo-grid {
+  display: grid;
+
+  grid-template-columns:
+    90px
+    120px
+    60px
+    repeat(5, 1fr)
+    auto;
+
+  align-items: center;
+  column-gap: 16px;
+}
+
+/* BOTÕES NA DIREITA */
+.botoes-semana {
+  display: grid;
+
+  grid-template-columns: auto auto auto;
+  gap: 8px;
+
+  justify-self: end;
+}
+
+/* BOTÕES VISUAL CORRETO */
+.btn-padrao {
+  display: inline-block;
+
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  background: linear-gradient(
+    180deg,
+    #7a1a1a,
+    #3a0606
+  );
+
+  color: #fff;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.btn-padrao:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.btn-padrao:active {
+  transform: scale(0.95);
 }
