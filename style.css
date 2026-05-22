@@ -344,7 +344,7 @@ body {
 
   border: 1px solid rgba(255,255,255,0.08);
 
-  /* ✅ É AQUI O GLOW */
+  /* É AQUI O GLOW */
   box-shadow: 
     0 0 20px rgba(255,255,255,0.05),
     inset 0 0 30px rgba(255,255,255,0.05);
@@ -359,14 +359,14 @@ body {
   align-items: center;
   gap: 20px;
 
-  border: 1px dashed rgba(255,255,255,0.4); ✅
+  border: 1px dashed rgba(255,255,255,0.4); 
   border-radius: 10px;
 }
 
 /* ===== TÍTULO LATERAL ===== */
 .resumo-titulo {
   text-align: left;
-  font-weight: 700; ✅
+  font-weight: 700; 
   font-size: 13px;
   line-height: 1.2;
 }
@@ -709,10 +709,10 @@ body {
 
 /* ===== BLOCO RESUMO ===== */
 .resumo-container {
-  position: relative; /* ✅ NECESSÁRIO PRO ABSOLUTE */
+  position: relative; /* NECESSÁRIO PRO ABSOLUTE */
 
   margin-top: 16px;
-  padding: 16px 16px 16px 90px; /* ✅ espaço pro logo */
+  padding: 16px 16px 16px 90px; /* espaço pro logo */
 
   border: 1px dashed rgba(255,255,255,0.4);
   border-radius: 10px;
@@ -736,7 +736,7 @@ body {
 .labels {
   display: flex;
   flex-direction: column;
-  gap: 14px; ✅
+  gap: 14px; 
 
   font-size: 12px;
 }
@@ -744,7 +744,7 @@ body {
 /* TITULO */
 .resumo-titulo {
   text-align: left;
-  font-weight: 700; ✅
+  font-weight: 700; 
   font-size: 13px;
   line-height: 1.2;
 }
@@ -792,10 +792,10 @@ body {
 .resumo-icone {
   position: absolute;
 
-  left: -20px;   /* ✅ “invade” a borda */
-  top: 10px;     /* ✅ alinhamento vertical */
+  left: -20px;   /* “invade” a borda */
+  top: 10px;     /*  alinhamento vertical */
 
-  opacity: 0.25; /* ✅ transparência elegante */
+  opacity: 0.25; /*  transparência elegante */
 }
 
 .resumo-icone img {
