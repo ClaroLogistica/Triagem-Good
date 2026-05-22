@@ -471,38 +471,60 @@ body {
 
 /* BOTÕES PADRÃO */
 .btn-padrao {
-  min-width: 80px;
-  padding: 7px 10px;
+  width: 170px;
+  padding: 10px 12px;
 
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.15);
 
-  background: linear-gradient(180deg, #7a1a1a, #3e0707); /* ✅ mais escuro */
-  border: 1px solid rgba(255,255,255,0.2);
+  background: linear-gradient(
+    180deg,
+    #7a1a1a,
+    #3a0606
+  );
 
   color: #fff;
+
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 /* hover elegante */
 .btn-padrao:hover {
+  transform: translateY(-2px);
   filter: brightness(1.15);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.6),
+    0 0 6px rgba(255,255,255,0.2);
 }
 
 /* clicado (ativo) */
+.btn-padrao:active {
+  transform: scale(0.96);
+  box-shadow:
+    inset 0 0 8px rgba(0,0,0,0.6);
+}
 .btn-padrao.ativo {
-  background: linear-gradient(180deg, #c8a045, #7b5a00); /* dourado elegante */
-  box-shadow: 0 0 8px rgba(255,215,0,0.5);
+  background: linear-gradient(
+    180deg,
+    #d4a73a,
+    #6e4a00
+  );
+
+  box-shadow:
+    0 0 12px rgba(255, 200, 0, 0.6);
+
+  color: #fff;
 }
 
 /* quando tem seleção */
 .grupo-locais.has-selection .btn-padrao:not(.ativo) {
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 /* HOVER */
@@ -570,7 +592,7 @@ body {
 }
 
 .botoes-semana.has-selection .btn-padrao:not(.ativo) {
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 
