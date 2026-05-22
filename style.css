@@ -438,10 +438,7 @@ body {
     #7a0e12,
     #420406
   );
-  color: white;
-  border: none;
-
-  padding: 6px 12px;
+ 
   border-radius: 6px;
   cursor: pointer;
 
@@ -805,18 +802,6 @@ body {
   width: 140px;
 }
 
-/* GRID PRINCIPAL */
-.resumo-grid {
-  display: grid;
-
-  grid-template-columns:
-    90px
-    130px
-    70px
-    repeat(5, 1fr)
-    auto;
-}
-
 /* ICONE */
 .resumo-icone img {
   width: 80px;
@@ -844,11 +829,10 @@ body {
   align-items: center;
   gap: 4px;
 }
-/* ============================= */
-/* ✅ CORREÇÃO FINAL DEFINITIVA */
-/* ============================= */
+/* ============================== */
+/* 🔥 BLOCO FINAL LIMPO CORRETO   */
+/* ============================== */
 
-/* GRID DO RESUMO */
 .resumo-grid {
   display: grid;
 
@@ -863,7 +847,6 @@ body {
   column-gap: 16px;
 }
 
-/* BOTÕES NA DIREITA */
 .botoes-semana {
   display: grid;
 
@@ -871,9 +854,9 @@ body {
   gap: 8px;
 
   justify-self: end;
+  align-items: center;
 }
 
-/* BOTÕES VISUAL CORRETO */
 .btn-padrao {
   display: inline-block;
 
@@ -884,11 +867,7 @@ body {
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.2);
 
-  background: linear-gradient(
-    180deg,
-    #7a1a1a,
-    #3a0606
-  );
+  background: linear-gradient(180deg, #7a1a1a, #3a0606);
 
   color: #fff;
 
