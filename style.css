@@ -27,19 +27,19 @@ body {
   content: "";
   position: absolute;
 
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
-  width: 100%;   /* ✅ ESSENCIAL */
-  height: 2px;
+  width: 100%;
+  height: 1px;
 
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255,255,255,0.7),
+    rgba(255,255,255,0.8),
     transparent
   );
 
-  z-index: 5;
+  opacity: 0.4;
 }
 
 .dashboard-container {
@@ -310,23 +310,6 @@ body {
   position: relative; /* já deve ter, se não tiver, coloca */
 }
 
-/* LINHA DEGRADÊ */
-.topo-dashboard::after {
-  content: "";
-  position: absolute;
-
-  bottom: -6px;
-  left: 0;
-  width: 100%; ✅
-  height: 1px;
-
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255,255,255,0.8),
-    transparent
-  );
-
   opacity: 0.4;
 }
 /* ===== WRAPPER DOS KPIs (CAIXA DE FUNDO) ===== */
@@ -365,7 +348,7 @@ body {
   margin-top: 20px;
   padding: 14px 18px;
 
-  display: flex;
+  display: block;
   align-items: center;
   gap: 20px;
 
@@ -380,7 +363,7 @@ body {
   line-height: 1.2;
   font-weight: 700;
 
-  margin-right: 4px; /* ✅ aproxima do Qtde */
+  margin-right: 4px; /*  aproxima do Qtde */
 }
 
 
@@ -508,8 +491,8 @@ body {
 .btn-padrao.ativo {
   background: linear-gradient(180deg, #991b1b, #5a0c0c);
   box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+  color: #fff;
 }
-
   box-shadow:
     0 0 12px rgba(255, 200, 0, 0.6);
 
@@ -699,7 +682,7 @@ body {
   flex-direction: column;
 
   gap: 6px;
-  margin-top: 20px;  /* ✅ alinha com números */
+  margin-top: 20px;  /*  alinha com números */
   font-size: 13px;
 }
 
@@ -749,15 +732,15 @@ body {
   width: 60px;   /* limita espaço real */
   position: absolute;
 
-  left: 0px;       /* ✅ começa na borda exata */
-  bottom: 0px;     /* ✅ encostado na linha tracejada */
+  left: 0px;       /* começa na borda exata */
+  bottom: 0px;     /* encostado na linha tracejada */
 
   opacity: 0.15;
   z-index: 0;
 }
 
 .resumo-icone img {
-  width: 95px;     /* ✅ tamanho correto final */
+  width: 95px;     /*  tamanho correto final */
 }
 
 /* RESUMO */
@@ -775,7 +758,7 @@ body {
   flex-direction: column;
   align-items: center;
 
-  gap: 2px; /* ✅ mais compacto */
+  gap: 2px; /*  mais compacto */
 }
 
 .col strong {
