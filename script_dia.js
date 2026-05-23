@@ -115,76 +115,48 @@ function atualizarGrafico() {
 
   const ctx = document.getElementById("graficoDiario").getContext("2d");
 
-  chart = new Chart(ctx, {
-    type: "bar",
+ chart = new Chart(ctx, {
+  type: "bar",
 
-    data: {
-      labels: labels,
-      datasets: [{
-        data: valores,
-        borderRadius: 4,
-        barPercentage: 0.6,
-        categoryPercentage: 0.7,
-
-    backgroundColor: context => {
-  const chart = context.chart;
-  const { ctx, chartArea } = chart;
-
-  if (!chartArea) return "#2aa5a5";
-
-  const gradient = ctx.createLinearGradient(
-    0,
-    chartArea.bottom,
-    0,
-    chartArea.top
-  );
-
-  gradient.addColorStop(0, "#0a3f4a");
-  gradient.addColorStop(1, "#7be7e7");
-
-  return gradient;
-}
-
-   plugins: {
-    legend: { display: false },
-
-    tooltip: {
-     enabled: true
+  data: {
+    labels: labels,
+    datasets: [{
+      data: valores,
+      backgroundColor: ...,
+    }]
   },
 
-  datalabels: {
-    color: "#fff",
-    anchor: "end",
-    align: "top",
-    formatter: v => v.toLocaleString("pt-BR")
-  }
-}
+  options: {   /* ✅ COMEÇA AQUI */
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {   /* ✅ plugins DENTRO do options */
+      legend: { display: false },
+
+      tooltip: {
+        enabled: true
       },
 
-      scales: {
-        x: {
-          grid: {
-            color: (context) => {
-              const index = context.index;
+      datalabels: {
+        color: "#fff",
+        anchor: "end",
+        align: "top",
+        formatter: v => v.toLocaleString("pt-BR")
+      }
+    },
 
-              if ([4, 11, 18, 25].includes(index)) {
-                return "rgba(255,255,255,0.3)";
-              }
+    scales: {
+      x: {
+        grid: { ... },
+        ticks: { color: "#ddd" }
+      },
 
-              return "rgba(255,255,255,0.05)";
-            }
-          },
-          ticks: {
-            color: "#ddd"
-          }
-        },
-
-        y: {
-          display: false
-        }
+      y: {
+        display: false
       }
     }
-  })
+  }  /* ✅ TERMINA AQUI */
+});
 
   atualizarFaixaSemanas(base);  //chamada correta fora do chart
 }
