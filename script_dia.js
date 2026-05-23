@@ -413,3 +413,4 @@ function toggleLocal(el, botao) {
   } else {
     grupo.classList.remove("has-selection");
   }
+}
