@@ -684,15 +684,13 @@ body {
   gap: 20px;
 }
 
-
 .labels {
   display: grid;
-  grid-template-rows: 1fr 1fr;
 
+  grid-template-rows: auto auto;
   align-items: center;
-  justify-items: center;
 
-  height: 100%;
+  margin-top: 18px; /* ✅ empurra para alinhar com números */
 }
 
 /* TITULO */
@@ -740,15 +738,15 @@ body {
 .resumo-icone {
   position: absolute;
 
-  left: 10px;     /* ✅ entra dentro do tracejado */
-  bottom: 5px;    /* ✅ alinha na base correta */
+  left: 0px;       /* ✅ começa na borda exata */
+  bottom: 0px;     /* ✅ encostado na linha tracejada */
 
-  opacity: 0.18;  /* ✅ mais suave */
-  z-index: 0;     /* ✅ fica atrás do conteúdo */
+  opacity: 0.15;
+  z-index: 0;
 }
 
 .resumo-icone img {
-  width: 110px;   /* ✅ menor e proporcional */
+  width: 95px;     /* ✅ tamanho correto final */
 }
 
 /* RESUMO */
@@ -764,10 +762,8 @@ body {
 .col {
   display: grid;
 
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto auto auto;
   justify-items: center;
-
-  gap: 4px;
 }
 
 /* ============================== */
@@ -777,15 +773,14 @@ body {
   display: grid;
 
   grid-template-columns:
-    90px
-    140px
-    80px
+    70px   /* LOGO (menor) */
+    110px  /* RESUMO */
+    50px   /* Qtde/% */
     repeat(5, 1fr)
     auto;
 
   align-items: center;
-  column-gap: 20px;
-  width: 100%;
+  column-gap: 12px; ✅
 }
 
 .botoes-semana {
