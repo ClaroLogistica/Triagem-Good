@@ -193,7 +193,7 @@ function atualizarGrafico() {
         }
       }
     }
-  });
+  })
 
   atualizarFaixaSemanas(base);  chamada correta fora do chart
 }
