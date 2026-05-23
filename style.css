@@ -38,7 +38,7 @@ body {
     rgba(255,255,255,0.8),
     transparent
   );
-
+}
 
 .dashboard-container {
   max-width: 1320px;
@@ -304,13 +304,7 @@ body {
   object-fit: contain;
   display: block;
 }
-.topo-dashboard {
-  position: relative; /* já deve ter, se não tiver, coloca */
-}
 
-  opacity: 0.4;
-}
-/* ===== WRAPPER DOS KPIs (CAIXA DE FUNDO) ===== */
 /* ===== FUNDO ATRÁS DOS KPIs ===== */
 .kpi-wrapper {
   margin-top: 6px;
