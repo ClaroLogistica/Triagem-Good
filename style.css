@@ -349,7 +349,7 @@ body {
   margin-right: 4px; /*  aproxima do Qtde */
 }
 
- .botoes-semana {
+  {
   grid-column: 9; /* ✅ FORÇA FICAR NA ÚLTIMA COLUNA */
 
   display: grid;
@@ -526,7 +526,7 @@ body {
   cursor: pointer;
 }
 
-.botoes-semana.has-selection .btn-padrao:not(.ativo) {
+.has-selection .btn-padrao:not(.ativo) {
   opacity: 0.3;
 }
 
@@ -751,32 +751,6 @@ body {
 /* ============================== */
 /* 🔥 BLOCO FINAL LIMPO CORRETO   */
 /* ============================== */
-.resumo-grid {
-  display: grid;
-
-  grid-template-columns:
-    70px   /* logo */
-    120px  /* resumo */
-    60px   /* Qtde/% */
-    80px   /* sem1 */
-    80px
-    80px
-    80px
-    80px
-    220px; /* ✅ espaço real pros botões */
-
-  align-items: center;
-  column-gap: 10px;
-}
-
-.botoes-semana {
-  display: grid;
-
-  grid-template-columns: repeat(3, 70px);
-  gap: 6px;
-
-  justify-content: end;   /* ✅ IMPORTANTÍSSIMO */
-}
 
 .btn-padrao {
   display: inline-block;
@@ -810,25 +784,6 @@ body {
 /* AJUSTE FINAL DO BLOCO RESUMO (REFERÊNCIA) */
 /* COLE NO FINAL DO style.css                */
 /* ========================================= */
-
-
-/* grid principal exatamente como a referência */
-.resumo-grid {
-  display: grid !important;
-  grid-template-columns:
-    68px   /* logo */
-    110px  /* RESUMO SEMANAL */
-    48px   /* Qtde / % */
-    90px   /* SEMANA 01 */
-    90px   /* SEMANA 02 */
-    90px   /* SEMANA 03 */
-    90px   /* SEMANA 04 */
-    90px   /* SEMANA 05 */
-    230px; /* botões semana */
-  align-items: center !important;
-  column-gap: 10px !important;
-  width: 100% !important;
-}
 
 .resumo-icone img {
   width: 92px !important;    /* menor para não invadir o texto */
@@ -926,19 +881,20 @@ body {
 /* Grid principal */
 .resumo-grid {
   display: grid;
+
   grid-template-columns:
-    72px   /* espaço visual do logo */
-    105px  /* RESUMO SEMANAL */
-    46px   /* Qtde / % */
-    76px   /* SEMANA 01 */
-    76px   /* SEMANA 02 */
-    76px   /* SEMANA 03 */
-    76px   /* SEMANA 04 */
-    76px   /* SEMANA 05 */
-    300px; /* botões da direita */
+    70px   /* logo */
+    120px  /* resumo */
+    60px   /* Qtde/% */
+    80px   /* sem1 */
+    80px
+    80px
+    80px
+    80px
+    220px; /* espaço real pros botões */
+
   align-items: center;
-  column-gap: 8px;
-  width: 100%;
+  column-gap: 10px;
 }
 
 /* Título */
@@ -978,19 +934,34 @@ body {
 
 /* Botões no espaço vazio do canto direito */
 .botoes-semana {
-  grid-column: 9;              /* força a última coluna */
+  grid-column: 9;         /* ✅ prende na última coluna do grid */
   display: grid;
-  grid-template-columns: repeat(3, 92px);
-  gap: 8px;
-  justify-content: end;
+  grid-template-columns: repeat(3, 70px);
+  gap: 6px;
+
+  justify-self: end;      /* ✅ joga pro canto direito */
   align-content: center;
-  margin-left: 10px;           /* separa de SEMANA 05 */
+  margin-left: 10px;      /* ✅ separa de SEMANA 05 */
 }
 
 /* Botões exatamente dentro do bloco direito */
-.botoes-semana .btn-padrao {
-  width: 92px;
-  padding: 8px 0;
-  text-align: center;
+.btn-padrao {
+  display: inline-block;
+  position: relative;     /* ✅ necessário pro brilho ::after */
+  overflow: hidden;       /* ✅ necessário pro brilho ::after */
+
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  background: linear-gradient(180deg, #7a1a1a, #3a0606);
+  color: #fff;
+
+  cursor: pointer;
   white-space: nowrap;
+
+  transition: all 0.2s ease;
 }
