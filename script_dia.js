@@ -148,11 +148,23 @@ function atualizarGrafico() {
     },
 
     options: {
-      responsive: true,
+            responsive: true,
       maintainAspectRatio: false,
 
       plugins: {
-        legend: { display: false }
+           legend: { display: false }
+        
+           tooltip: {
+          enabled: true
+  },
+
+  datalabels: {
+    color: "#fff",
+    anchor: "end",
+    align: "top",
+    formatter: v => v.toLocaleString("pt-BR")
+  }
+}
       },
 
       scales: {
