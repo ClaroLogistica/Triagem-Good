@@ -39,8 +39,6 @@ body {
     transparent
   );
 
-  opacity: 0.4;
-}
 
 .dashboard-container {
   max-width: 1320px;
@@ -334,15 +332,6 @@ body {
     inset 0 0 30px rgba(255,255,255,0.05);
 }
 
-
-  border: 1px solid rgba(255,255,255,0.08);
-
-  /* É AQUI O GLOW */
-  box-shadow: 
-    0 0 20px rgba(255,255,255,0.05),
-    inset 0 0 30px rgba(255,255,255,0.05);
-}
-
 /* ===== RESUMO WRAPPER ===== */
 .resumo-wrapper {
   margin-top: 20px;
@@ -491,11 +480,6 @@ body {
 .btn-padrao.ativo {
   background: linear-gradient(180deg, #991b1b, #5a0c0c);
   box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
-  color: #fff;
-}
-  box-shadow:
-    0 0 12px rgba(255, 200, 0, 0.6);
-
   color: #fff;
 }
 
