@@ -732,12 +732,11 @@ body {
 
 
 /* 🔥 CORREÇÃO FINAL DO RESUMO (IGNORA CSS ANTIGO) */
-
 .resumo-icone {
   position: absolute;
 
-  left: -40px;   /* ✅ começa fora e invade */
-  top: -10px;    /* ✅ sobe até alinhar com borda */
+  left: 0px;     /* ✅ começa exatamente na borda */
+  bottom: 0px;   /* ✅ cola na base do tracejado */
 
   opacity: 0.25;
 }
