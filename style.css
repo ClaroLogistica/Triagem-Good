@@ -374,12 +374,15 @@ body {
 }
 
 /* ===== TÍTULO LATERAL ===== */
+
 .resumo-titulo {
-  text-align: left;
-  font-weight: 700; 
   font-size: 13px;
   line-height: 1.2;
+  font-weight: 700;
+
+  margin-right: 5px; /* ✅ aproxima do Qtde */
 }
+
 
 .botoes-semana {
   display: grid;
@@ -743,6 +746,7 @@ body {
 
 /* 🔥 CORREÇÃO FINAL DO RESUMO (IGNORA CSS ANTIGO) */
 .resumo-icone {
+  width: 60px;   /* limita espaço real */
   position: absolute;
 
   left: 0px;       /* ✅ começa na borda exata */
