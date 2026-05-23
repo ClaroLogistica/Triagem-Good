@@ -126,26 +126,24 @@ function atualizarGrafico() {
         barPercentage: 0.6,
         categoryPercentage: 0.7,
 
-        backgroundColor: (context) => {
-          const chart = context.chart;
-          const { ctx, chartArea } = chart;
+    backgroundColor: context => {
+  const chart = context.chart;
+  const { ctx, chartArea } = chart;
 
-          if (!chartArea) return "#2aa5a5";
+  if (!chartArea) return "#2aa5a5";
 
-          const gradient = ctx.createLinearGradient(
-            0,
-            chartArea.top,
-            0,
-            chartArea.bottom
-          );
+  const gradient = ctx.createLinearGradient(
+    0,
+    chartArea.bottom,
+    0,
+    chartArea.top
+  );
 
-          gradient.addColorStop(0, "#7be7e7");
-          gradient.addColorStop(1, "#0a3f4a");
+  gradient.addColorStop(0, "#0a3f4a");
+  gradient.addColorStop(1, "#7be7e7");
 
-          return gradient;
-        }
-      }]
-    },
+  return gradient;
+}
 
     options: {
             responsive: true,
