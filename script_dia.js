@@ -388,5 +388,5 @@ function toggleLocal(el, botao) {
   const grupo = document.querySelector(".grupo-locais");
   grupo.classList.toggle("has-selection", filtroLocais.length > 0);
 
-  atualizarTudo(); ✅ ESSENCIAL (faltava antes)
+  atualizarTudo(); 
 }
