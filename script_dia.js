@@ -43,7 +43,7 @@ fetch(new URL("Dados.xlsx", window.location.href))
     const wb = XLSX.read(b, { type: "array" });
     const sh = wb.Sheets[wb.SheetNames[0]];
     dados = XLSX.utils.sheet_to_json(sh);
-    console.log("✅ Excel carregado:", dados.length);
+    console.log(" Excel carregado:", dados.length);
     atualizarTudo();
   })
   .catch(err => console.error(err));
@@ -195,7 +195,7 @@ function atualizarGrafico() {
     }
   });
 
-  atualizarFaixaSemanas(base); ✅ chamada correta fora do chart
+  atualizarFaixaSemanas(base);  chamada correta fora do chart
 }
  /*************************************************
  * SEMANAS
@@ -263,7 +263,7 @@ function atualizarResumoSemanal() {
     mapa[semana] += Number(d.Quantidade || 0);
   });
 
-  // ✅ preenche SOMENTE os campos existentes (não cria div nova!)
+  //  preenche SOMENTE os campos existentes (não cria div nova!)
   Object.entries(mapa).forEach(([sem, valor], index) => {
 
     const qtd = document.getElementById(`sem${index+1}-qtd`);
@@ -417,7 +417,7 @@ function toggleLocal(el, botao) {
   atualizarTudo();
 }
 
-  // ✅ verifica se já está selecionado
+  //  verifica se já está selecionado
   const index = filtroLocais.indexOf(valorReal);
 
   if (index > -1) {
