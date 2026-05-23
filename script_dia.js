@@ -146,17 +146,27 @@ function atualizarGrafico() {
     },
 
     scales: {
-      x: {
-        grid: { ... },
-        ticks: { color: "#ddd" }
-      },
+  x: {
+    grid: {
+      color: (context) => {
+        const index = context.index;
 
-      y: {
-        display: false
+        if ([4, 11, 18, 25].includes(index)) {
+          return "rgba(255,255,255,0.3)";
+        }
+
+        return "rgba(255,255,255,0.05)";
       }
+    },
+    ticks: {
+      color: "#ddd"
     }
-  }  /* ✅ TERMINA AQUI */
-});
+  },
+
+  y: {
+    display: false
+  }
+}
 
   atualizarFaixaSemanas(base);  //chamada correta fora do chart
 }
