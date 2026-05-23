@@ -780,47 +780,48 @@ body {
 .btn-padrao:active {
   transform: scale(0.95);
 }
-/* ===================================== */
-/* AJUSTE FINAL - MESMA POSIÇÃO DA REF.  */
-/* COLE NO FINAL DO style.css            */
-/* ===================================== */
+/* ======================================== */
+/* AJUSTE FINAL REAL — RESUMO + FILTROS     */
+/* COLE NO FINAL DO style.css               */
+/* ======================================== */
 
+/* bloco do resumo */
 .resumo-container {
-  position: relative;
-  margin-top: 16px;
-  padding: 16px 16px 16px 82px; /* espaço do logo */
-  border: 1px dashed rgba(255,255,255,0.4);
-  border-radius: 10px;
-  overflow: hidden;
+  position: relative !important;
+  margin-top: 16px !important;
+  padding: 16px 16px 16px 82px !important; /* espaço do logo */
+  border: 1px dashed rgba(255,255,255,0.4) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
 }
 
 /* logo cortado */
 .resumo-icone {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  opacity: 0.15;
-  z-index: 0;
-  pointer-events: none;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  opacity: 0.15 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
 }
 
 .resumo-icone img {
-  width: 112px;   /* um pouco maior */
-  display: block;
+  width: 118px !important; /* um pouco maior */
+  display: block !important;
 }
 
-/* tudo do grid fica acima do logo */
+/* todo conteúdo acima do logo */
 .resumo-grid > * {
-  position: relative;
-  z-index: 1;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-/* grid principal igual à referência */
+/* grid principal do resumo */
 .resumo-grid {
-  display: grid;
+  display: grid !important;
 
   grid-template-columns:
-    72px   /* logo */
+    72px   /* área logo */
     105px  /* RESUMO SEMANAL */
     46px   /* Qtde / % */
     74px   /* SEMANA 01 */
@@ -828,71 +829,82 @@ body {
     74px   /* SEMANA 03 */
     74px   /* SEMANA 04 */
     74px   /* SEMANA 05 */
-    320px; /* espaço exclusivo dos botões */
+    320px; /* área exclusiva dos botões */
 
-  align-items: center;
-  column-gap: 8px;
-  width: 100%;
+  align-items: center !important;
+  column-gap: 8px !important;
+  width: 100% !important;
 }
-/* RESUMO SEMANAL */
+
+/* título do resumo */
 .resumo-titulo {
-  grid-column: 2;
-  font-size: 13px;
-  line-height: 1.15;
-  font-weight: 700;
-  text-align: left;
-  margin: 0;
+  grid-column: 2 !important;
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
 }
 
-/* Qtde e % alinhados com 0 e 0% */
+/* coluna Qtde e % */
 .labels {
-  grid-column: 3;
-  display: grid;
-  grid-template-rows: 22px 22px;
-  justify-items: center;
-  align-items: center;
-  margin-top: 18px;
-  font-size: 13px;
-  line-height: 1;
+  grid-column: 3 !important;
+  display: grid !important;
+  grid-template-rows: 22px 22px !important;
+  justify-items: center !important;
+  align-items: center !important;
+  margin-top: 18px !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
 }
 
 /* semanas */
 .col {
-  display: grid;
-  grid-template-rows: auto 22px 22px;
-  justify-items: center;
-  align-items: center;
-  gap: 0;
+  display: grid !important;
+  grid-template-rows: auto 22px 22px !important;
+  justify-items: center !important;
+  align-items: center !important;
+  gap: 0 !important;
 }
 
 .col strong {
-  font-size: 13px;
-  margin: 0 0 4px 0;
-  line-height: 1.05;
+  font-size: 13px !important;
+  margin: 0 0 4px 0 !important;
+  line-height: 1.05 !important;
 }
 
-.col span {
-  line-height: 1;
-}
-
-/* botões 100% no canto direito */
+/* botões da semana no espaço vazio do canto direito */
 .botoes-semana {
-  grid-column: 9;              /* fixa na última coluna do grid */
-  display: grid;
-  grid-template-columns: repeat(3, 92px);
-  gap: 8px;
+  grid-column: 9 !important;          /* fixa na última coluna */
+  display: grid !important;
+  grid-template-columns: repeat(3, 98px) !important;
+  gap: 8px !important;
 
-  justify-content: end;
-  justify-self: end;           /* ESSENCIAL */
-  align-content: center;
+  justify-content: end !important;
+  justify-self: end !important;
+  align-content: center !important;
 
-  margin-left: 24px;           /* empurra mais para a direita */
+  margin-left: 24px !important;       /* empurra mais para o canto */
 }
 
-/* botões elegantes, mesmo tamanho */
+/* botões de semana */
 .botoes-semana .btn-padrao {
-  width: 98px;
-  padding: 8px 0;
-  text-align: center;
-  white-space: nowrap;
+  width: 98px !important;
+  padding: 8px 0 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+/* filtro + CITR em linha abaixo do resumo */
+.linha-filtros {
+  margin-top: 16px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+/* fundo do gráfico: fica abaixo dos filtros */
+.grafico-container {
+  margin-top: 18px !important;  /* empurra o fundo escuro para baixo */
+  clear: both !important;
 }
