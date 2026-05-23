@@ -298,17 +298,20 @@ body {
 .topo-dashboard::after {
   content: "";
   position: absolute;
-  bottom: -4px;   /* posição da linha (ajusta fino depois) */
+
+  bottom: -6px;
   left: 0;
-  
+  width: 100%; ✅
   height: 1px;
 
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255,255,255,0.6),
+    rgba(255,255,255,0.8),
     transparent
   );
+
+  opacity: 0.4;
 }
 /* ===== WRAPPER DOS KPIs (CAIXA DE FUNDO) ===== */
 /* ===== FUNDO ATRÁS DOS KPIs ===== */
