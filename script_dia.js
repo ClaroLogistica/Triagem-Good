@@ -145,15 +145,11 @@ function atualizarGrafico() {
   return gradient;
 }
 
-    options: {
-            responsive: true,
-      maintainAspectRatio: false,
+   plugins: {
+  legend: { display: false },
 
-      plugins: {
-           legend: { display: false }
-        
-           tooltip: {
-          enabled: true
+  tooltip: {
+    enabled: true
   },
 
   datalabels: {
@@ -359,34 +355,36 @@ function montarTecnologias() {
     });
 }
 
-const semanasSelecionadas = [];
+let semanasSelecionadas = [];
 
 function filtrarSemana(semana) {
+
+  if (semanasSelecionadas.includes(semana)) {
+    semanasSelecionadas = semanasSelecionadas.filter(s => s !== semana);
+  } else {
+    semanasSelecionadas.push(semana);
+  }
+
   const btns = document.querySelectorAll(".botoes-semana .btn-padrao");
 
   btns.forEach(b => {
-    if (b.textContent.includes(semana.replace("SEMANA ", "Sem "))) {
-      b.classList.toggle("ativo");
-    }
+    const nome = b.textContent.trim().toUpperCase();
+
+    b.classList.toggle(
+      "ativo",
+      semanasSelecionadas.some(s => nome.includes(s.replace("SEMANA ", "SEM ")))
+    );
   });
 
-  const ativos = document.querySelectorAll(".botoes-semana .btn-padrao.ativo");
-
   const container = document.querySelector(".botoes-semana");
+  container.classList.toggle("has-selection", semanasSelecionadas.length > 0);
 
-  if (ativos.length > 0) {
-    container.classList.add("has-selection");
-  } else {
-    container.classList.remove("has-selection");
-  }
-
-  // aqui você mantém sua lógica de filtro
   atualizarTudo();
 }
-
 function abrirFiltros() {
   document.getElementById("modal-filtros").classList.add("active");
 }
+
 function toggleLocal(el, botao) {
   const valorReal = mapaLocais[botao];
   if (!valorReal) return;
@@ -402,10 +400,7 @@ function toggleLocal(el, botao) {
   }
 
   const grupo = document.querySelector(".grupo-locais");
+  grupo.classList.toggle("has-selection", filtroLocais.length > 0);
 
-  if (filtroLocais.length > 0) {
-    grupo.classList.add("has-selection");
-  } else {
-    grupo.classList.remove("has-selection");
-  }
+  atualizarTudo(); ✅ ESSENCIAL (faltava antes)
 }
