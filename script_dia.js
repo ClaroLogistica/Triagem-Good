@@ -146,10 +146,10 @@ function atualizarGrafico() {
 }
 
    plugins: {
-  legend: { display: false },
+    legend: { display: false },
 
-  tooltip: {
-    enabled: true
+    tooltip: {
+     enabled: true
   },
 
   datalabels: {
