@@ -507,11 +507,9 @@ body {
     inset 0 0 8px rgba(0,0,0,0.6);
 }
 .btn-padrao.ativo {
-  background: linear-gradient(
-    180deg,
-    #d4a73a,
-    #6e4a00
-  );
+  background: linear-gradient(180deg, #991b1b, #5a0c0c);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
 
   box-shadow:
     0 0 12px rgba(255, 200, 0, 0.6);
