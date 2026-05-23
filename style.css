@@ -349,14 +349,16 @@ body {
   margin-right: 4px; /*  aproxima do Qtde */
 }
 
+ .botoes-semana {
+  grid-column: 9; /* ✅ FORÇA FICAR NA ÚLTIMA COLUNA */
 
-.botoes-semana {
   display: grid;
+  grid-template-columns: repeat(3, 70px);
 
-  grid-template-columns: auto auto auto;
-  gap: 8px;
+  gap: 6px;
 
-  justify-self: end;
+  justify-content: end;
+  align-content: center;
 }
 
 /* CADA SEMANA */
@@ -640,7 +642,7 @@ body {
   position: relative; /* NECESSÁRIO PRO ABSOLUTE */
 
   margin-top: 16px;
-  padding: 16px 16px 16px 90px; /* espaço pro logo */
+  padding: 16px 16px 16px 70px; /* espaço pro logo */
 
   border: 1px dashed rgba(255,255,255,0.4);
   border-radius: 10px;
@@ -803,4 +805,9 @@ body {
 
 .btn-padrao:active {
   transform: scale(0.95);
+}
+
+.resumo-grid > * {
+  position: relative;
+  z-index: 1;
 }
