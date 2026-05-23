@@ -428,6 +428,7 @@ function toggleLocal(el, botao) {
     // ADICIONA
     filtroLocais.push(valorReal);
     el.classList.add("ativo");
-  }
-
-  atualizarTudo()
+}
+  // aqui você mantém sua lógica de filtro
+  atualizarTudo();
+}
