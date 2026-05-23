@@ -122,7 +122,7 @@ function atualizarGrafico() {
     labels: labels,
     datasets: [{
       data: valores,
-      backgroundColor: ...,
+      backgroundColor: "#2aa5a5",
     }]
   },
 
