@@ -736,20 +736,14 @@ body {
 .resumo-icone {
   position: absolute;
 
-  left: -20px;   /* “invade” a borda */
-  top: 10px;     /*  alinhamento vertical */
+  left: -40px;   /* ✅ começa fora e invade */
+  top: -10px;    /* ✅ sobe até alinhar com borda */
 
-  opacity: 0.25; /*  transparência elegante */
+  opacity: 0.25;
 }
 
 .resumo-icone img {
-  width: 140px;
-}
-
-/* ICONE */
-.resumo-icone img {
-  width: 80px;
-  opacity: 0.4;
+  width: 160px;
 }
 
 /* RESUMO */
@@ -771,19 +765,19 @@ body {
 /* ============================== */
 /* 🔥 BLOCO FINAL LIMPO CORRETO   */
 /* ============================== */
-
 .resumo-grid {
   display: grid;
 
   grid-template-columns:
     90px
-    120px
-    60px
+    140px
+    80px
     repeat(5, 1fr)
     auto;
 
   align-items: center;
-  column-gap: 16px;
+  column-gap: 20px;
+  width: 100%;
 }
 
 .botoes-semana {
