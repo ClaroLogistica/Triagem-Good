@@ -413,22 +413,3 @@ function toggleLocal(el, botao) {
   } else {
     grupo.classList.remove("has-selection");
   }
-
-  atualizarTudo();
-}
-
-  //  verifica se já está selecionado
-  const index = filtroLocais.indexOf(valorReal);
-
-  if (index > -1) {
-    // REMOVE
-    filtroLocais.splice(index, 1);
-    el.classList.remove("ativo");
-  } else {
-    // ADICIONA
-    filtroLocais.push(valorReal);
-    el.classList.add("ativo");
-}
-  // aqui você mantém sua lógica de filtro
-  atualizarTudo();
-}
