@@ -105,7 +105,8 @@ body {
 
 .logo-left {
   justify-content: flex-start;
-  padding-left: 8px;
+  padding-left: 20px;
+  
 }
 
 .logo-left img {
@@ -116,6 +117,7 @@ body {
 
 .logo-dashboard {
   justify-content: flex-end;
+  padding-right: 20px;
 }
 
 .logo-left {
