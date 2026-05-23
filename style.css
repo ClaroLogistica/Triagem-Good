@@ -780,84 +780,21 @@ body {
 .btn-padrao:active {
   transform: scale(0.95);
 }
-/* ========================================= */
-/* AJUSTE FINAL DO BLOCO RESUMO (REFERÊNCIA) */
-/* COLE NO FINAL DO style.css                */
-/* ========================================= */
-
-.resumo-icone img {
-  width: 92px !important;    /* menor para não invadir o texto */
-  display: block !important;
-}
-
-/* título RESUMO SEMANAL */
-.resumo-titulo {
-  grid-column: 2 !important;
-  font-size: 13px !important;
-  line-height: 1.15 !important;
-  font-weight: 700 !important;
-  text-align: left !important;
-  margin: 0 !important;
-}
-
-/* semanas */
-.resumo-grid > .col {
-  display: grid !important;
-  grid-template-rows: auto 22px 22px !important;
-  justify-items: center !important;
-  align-items: center !important;
-  gap: 0 !important;
-  min-width: auto !important;
-}
-
-.resumo-grid > .col strong {
-  font-size: 13px !important;
-  margin: 0 0 4px 0 !important;
-  line-height: 1.05 !important;
-}
-
-.resumo-grid > .col span {
-  line-height: 1 !important;
-}
-
-/* bloco dos botões da semana no canto direito */
-/* hover elegante */
-.botoes-semana .btn-padrao:hover {
-  transform: translateY(-1px) !important;
-  filter: brightness(1.08) !important;
-}
-
-/* ativo em vermelho (sem dourado) */
-.botoes-semana .btn-padrao.ativo {
-  background: linear-gradient(180deg, #b32626, #6b0d0d) !important;
-  box-shadow:
-    0 0 8px rgba(255,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.12) !important;
-}
-
-/* quando houver seleção, os não ativos ficam discretos */
-.botoes-semana.has-selection .btn-padrao:not(.ativo) {
-  opacity: 0.35 !important;
-}
-.resumo-grid > * {
-  position: relative;
-  z-index: 1;
-}
 /* ===================================== */
-/* AJUSTE FINAL DO RESUMO - POSIÇÃO CERTA */
+/* AJUSTE FINAL - MESMA POSIÇÃO DA REF.  */
 /* COLE NO FINAL DO style.css            */
 /* ===================================== */
 
 .resumo-container {
   position: relative;
   margin-top: 16px;
-  padding: 16px 16px 16px 78px; /* espaço do logo */
+  padding: 16px 16px 16px 82px; /* espaço do logo */
   border: 1px dashed rgba(255,255,255,0.4);
   border-radius: 10px;
   overflow: hidden;
 }
 
-/* Logo cortado */
+/* logo cortado */
 .resumo-icone {
   position: absolute;
   left: 0;
@@ -868,37 +805,37 @@ body {
 }
 
 .resumo-icone img {
-  width: 108px;   /* um pouco maior */
+  width: 112px;   /* um pouco maior */
   display: block;
 }
 
-/* Tudo do grid fica acima do logo */
+/* tudo do grid fica acima do logo */
 .resumo-grid > * {
   position: relative;
   z-index: 1;
 }
 
-/* Grid principal */
+/* grid principal igual à referência */
 .resumo-grid {
   display: grid;
-
   grid-template-columns:
-    70px   /* logo */
-    120px  /* resumo */
-    60px   /* Qtde/% */
-    80px   /* sem1 */
-    80px
-    80px
-    80px
-    80px
-    220px; /* espaço real pros botões */
-
+    74px   /* logo */
+    110px  /* RESUMO SEMANAL */
+    44px   /* Qtde / % */
+    84px   /* SEMANA 01 */
+    84px   /* SEMANA 02 */
+    84px   /* SEMANA 03 */
+    84px   /* SEMANA 04 */
+    84px   /* SEMANA 05 */
+    320px; /* espaço exclusivo dos botões */
   align-items: center;
-  column-gap: 10px;
+  column-gap: 8px;
+  width: 100%;
 }
 
-/* Título */
+/* RESUMO SEMANAL */
 .resumo-titulo {
+  grid-column: 2;
   font-size: 13px;
   line-height: 1.15;
   font-weight: 700;
@@ -906,8 +843,9 @@ body {
   margin: 0;
 }
 
-/* Qtde / % alinhados com 0 e 0% */
+/* Qtde e % alinhados com 0 e 0% */
 .labels {
+  grid-column: 3;
   display: grid;
   grid-template-rows: 22px 22px;
   justify-items: center;
@@ -917,7 +855,7 @@ body {
   line-height: 1;
 }
 
-/* Semanas */
+/* semanas */
 .col {
   display: grid;
   grid-template-rows: auto 22px 22px;
@@ -932,36 +870,25 @@ body {
   line-height: 1.05;
 }
 
-/* Botões no espaço vazio do canto direito */
-.botoes-semana {
-  grid-column: 9;         /* ✅ prende na última coluna do grid */
-  display: grid;
-  grid-template-columns: repeat(3, 70px);
-  gap: 6px;
-
-  justify-self: end;      /* ✅ joga pro canto direito */
-  align-content: center;
-  margin-left: 10px;      /* ✅ separa de SEMANA 05 */
+.col span {
+  line-height: 1;
 }
 
-/* Botões exatamente dentro do bloco direito */
-.btn-padrao {
-  display: inline-block;
-  position: relative;     /* ✅ necessário pro brilho ::after */
-  overflow: hidden;       /* ✅ necessário pro brilho ::after */
+/* botões 100% no canto direito */
+.botoes-semana {
+  grid-column: 9;                  /* fixa na última coluna */
+  display: grid;
+  grid-template-columns: repeat(3, 98px);
+  gap: 8px;
+  justify-content: end;
+  align-content: center;
+  margin-left: 10px;               /* separa de SEMANA 05 */
+}
 
-  padding: 8px 14px;
-  font-size: 12px;
-  font-weight: 600;
-
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.2);
-
-  background: linear-gradient(180deg, #7a1a1a, #3a0606);
-  color: #fff;
-
-  cursor: pointer;
+/* botões elegantes, mesmo tamanho */
+.botoes-semana .btn-padrao {
+  width: 98px;
+  padding: 8px 0;
+  text-align: center;
   white-space: nowrap;
-
-  transition: all 0.2s ease;
 }
