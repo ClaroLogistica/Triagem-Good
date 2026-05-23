@@ -52,31 +52,16 @@ fetch(new URL("Dados.xlsx", window.location.href))
  * FILTRO CENTRAL
  *************************************************/
 function aplicarFiltros() {
-  let base = [...dados];
+  let base = dados;
 
+  // filtro por local
   if (filtroLocais.length > 0) {
-    base = base.filter(d =>
-      filtroLocais.some(f => d.Local && d.Local.includes(f))
-    );
+    base = base.filter(d => filtroLocais.includes(d.Local));
   }
 
-  if (filtroTipo && filtroTecnologias.length > 0) {
-    base = base.filter(d => filtroTecnologias.includes(d[filtroTipo]));
-  }
-
-  if (filtroSemanaSelecionada) {
-    base = base.filter(d => {
-      let s = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
-      return s && d[s] && d[s].includes(filtroSemanaSelecionada);
-    });
-  }
-
-  if (filtroGiro.length > 0) {
-    base = base.filter(d => filtroGiro.includes(d.Giro));
-  }
-
-  if (filtroDep.length > 0) {
-    base = base.filter(d => filtroDep.includes(d["Dep."]));
+  // filtro por semana
+  if (semanasSelecionadas.length > 0) {
+    base = base.filter(d => semanasSelecionadas.includes(d.Semana));
   }
 
   return base;
