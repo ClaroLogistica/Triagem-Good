@@ -208,6 +208,7 @@ body {
 
 /* ===== GRÁFICO ===== */
 .grafico-container {
+  overflow: hidden;
   margin-top: 20px;
   padding: 20px 10px;
 
