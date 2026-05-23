@@ -164,9 +164,16 @@ function atualizarGrafico() {
   },
 
   y: {
+    
     display: false
-  }
+        }
+      }
+    }
+  });
+
+  atualizarFaixaSemanas(base);
 }
+
  /*************************************************
  * SEMANAS
  *************************************************/
