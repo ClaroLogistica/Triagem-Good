@@ -759,27 +759,27 @@ body {
   display: grid;
 
   grid-template-columns:
-    70px    /* logo */
-    110px   /* resumo */
-    50px    /* Qtde/% */
-    90px    /* sem1 */
-    90px    /* sem2 */
-    90px    /* sem3 */
-    90px    /* sem4 */
-    90px    /* sem5 */
-    auto;   /* botões */
+    70px   /* logo */
+    120px  /* resumo */
+    60px   /* Qtde/% */
+    80px   /* sem1 */
+    80px
+    80px
+    80px
+    80px
+    220px; /* ✅ espaço real pros botões */
 
   align-items: center;
-  column-gap: 12px;
+  column-gap: 10px;
 }
 
 .botoes-semana {
   display: grid;
 
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 70px);
   gap: 6px;
 
-  justify-self: end;
+  justify-content: end;   /* ✅ IMPORTANTÍSSIMO */
 }
 
 .btn-padrao {
