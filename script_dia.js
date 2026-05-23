@@ -195,7 +195,7 @@ function atualizarGrafico() {
     }
   })
 
-  atualizarFaixaSemanas(base);  chamada correta fora do chart
+  atualizarFaixaSemanas(base);  //chamada correta fora do chart
 }
  /*************************************************
  * SEMANAS
