@@ -430,5 +430,4 @@ function toggleLocal(el, botao) {
     el.classList.add("ativo");
   }
 
-  atualizarTudo();
-}
+  atualizarTudo()
