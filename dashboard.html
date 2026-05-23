@@ -1,5 +1,5 @@
   <!DOCTYPE html>
-  <html lang=resumo-container"pt-BR">
+  <html lang="pt-BR">
   <head>
     <meta charset="UTF-8">
     <title>Reversa &amp; Recuperação | Triagem Massivo</title>
@@ -107,49 +107,45 @@
     </div>
 
     <!-- SEMANAS -->
-    <div class="col">
-      <strong>SEMANA 01</strong>
-      <span>0</span>
-      <span>0%</span>
-    </div>
+<div class="col">
+  <strong>SEMANA 01</strong>
+  <span id="sem1-qtd">0</span>
+  <span id="sem1-perc">0%</span>
+</div>
+    
+<div class="col">
+  <strong>SEMANA 02</strong>
+  <span id="sem2-qtd">0</span>
+  <span id="sem2-perc">0%</span>
+</div>
 
-    <div class="col">
-      <strong>SEMANA 02</strong>
-      <span>0</span>
-      <span>0%</span>
-    </div>
+<div class="col">
+  <strong>SEMANA 03</strong>
+  <span id="sem3-qtd">0</span>
+  <span id="sem3-perc">0%</span>
+</div>   
 
-    <div class="col">
-      <strong>SEMANA 03</strong>
-      <span>0</span>
-      <span>0%</span>
-    </div>
+<div class="col">
+  <strong>SEMANA 04</strong>
+  <span id="sem4-qtd">0</span>
+  <span id="sem4-perc">0%</span>
+</div>
 
-    <div class="col">
-      <strong>SEMANA 04</strong>
-      <span>0</span>
-      <span>0%</span>
-    </div>
-
-    <div class="col">
-      <strong>SEMANA 05</strong>
-      <span>0</span>
-      <span>0%</span>
-    </div>
-
+<div class="col">
+  <strong>SEMANA 05</strong>
+  <span id="sem5-qtd">0</span>
+  <span id="sem5-perc">0%</span>
+</div>
+    
     <!-- BOTÕES -->
     <div class="botoes-semana">
-      <button class="btn-padrao">Sem 01</button>
-      <button class="btn-padrao">Sem 02</button>
-      <button class="btn-padrao">Sem 03</button>
-      <button class="btn-padrao">Sem 04</button>
-      <button class="btn-padrao">Sem 05</button>
-      <button class="btn-padrao">Limpar</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 03')">Sem 03</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 04')">Sem 04</button>
+      <button class="btn-padrao" onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
+      <button class="btn-padrao" onclick="limparFiltroSemana()">Limpar</button>
     </div>
-
-  </div>
-
-</div>
   
   <!-- ================= FILTROS ================= -->
   <div class="linha-filtros">
@@ -230,8 +226,3 @@
   
   </body>
   </html>
-
-
-<!-- ÍCONE -->
-<div class="resumo-icone">
-  </div>
