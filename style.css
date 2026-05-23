@@ -380,7 +380,7 @@ body {
   line-height: 1.2;
   font-weight: 700;
 
-  margin-right: 5px; /* ✅ aproxima do Qtde */
+  margin-right: 4px; /* ✅ aproxima do Qtde */
 }
 
 
@@ -699,7 +699,7 @@ body {
   flex-direction: column;
 
   gap: 6px;
-  margin-top: 18px;  /* ✅ alinha com números */
+  margin-top: 20px;  /* ✅ alinha com números */
   font-size: 13px;
 }
 
@@ -792,24 +792,27 @@ body {
   display: grid;
 
   grid-template-columns:
-    70px   /* logo */
-    120px  /* resumo */
-    50px   /* Qtde e % */
-    repeat(5, 1fr)
-    200px; /* botões */
+    70px    /* logo */
+    110px   /* resumo */
+    50px    /* Qtde/% */
+    90px    /* sem1 */
+    90px    /* sem2 */
+    90px    /* sem3 */
+    90px    /* sem4 */
+    90px    /* sem5 */
+    auto;   /* botões */
 
   align-items: center;
-  column-gap: 10px;
+  column-gap: 12px;
 }
 
 .botoes-semana {
   display: grid;
 
   grid-template-columns: auto auto auto;
-  gap: 8px;
+  gap: 6px;
 
   justify-self: end;
-  align-items: center;
 }
 
 .btn-padrao {
