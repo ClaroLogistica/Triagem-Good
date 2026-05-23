@@ -683,11 +683,13 @@ body {
 
 
 .labels {
-  display: flex;
-  flex-direction: column;
-  gap: 14px; 
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 
-  font-size: 12px;
+  align-items: center;
+  justify-items: center;
+
+  height: 100%;
 }
 
 /* TITULO */
@@ -735,14 +737,15 @@ body {
 .resumo-icone {
   position: absolute;
 
-  left: 0px;     /* ✅ começa exatamente na borda */
-  bottom: 0px;   /* ✅ cola na base do tracejado */
+  left: 10px;     /* ✅ entra dentro do tracejado */
+  bottom: 5px;    /* ✅ alinha na base correta */
 
-  opacity: 0.25;
+  opacity: 0.18;  /* ✅ mais suave */
+  z-index: 0;     /* ✅ fica atrás do conteúdo */
 }
 
 .resumo-icone img {
-  width: 160px;
+  width: 110px;   /* ✅ menor e proporcional */
 }
 
 /* RESUMO */
@@ -756,11 +759,14 @@ body {
 
 /* SEMANAS */
 .col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+
+  grid-template-rows: auto 1fr 1fr;
+  justify-items: center;
+
   gap: 4px;
 }
+
 /* ============================== */
 /* 🔥 BLOCO FINAL LIMPO CORRETO   */
 /* ============================== */
