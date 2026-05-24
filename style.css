@@ -780,63 +780,56 @@ body {
 .btn-padrao:active {
   transform: scale(0.95);
 }
-/* ======================================== */
-/* AJUSTE FINAL REAL — RESUMO + FILTROS     */
-/* COLE NO FINAL DO style.css               */
-/* ======================================== */
+/* ===================================================== */
+/* AJUSTE FINAL — RESUMO / FILTROS IGUAL À IMAGEM 2      */
+/* COLE NO FINAL DO style.css                            */
+/* ===================================================== */
 
-/* bloco do resumo */
 .resumo-container {
   position: relative !important;
   margin-top: 16px !important;
-  padding: 16px 16px 16px 82px !important; /* espaço do logo */
+  padding: 16px 22px 16px 78px !important;
   border: 1px dashed rgba(255,255,255,0.4) !important;
   border-radius: 10px !important;
   overflow: hidden !important;
 }
 
-/* logo cortado */
 .resumo-icone {
   position: absolute !important;
-  left: 0 !important;
+  left: 6px !important;
   bottom: 0 !important;
-  opacity: 0.15 !important;
+  opacity: 0.16 !important;
   z-index: 0 !important;
   pointer-events: none !important;
 }
 
 .resumo-icone img {
-  width: 118px !important; /* um pouco maior */
+  width: 118px !important;   /* maior, mas sem invadir */
   display: block !important;
 }
 
-/* todo conteúdo acima do logo */
 .resumo-grid > * {
   position: relative !important;
   z-index: 1 !important;
 }
 
-/* grid principal do resumo */
 .resumo-grid {
   display: grid !important;
-
   grid-template-columns:
-    72px   /* área logo */
-    105px  /* RESUMO SEMANAL */
-    46px   /* Qtde / % */
-    74px   /* SEMANA 01 */
-    74px   /* SEMANA 02 */
-    74px   /* SEMANA 03 */
-    74px   /* SEMANA 04 */
-    74px   /* SEMANA 05 */
-    320px; /* área exclusiva dos botões */
-
+    72px   /* área visual do logo */
+    108px  /* RESUMO SEMANAL */
+    42px   /* Qtde / % */
+    78px   /* SEMANA 01 */
+    78px   /* SEMANA 02 */
+    78px   /* SEMANA 03 */
+    78px   /* SEMANA 04 */
+    78px   /* SEMANA 05 */
+    320px; /* espaço exclusivo dos botões da semana */
   align-items: center !important;
   column-gap: 8px !important;
   width: 100% !important;
 }
 
-/* título do resumo */
 .resumo-titulo {
   grid-column: 2 !important;
   margin: 0 !important;
@@ -846,19 +839,17 @@ body {
   text-align: left !important;
 }
 
-/* coluna Qtde e % */
 .labels {
   grid-column: 3 !important;
   display: grid !important;
   grid-template-rows: 22px 22px !important;
   justify-items: center !important;
   align-items: center !important;
-  margin-top: 18px !important;
+  margin-top: 18px !important; /* alinha Qtde/ % com 0 / 0% */
   font-size: 13px !important;
   line-height: 1 !important;
 }
 
-/* semanas */
 .col {
   display: grid !important;
   grid-template-rows: auto 22px 22px !important;
@@ -873,21 +864,18 @@ body {
   line-height: 1.05 !important;
 }
 
-/* botões da semana no espaço vazio do canto direito */
+/* Botões da semana no canto direito, sem invadir as semanas */
 .botoes-semana {
-  grid-column: 9 !important;          /* fixa na última coluna */
+  grid-column: 9 !important;
   display: grid !important;
   grid-template-columns: repeat(3, 98px) !important;
   gap: 8px !important;
-
   justify-content: end !important;
   justify-self: end !important;
   align-content: center !important;
-
-  margin-left: 24px !important;       /* empurra mais para o canto */
+  margin-left: 16px !important;
 }
 
-/* botões de semana */
 .botoes-semana .btn-padrao {
   width: 98px !important;
   padding: 8px 0 !important;
@@ -895,16 +883,78 @@ body {
   white-space: nowrap !important;
 }
 
-/* filtro + CITR em linha abaixo do resumo */
+/* Linha dos filtros abaixo do resumo, fora do tracejado */
 .linha-filtros {
   margin-top: 16px !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  gap: 16px !important;
 }
 
-/* fundo do gráfico: fica abaixo dos filtros */
-.grafico-container {
-  margin-top: 18px !important;  /* empurra o fundo escuro para baixo */
-  clear: both !important;
+.grupo-locais {
+  display: flex !important;
+  gap: 12px !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
 }
+
+.grupo-locais .btn-padrao {
+  min-width: 188px !important;
+  text-align: center !important;
+}
+
+/* Botão padrão */
+.btn-padrao {
+  display: inline-block !important;
+  position: relative !important;
+  overflow: hidden !important;
+
+  padding: 8px 14px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+
+  border-radius: 6px !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  background: linear-gradient(180deg, #8f1f1f, #4b0909) !important;
+
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.btn-padrao:hover {
+  filter: brightness(1.08) !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35) !important;
+}
+
+.btn-padrao.ativo {
+  background: linear-gradient(180deg, #b32626, #6b0d0d) !important;
+  box-shadow: 0 0 8px rgba(255,0,0,0.35) !important;
+}
+
+.botoes-semana.has-selection .btn-padrao:not(.ativo),
+.grupo-locais.has-selection .btn-padrao:not(.ativo) {
+  opacity: 0.35 !important;
+}
+
+/* filtro com ícone */
+.btn-filtro-principal {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 160px !important;
+  justify-content: center !important;
+}
+
+.icone-filtro {
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 6px solid transparent !important;
+  border-right: 6px solid transparent !important;
+  border-top: 10px solid white !important;
+  transform: rotate(180deg) !important;
+  margin-left: 4px !important;
+}
+
