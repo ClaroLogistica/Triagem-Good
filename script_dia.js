@@ -17,6 +17,7 @@ let filtroDep = [];
 let filtroTecnologias = [];
 let filtroLocais = [];
 let filtroSemanaSelecionada = null;
+let semanasSelecionadas = [];
 
 /*************************************************
  * UTIL
@@ -45,6 +46,7 @@ fetch(new URL("Dados.xlsx", window.location.href))
     dados = XLSX.utils.sheet_to_json(sh);
     console.log(" Excel carregado:", dados.length);
     atualizarTudo();
+    atualizarEstadoBotoesSemana();
   })
   .catch(err => console.error(err));
 
@@ -72,7 +74,6 @@ function aplicarFiltros() {
     }
   }
 
-  // aqui continuam seus demais filtros (tipo, dep., giro etc.)
   return base;
 }
 
@@ -92,7 +93,7 @@ function atualizarTudo() {
   atualizarGrafico();
   atualizarResumoSemanal();
 }
- atualizarEstadoBotoesSemana();
+ 
 /*************************************************
  * KPIs
  *************************************************/
@@ -351,17 +352,18 @@ function montarTecnologias() {
     });
 }
 
-let semanasSelecionadas = [];
-
 /* mantém o visual dos botões da semana */
 function atualizarEstadoBotoesSemana() {
   const botoes = document.querySelectorAll(".botoes-semana .btn-padrao");
   const container = document.querySelector(".botoes-semana");
 
   botoes.forEach(btn => {
-    const semanaBtn = btn.textContent.replace("Sem ", "SEMANA ").trim().toUpperCase();
+    const texto = btn.textContent.trim().toUpperCase();
 
-    // se nenhuma semana estiver selecionada, considera TODAS ativas
+    if (texto === "LIMPAR") return;
+
+    const semanaBtn = texto.replace("SEM ", "SEMANA ");
+
     if (semanasSelecionadas.length === 0) {
       btn.classList.add("ativo");
     } else {
@@ -380,14 +382,11 @@ function atualizarEstadoBotoesSemana() {
 function filtrarSemana(semana) {
   semana = semana.toUpperCase().trim();
 
-  // se estava no estado "todas", clicar em uma passa a filtrar só ela
   if (semanasSelecionadas.length === 0) {
     semanasSelecionadas = [semana];
   } else if (semanasSelecionadas.includes(semana)) {
-    // se já existe, remove
     semanasSelecionadas = semanasSelecionadas.filter(s => s !== semana);
   } else {
-    // adiciona seleção múltipla
     semanasSelecionadas.push(semana);
   }
 
@@ -421,6 +420,7 @@ function toggleLocal(el, botao) {
 
   atualizarTudo();
 }
+
 
 function limparFiltroLocal() {
   filtroLocais = [];
