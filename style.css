@@ -817,18 +817,14 @@ body {
   display: grid !important;
 
   grid-template-columns:
-    72px   /* logo */
-    105px  /* RESUMO SEMANAL */
-    46px   /* Qtde / % */
-    74px   /* SEMANA 01 */
-    74px   /* SEMANA 02 */
-    74px   /* SEMANA 03 */
-    74px   /* SEMANA 04 */
-    74px   /* SEMANA 05 */
-    1fr;   /* espaço flexível para os botões */
+    72px        /* logo */
+    105px       /* RESUMO SEMANAL */
+    46px        /* Qtde / % */
+    repeat(5, minmax(90px, 1fr))  /* semanas ocupam o espaço disponível */
+    max-content; /* botões só ocupam o tamanho deles */
 
   align-items: center !important;
-  column-gap: 8px !important;
+  column-gap: 10px !important;
   width: 100% !important;
 }
 
