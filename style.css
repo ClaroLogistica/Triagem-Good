@@ -815,16 +815,18 @@ body {
 
 .resumo-grid {
   display: grid !important;
+
   grid-template-columns:
-    72px   /* área visual do logo */
-    108px  /* RESUMO SEMANAL */
-    42px   /* Qtde / % */
-    78px   /* SEMANA 01 */
-    78px   /* SEMANA 02 */
-    78px   /* SEMANA 03 */
-    78px   /* SEMANA 04 */
-    78px   /* SEMANA 05 */
-    320px; /* espaço exclusivo dos botões da semana */
+    72px   /* logo */
+    105px  /* RESUMO SEMANAL */
+    46px   /* Qtde / % */
+    74px   /* SEMANA 01 */
+    74px   /* SEMANA 02 */
+    74px   /* SEMANA 03 */
+    74px   /* SEMANA 04 */
+    74px   /* SEMANA 05 */
+    1fr;   /* espaço flexível para os botões */
+
   align-items: center !important;
   column-gap: 8px !important;
   width: 100% !important;
@@ -866,15 +868,19 @@ body {
 
 /* Botões da semana no canto direito, sem invadir as semanas */
 .botoes-semana {
-  grid-column: 9 !important;
+  grid-column: 9 !important;             /* última coluna */
   display: grid !important;
   grid-template-columns: repeat(3, 98px) !important;
   gap: 8px !important;
+
   justify-content: end !important;
   justify-self: end !important;
   align-content: center !important;
-  margin-left: 16px !important;
+
+  width: max-content !important;         /* evita sobrar espaço dentro do grupo */
+  margin-left: 0 !important;
 }
+``
 
 .botoes-semana .btn-padrao {
   width: 98px !important;
