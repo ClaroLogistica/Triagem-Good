@@ -964,3 +964,57 @@ body {
   margin-left: 4px !important;
 }
 
+/* ======================================= */
+/* AJUSTE FINAL DO GRÁFICO E FAIXA SEMANAS */
+/* COLE NO FINAL DO style.css              */
+/* ======================================= */
+
+.grafico-container {
+  margin-top: 18px !important;
+  padding: 18px 14px 16px 14px !important;
+  height: 300px !important;   /* mais alto para não cortar semanas */
+  overflow: hidden !important;
+}
+
+#graficoDiario {
+  width: 100% !important;
+  height: 220px !important;   /* gráfico sobe um pouco */
+  display: block !important;
+}
+
+#faixa-semanas {
+  display: grid !important;
+  grid-template-columns: repeat(31, minmax(0, 1fr)) !important;
+
+  margin-top: 8px !important;
+  padding: 10px 6px 0 6px !important;
+
+  border-top: 1px solid rgba(255,255,255,0.18) !important;
+
+  min-height: 48px !important; /* impede corte */
+  font-size: 11px !important;
+  color: #d1d5db !important;
+  text-align: center !important;
+  align-items: start !important;
+}
+
+#faixa-semanas .faixa-semana-item {
+  position: relative !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  padding-top: 8px !important;
+}
+
+#faixa-semanas .faixa-semana-item::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: -10px !important;
+  bottom: -2px !important;
+  width: 1px !important;
+  background: rgba(255,255,255,0.40) !important;
+}
+
+#faixa-semanas .faixa-semana-item.primeira::before {
+  display: none !important;
+}
