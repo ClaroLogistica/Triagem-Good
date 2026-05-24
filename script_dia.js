@@ -128,6 +128,7 @@ function atualizarGrafico() {
 
   const ctx = canvas.getContext("2d");
 
+  /* plugin interno para escrever o valor em cima da barra */
   const pluginLabelsTopo = {
     id: "labelsTopo",
     afterDatasetsDraw(chart) {
@@ -157,7 +158,6 @@ function atualizarGrafico() {
 
   chart = new Chart(ctx, {
     type: "bar",
-
     data: {
       labels: labels,
       datasets: [{
@@ -169,21 +169,25 @@ function atualizarGrafico() {
         categoryPercentage: 0.8,
         barPercentage: 0.95,
 
-        /* ✅ degradê por coluna */
+        /* degradê por coluna, sem erro de NaN */
         backgroundColor: (context) => {
-          const meta = context.chart.getDatasetMeta(context.datasetIndex);
-          const bar = meta.data[context.dataIndex];
+          const chart = context.chart;
+          const { ctx, chartArea, scales } = chart;
 
-          if (!bar) return "#2aa5a5";
+          if (!chartArea || !scales || !scales.y) {
+            return "#2aa5a5";
+          }
 
-          const props = typeof bar.getProps === "function"
-            ? bar.getProps(["x", "y", "base"], true)
-            : { x: bar.x, y: bar.y, base: bar.base };
+          const valor = Number(context.raw || 0);
 
-          const yTop = Math.min(props.y, props.base);
-          const yBottom = Math.max(props.y, props.base);
+          const yTop = scales.y.getPixelForValue(valor);
+          const yBottom = scales.y.getPixelForValue(0);
 
-          const gradient = context.chart.ctx.createLinearGradient(
+          if (!Number.isFinite(yTop) || !Number.isFinite(yBottom)) {
+            return "#2aa5a5";
+          }
+
+          const gradient = ctx.createLinearGradient(
             0,
             yBottom,
             0,
@@ -229,9 +233,11 @@ function atualizarGrafico() {
           grid: {
             color: (context) => {
               const index = context.index;
+
               if ([4, 11, 18, 25].includes(index)) {
                 return "rgba(255,255,255,0.30)";
               }
+
               return "rgba(255,255,255,0.06)";
             }
           },
