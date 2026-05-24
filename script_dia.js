@@ -128,31 +128,71 @@ function atualizarGrafico() {
 
   const ctx = canvas.getContext("2d");
 
+  const pluginLabelsTopo = {
+    id: "labelsTopo",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+
+      ctx.save();
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "12px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom";
+
+      meta.data.forEach((bar, i) => {
+        const valor = valores[i];
+        if (!valor) return;
+
+        ctx.fillText(
+          valor.toLocaleString("pt-BR"),
+          bar.x,
+          bar.y - 6
+        );
+      });
+
+      ctx.restore();
+    }
+  };
+
   chart = new Chart(ctx, {
     type: "bar",
+
     data: {
       labels: labels,
       datasets: [{
         data: valores,
-        borderRadius: 4,
-        barPercentage: 0.6,
-        categoryPercentage: 0.7,
+        borderRadius: 0,
+        borderSkipped: false,
+        barThickness: 28,
+        maxBarThickness: 30,
+        categoryPercentage: 0.8,
+        barPercentage: 0.95,
 
+        /* ✅ degradê por coluna */
         backgroundColor: (context) => {
-          const chart = context.chart;
-          const { ctx, chartArea } = chart;
+          const meta = context.chart.getDatasetMeta(context.datasetIndex);
+          const bar = meta.data[context.dataIndex];
 
-          if (!chartArea) return "#2aa5a5";
+          if (!bar) return "#2aa5a5";
 
-          const gradient = ctx.createLinearGradient(
+          const props = typeof bar.getProps === "function"
+            ? bar.getProps(["x", "y", "base"], true)
+            : { x: bar.x, y: bar.y, base: bar.base };
+
+          const yTop = Math.min(props.y, props.base);
+          const yBottom = Math.max(props.y, props.base);
+
+          const gradient = context.chart.ctx.createLinearGradient(
             0,
-            chartArea.bottom,
+            yBottom,
             0,
-            chartArea.top
+            yTop
           );
 
-          gradient.addColorStop(0, "#0a3f4a");
-          gradient.addColorStop(1, "#7be7e7");
+          gradient.addColorStop(0, "#0b4f69");  /* base escura */
+          gradient.addColorStop(0.55, "#177b9f");
+          gradient.addColorStop(1, "#7ef2f2");  /* topo claro */
 
           return gradient;
         }
@@ -162,82 +202,100 @@ function atualizarGrafico() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
+
+      layout: {
+        padding: {
+          top: 28,   /* espaço para os números em cima */
+          left: 8,
+          right: 8,
+          bottom: 0
+        }
+      },
 
       plugins: {
         legend: { display: false },
         tooltip: {
-          enabled: true
+          enabled: true,
+          callbacks: {
+            label: (ctx) => ctx.raw.toLocaleString("pt-BR")
+          }
         }
       },
 
       scales: {
         x: {
+          offset: true,
           grid: {
             color: (context) => {
               const index = context.index;
-
               if ([4, 11, 18, 25].includes(index)) {
-                return "rgba(255,255,255,0.3)";
+                return "rgba(255,255,255,0.30)";
               }
-
-              return "rgba(255,255,255,0.05)";
+              return "rgba(255,255,255,0.06)";
             }
           },
           ticks: {
-            color: "#ddd"
+            color: "#e5e7eb",
+            font: {
+              size: 12
+            },
+            padding: 6
           }
         },
 
         y: {
-          display: false
+          display: false,
+          beginAtZero: true
         }
       }
-    }
+    },
+
+    plugins: [pluginLabelsTopo]
   });
 
   atualizarFaixaSemanas(base);
 }
-
-
  /*************************************************
  * SEMANAS
  *************************************************/
- function atualizarFaixaSemanas(base) {
-
+function atualizarFaixaSemanas(base) {
   const div = document.getElementById("faixa-semanas");
+  if (!div) return;
+
   div.innerHTML = "";
 
-  const map = {};
+  const mapa = {};
 
   base.forEach(d => {
-
     const dia = extrairDia(d.Data);
-
     const semKey = Object.keys(d).find(k =>
       k.toLowerCase().includes("semana")
     );
 
     if (dia && semKey) {
-      if (!map[d[semKey]]) map[d[semKey]] = [];
-      map[d[semKey]].push(dia);
+      const semana = String(d[semKey]).trim();
+      if (!mapa[semana]) mapa[semana] = [];
+      mapa[semana].push(dia);
     }
-
   });
 
-  Object.entries(map).forEach(([semana, dias]) => {
+  const semanasOrdenadas = Object.entries(mapa)
+    .sort((a, b) => Math.min(...a[1]) - Math.min(...b[1]));
 
+  semanasOrdenadas.forEach(([semana, dias], index) => {
     const el = document.createElement("div");
+    el.className = "faixa-semana-item";
+    if (index === 0) el.classList.add("primeira");
 
     const inicio = Math.min(...dias);
     const fim = Math.max(...dias);
 
     el.style.gridColumn = `${inicio} / ${fim + 1}`;
-    el.textContent = semana;
+    el.textContent = semana.replace("SEMANA", "Sem");
 
     div.appendChild(el);
   });
-
-  console.log("Semanas detectadas:", map);
 }
 /*************************************************
  * RESUMO
