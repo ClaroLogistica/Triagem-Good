@@ -86,58 +86,54 @@
   </div>
   
   <!-- ================= RESUMO COMPLETO BOTÕES ================= -->
- <div class="resumo-container">
-   
-  <!-- ✅ LOGO FORA DO GRID -->
+<!-- ================= RESUMO COMPLETO BOTÕES ================= -->
+<div class="resumo-container">
+
   <div class="resumo-icone">
-    <img src="logo cortado 1.png">
+    <img src="logo cortado 1.png" alt="">
   </div>
 
   <div class="resumo-grid">
 
-    <!-- TÍTULO -->
     <div class="resumo-titulo">
       RESUMO<br>SEMANAL
     </div>
 
-    <!-- Qtde -->
     <div class="labels">
       <span>Qtde.</span>
       <span>%</span>
     </div>
 
-    <!-- SEMANAS -->
-<div class="col">
-  <strong>SEMANA 01</strong>
-  <span id="sem1-qtd">0</span>
-  <span id="sem1-perc">0%</span>
-</div>
-    
-<div class="col">
-  <strong>SEMANA 02</strong>
-  <span id="sem2-qtd">0</span>
-  <span id="sem2-perc">0%</span>
-</div>
+    <div class="col">
+      <strong>SEMANA 01</strong>
+      <span id="sem1-qtd">0</span>
+      <span id="sem1-perc">0%</span>
+    </div>
 
-<div class="col">
-  <strong>SEMANA 03</strong>
-  <span id="sem3-qtd">0</span>
-  <span id="sem3-perc">0%</span>
-</div>   
+    <div class="col">
+      <strong>SEMANA 02</strong>
+      <span id="sem2-qtd">0</span>
+      <span id="sem2-perc">0%</span>
+    </div>
 
-<div class="col">
-  <strong>SEMANA 04</strong>
-  <span id="sem4-qtd">0</span>
-  <span id="sem4-perc">0%</span>
-</div>
+    <div class="col">
+      <strong>SEMANA 03</strong>
+      <span id="sem3-qtd">0</span>
+      <span id="sem3-perc">0%</span>
+    </div>
 
-<div class="col">
-  <strong>SEMANA 05</strong>
-  <span id="sem5-qtd">0</span>
-  <span id="sem5-perc">0%</span>
-</div>
-    
-    <!-- BOTÕES -->
+    <div class="col">
+      <strong>SEMANA 04</strong>
+      <span id="sem4-qtd">0</span>
+      <span id="sem4-perc">0%</span>
+    </div>
+
+    <div class="col">
+      <strong>SEMANA 05</strong>
+      <span id="sem5-qtd">0</span>
+      <span id="sem5-perc">0%</span>
+    </div>
+
     <div class="botoes-semana">
       <button class="btn-padrao" onclick="filtrarSemana('SEMANA 01')">Sem 01</button>
       <button class="btn-padrao" onclick="filtrarSemana('SEMANA 02')">Sem 02</button>
@@ -146,21 +142,24 @@
       <button class="btn-padrao" onclick="filtrarSemana('SEMANA 05')">Sem 05</button>
       <button class="btn-padrao" onclick="limparFiltroSemana()">Limpar</button>
     </div>
-  
-  <!-- ================= FILTROS ================= -->
-  <div class="linha-filtros">
-  
-    <button class="btn-padrao" onclick="abrirFiltros()">FILTROS</button>
-  
-    <div class="grupo-locais">
-      <button class="btn-padrao" onclick="toggleLocal(this,'CITR CAMPINAS')">CITR CAMPINAS</button>
-      <button class="btn-padrao" onclick="toggleLocal(this,'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
-      <button class="btn-padrao" onclick="toggleLocal(this,'CITR BRASÍLIA')">CITR BRASÍLIA</button>
-      <button class="btn-padrao" onclick="toggleLocal(this,'CITR MANAUS')">CITR MANAUS</button>
-      <button class="btn-padrao" onclick="limparFiltroLocal()">LIMPAR</button>
-    </div>
-  
+
   </div>
+</div>
+
+<!-- ================= FILTROS ================= -->
+<div class="linha-filtros">
+  <button class="btn-padrao btn-filtro-principal" onclick="abrirFiltros()">
+    FILTROS <span class="icone-filtro"></span>
+  </button>
+
+  <div class="grupo-locais">
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR CAMPINAS')">CITR CAMPINAS</button>
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR RIO DE JANEIRO')">CITR RIO DE JANEIRO</button>
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR BRASÍLIA')">CITR BRASÍLIA</button>
+    <button class="btn-padrao" onclick="toggleLocal(this,'CITR MANAUS')">CITR MANAUS</button>
+    <button class="btn-padrao" onclick="limparFiltroLocal()">LIMPAR</button>
+  </div>
+</div>
       
       <!-- GRÁFICO -->
       <div class="grafico-container">
