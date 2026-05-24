@@ -230,13 +230,10 @@ function atualizarGrafico() {
       scales: {
         x: {
           offset: true,
-          grid: {
-            color: (context) => {
-              const index = context.index;
-
-              if ([4, 11, 18, 25].includes(index)) {
-                return "rgba(255,255,255,0.30)";
-              }
+            grid: {
+              color: "rgba(255,255,255,0.06)",
+              lineWidth: 0.5
+            }
 
               return "rgba(255,255,255,0.06)";
             }
@@ -307,33 +304,33 @@ function atualizarFaixaSemanas(base) {
  * RESUMO
  *************************************************/
 function atualizarResumoSemanal() {
-
   const base = aplicarFiltros();
   const total = base.reduce((s, d) => s + Number(d.Quantidade || 0), 0);
 
-  const mapa = {
-    "SEMANA 01": 0,
-    "SEMANA 02": 0,
-    "SEMANA 03": 0,
-    "SEMANA 04": 0,
-    "SEMANA 05": 0
-  };
+  if (!base.length) return;
+
+  // descobre a coluna de semana no Excel
+  const semanaKey = Object.keys(base[0]).find(k =>
+    k.toLowerCase().includes("semana")
+  );
+
+  if (!semanaKey) return;
+
+  const mapa = {};
 
   base.forEach(d => {
-    const chave = Object.keys(d).find(k => k.toLowerCase().includes("semana"));
-    if (!chave) return;
-
-    const semana = d[chave];
+    const semana = String(d[semanaKey]).toUpperCase().trim();
     if (!mapa[semana]) mapa[semana] = 0;
 
     mapa[semana] += Number(d.Quantidade || 0);
   });
 
-  //  preenche SOMENTE os campos existentes (não cria div nova!)
-  Object.entries(mapa).forEach(([sem, valor], index) => {
+  // ordem correta (pela sequência real)
+  const semanasOrdenadas = Object.entries(mapa).sort();
 
-    const qtd = document.getElementById(`sem${index+1}-qtd`);
-    const perc = document.getElementById(`sem${index+1}-perc`);
+  semanasOrdenadas.forEach(([sem, valor], index) => {
+    const qtd = document.getElementById(`sem${index + 1}-qtd`);
+    const perc = document.getElementById(`sem${index + 1}-perc`);
 
     if (!qtd || !perc) return;
 
