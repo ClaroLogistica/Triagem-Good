@@ -52,20 +52,30 @@ fetch(new URL("Dados.xlsx", window.location.href))
  * FILTRO CENTRAL
  *************************************************/
 function aplicarFiltros() {
-  let base = dados;
+  let base = [...dados];
 
-  // filtro por local
+  // filtro CITR / Local
   if (filtroLocais.length > 0) {
     base = base.filter(d => filtroLocais.includes(d.Local));
   }
 
-  // filtro por semana
+  // filtro semana (independente dos outros filtros)
   if (semanasSelecionadas.length > 0) {
-    base = base.filter(d => semanasSelecionadas.includes(d.Semana));
+    const semanaKey = Object.keys(base[0] || {}).find(k =>
+      k.toLowerCase().includes("semana")
+    );
+
+    if (semanaKey) {
+      base = base.filter(d =>
+        semanasSelecionadas.includes(String(d[semanaKey]).toUpperCase().trim())
+      );
+    }
   }
 
+  // aqui continuam seus demais filtros (tipo, dep., giro etc.)
   return base;
 }
+
 
 /*************************************************
  * ATUALIZAÇÃO GERAL
@@ -82,7 +92,7 @@ function atualizarTudo() {
   atualizarGrafico();
   atualizarResumoSemanal();
 }
-
+ atualizarEstadoBotoesSemana();
 /*************************************************
  * KPIs
  *************************************************/
@@ -343,32 +353,53 @@ function montarTecnologias() {
 
 let semanasSelecionadas = [];
 
-function filtrarSemana(semana) {
+/* mantém o visual dos botões da semana */
+function atualizarEstadoBotoesSemana() {
+  const botoes = document.querySelectorAll(".botoes-semana .btn-padrao");
+  const container = document.querySelector(".botoes-semana");
 
-  if (semanasSelecionadas.includes(semana)) {
+  botoes.forEach(btn => {
+    const semanaBtn = btn.textContent.replace("Sem ", "SEMANA ").trim().toUpperCase();
+
+    // se nenhuma semana estiver selecionada, considera TODAS ativas
+    if (semanasSelecionadas.length === 0) {
+      btn.classList.add("ativo");
+    } else {
+      btn.classList.toggle("ativo", semanasSelecionadas.includes(semanaBtn));
+    }
+  });
+
+  if (semanasSelecionadas.length > 0) {
+    container.classList.add("has-selection");
+  } else {
+    container.classList.remove("has-selection");
+  }
+}
+
+/* clique na semana */
+function filtrarSemana(semana) {
+  semana = semana.toUpperCase().trim();
+
+  // se estava no estado "todas", clicar em uma passa a filtrar só ela
+  if (semanasSelecionadas.length === 0) {
+    semanasSelecionadas = [semana];
+  } else if (semanasSelecionadas.includes(semana)) {
+    // se já existe, remove
     semanasSelecionadas = semanasSelecionadas.filter(s => s !== semana);
   } else {
+    // adiciona seleção múltipla
     semanasSelecionadas.push(semana);
   }
 
-  const btns = document.querySelectorAll(".botoes-semana .btn-padrao");
-
-  btns.forEach(b => {
-    const nome = b.textContent.trim().toUpperCase();
-
-    b.classList.toggle(
-      "ativo",
-      semanasSelecionadas.some(s => nome.includes(s.replace("SEMANA ", "SEM ")))
-    );
-  });
-
-  const container = document.querySelector(".botoes-semana");
-  container.classList.toggle("has-selection", semanasSelecionadas.length > 0);
-
+  atualizarEstadoBotoesSemana();
   atualizarTudo();
 }
-function abrirFiltros() {
-  document.getElementById("modal-filtros").classList.add("active");
+
+/* botão Limpar = volta ao início (todas as semanas) */
+function limparFiltroSemana() {
+  semanasSelecionadas = [];
+  atualizarEstadoBotoesSemana();
+  atualizarTudo();
 }
 
 function toggleLocal(el, botao) {
@@ -388,5 +419,18 @@ function toggleLocal(el, botao) {
   const grupo = document.querySelector(".grupo-locais");
   grupo.classList.toggle("has-selection", filtroLocais.length > 0);
 
-  atualizarTudo(); 
+  atualizarTudo();
+}
+
+function limparFiltroLocal() {
+  filtroLocais = [];
+
+  document.querySelectorAll(".grupo-locais .btn-padrao").forEach(btn => {
+    btn.classList.remove("ativo");
+  });
+
+  const grupo = document.querySelector(".grupo-locais");
+  grupo.classList.remove("has-selection");
+
+  atualizarTudo();
 }
