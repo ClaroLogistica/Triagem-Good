@@ -111,7 +111,6 @@ function atualizarKPIs() {
  * GRÁFICO
  *************************************************/
 function atualizarGrafico() {
-
   const labels = Array.from({ length: 31 }, (_, i) => i + 1);
   const valores = Array(31).fill(0);
 
@@ -124,72 +123,73 @@ function atualizarGrafico() {
 
   if (chart) chart.destroy();
 
-  const ctx = document.getElementById("graficoDiario").getContext("2d");
+  const canvas = document.getElementById("graficoDiario");
+  if (!canvas) return;
 
- chart = new Chart(ctx, {
-  type: "bar",
+  const ctx = canvas.getContext("2d");
 
-  data: {
-    labels: labels,
-    datasets: [{backgroundColor: (context) => {
-  const chart = context.chart;
-  const { ctx, chartArea } = chart;
+  chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: valores,
+        borderRadius: 4,
+        barPercentage: 0.6,
+        categoryPercentage: 0.7,
 
-  if (!chartArea) return "#2aa5a5";
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
 
-  const gradient = ctx.createLinearGradient(
-    0,
-    chartArea.bottom,
-    0,
-    chartArea.top
-  );
+          if (!chartArea) return "#2aa5a5";
 
-  gradient.addColorStop(0, "#0a3f4a");
-  gradient.addColorStop(1, "#7be7e7");
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.bottom,
+            0,
+            chartArea.top
+          );
 
-  return gradient;
-},
+          gradient.addColorStop(0, "#0a3f4a");
+          gradient.addColorStop(1, "#7be7e7");
 
-  options: {   /* ✅ COMEÇA AQUI */
-    responsive: true,
-    maintainAspectRatio: false,
+          return gradient;
+        }
+      }]
+    },
 
-    plugins: {   /* ✅ plugins DENTRO do options */
-      legend: { display: false },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
 
-      tooltip: {
-        enabled: true
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          enabled: true
+        }
       },
 
-      datalabels: {
-        color: "#fff",
-        anchor: "end",
-        align: "top",
-        formatter: v => v.toLocaleString("pt-BR")
-      }
-    },
+      scales: {
+        x: {
+          grid: {
+            color: (context) => {
+              const index = context.index;
 
-    scales: {
-  x: {
-    grid: {
-      color: (context) => {
-        const index = context.index;
+              if ([4, 11, 18, 25].includes(index)) {
+                return "rgba(255,255,255,0.3)";
+              }
 
-        if ([4, 11, 18, 25].includes(index)) {
-          return "rgba(255,255,255,0.3)";
-        }
+              return "rgba(255,255,255,0.05)";
+            }
+          },
+          ticks: {
+            color: "#ddd"
+          }
+        },
 
-        return "rgba(255,255,255,0.05)";
-      }
-    },
-    ticks: {
-      color: "#ddd"
-    }
-  },
-
-  y: {
-    
-    display: false
+        y: {
+          display: false
         }
       }
     }
@@ -197,6 +197,7 @@ function atualizarGrafico() {
 
   atualizarFaixaSemanas(base);
 }
+
 
  /*************************************************
  * SEMANAS
