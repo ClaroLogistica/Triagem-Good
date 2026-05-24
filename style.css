@@ -990,17 +990,3 @@ body {
   padding-top: 6px !important;
   opacity: 0.85;
 }
-
-#faixa-semanas .faixa-semana-item::before {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: -10px !important;
-  bottom: -2px !important;
-  width: 1px !important;
-  background: rgba(255,255,255,0.40) !important;
-}
-
-#faixa-semanas .faixa-semana-item.primeira::before {
-  display: none !important;
-}
