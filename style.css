@@ -249,10 +249,10 @@ body {
   display: grid;
   grid-template-columns: repeat(31, 1fr);
 
-  margin-top: 8px;
+  margin-top: 6px;
   padding-top: 6px;
 
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(255,255,255,0.3); /* ✅ linha única */
 
   font-size: 11px;
   color: #ccc;
@@ -261,17 +261,6 @@ body {
 
 #faixa-semanas div {
   position: relative;
-}
-
-#faixa-semanas div::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -8px;
-  bottom: 0;
-
-  width: 1px;
-  background: rgba(255,255,255,0.3);
 }
 
 /* ===== MODAL ===== */
@@ -998,7 +987,8 @@ body {
   position: relative !important;
   text-align: center !important;
   line-height: 1.2 !important;
-  padding-top: 8px !important;
+  padding-top: 6px !important;
+  opacity: 0.85;
 }
 
 #faixa-semanas .faixa-semana-item::before {
