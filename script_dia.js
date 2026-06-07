@@ -201,7 +201,7 @@ function atualizarGrafico() {
           return gradient;
         }
       }],   // ✅ TEM QUE FECHAR AQUI
-   },   // ✅ FECHAMENTO DO DATA (ESSENCIAL)
+    },  // ✅ FECHAMENTO DO DATA (ESSENCIAL)
 
   
     options: {
