@@ -3,11 +3,6 @@
  *************************************************/
 let dados = [];
 let chart = null;
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
-script_dia.js
 
 const mapaLocais = {
   "CITR CAMPINAS": "Lab. Campinas - HFC",
