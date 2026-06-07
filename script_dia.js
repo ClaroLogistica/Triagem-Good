@@ -200,9 +200,7 @@ function atualizarGrafico() {
 
           return gradient;
         }
-      }]
-    },
-
+  
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -233,8 +231,7 @@ function atualizarGrafico() {
             grid: {
               color: "rgba(255,255,255,0.06)",
               lineWidth: 0.5
-            }
-
+            
               return "rgba(255,255,255,0.06)";
             }
           },
