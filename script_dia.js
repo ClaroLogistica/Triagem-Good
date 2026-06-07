@@ -200,6 +200,7 @@ function atualizarGrafico() {
 
           return gradient;
         }
+      }],   // ✅ TEM QUE FECHAR AQUI
   
     options: {
       responsive: true,
@@ -231,8 +232,6 @@ function atualizarGrafico() {
             grid: {
               color: "rgba(255,255,255,0.06)",
               lineWidth: 0.5
-            
-              return "rgba(255,255,255,0.06)";
             }
           },
           ticks: {
